@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1054874261896",
+    "project_id": "signincleanarchitecture",
+    "storage_bucket": "signincleanarchitecture.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1054874261896:android:5faeb911970e8b735f023d",
+        "android_client_info": {
+          "package_name": "com.example.clean_achitecture"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1054874261896-3slrrojronaslo4tgosgb8sa0pa8ufcq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJuXKD-Uq5TbSRyZp0fm9DzpZYWVmMkd8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1054874261896-3slrrojronaslo4tgosgb8sa0pa8ufcq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
