@@ -1,7 +1,5 @@
-import 'package:clean_achitecture/Home/HomeScreen.dart';
-import 'package:clean_achitecture/sigin_signup/data/service/auth.dart';
-import 'package:clean_achitecture/sigin_signup/presentation/screen/login.dart';
-import 'package:clean_achitecture/sigin_signup/presentation/screen/signup.dart';
+
+import 'package:clean_achitecture/features/sigin_signup/presentation/screen/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
