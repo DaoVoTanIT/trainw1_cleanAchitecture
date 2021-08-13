@@ -7,7 +7,7 @@ abstract class LoginEvent extends Equatable {
 class CheckLoginEvent extends LoginEvent {
   final LoginDTO login;
 
-  CheckLoginEvent({@required this.login});
+  CheckLoginEvent({required this.login});
 
   @override
   List<Object> get props => [login];

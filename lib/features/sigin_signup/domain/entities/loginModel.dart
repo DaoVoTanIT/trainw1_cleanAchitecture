@@ -3,8 +3,11 @@ import 'package:equatable/equatable.dart';
 class LoginModel extends Equatable {
   final String login;
   final String password;
+  LoginModel({
+    required this.login,
+    required this.password,
+  });
 
-  LoginModel(this.login, this.password);
 
 
   @override
