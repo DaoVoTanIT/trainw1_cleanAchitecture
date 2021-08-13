@@ -6,8 +6,8 @@ class LoginDTO extends Equatable {
   final String password;
 
   LoginDTO({
-    @required this.username,
-    @required this.password,
+    required this.username,
+    required this.password,
   });
 
   @override
