@@ -1,19 +1,20 @@
 import 'package:clean_achitecture/features/sigin_signup/presentation/bloc/login_bloc.dart';
 import 'package:clean_achitecture/features/sigin_signup/presentation/dto/login_dto.dart';
 import 'package:clean_achitecture/features/sigin_signup/presentation/widget/Loading_widget.dart';
+import 'package:clean_achitecture/routes/route_name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../injection_container.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
-  _SignInState createState() => _SignInState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _SignInState extends State<SignIn> {
+class _LoginPageState extends State<LoginPage> {
   late LoginBloc _bloc;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late String inputLogin;
@@ -51,10 +52,12 @@ class _SignInState extends State<SignIn> {
         bloc: _bloc,
         listener: (context, state) {
           if (state is ErrorLoggedState) {
-            final snackBar = SnackBar(content: Text('Invalid credentials...'));
-            Scaffold.of(context).showSnackBar(snackBar);
+            // final snackBar = SnackBar(content: Text('Invalid credentials...'));
+            // Scaffold.of(context).showSnackBar(snackBar);
+            Navigator.pushNamed(context, RouteName.homePage);
           } else if (state is LoggedState) {
             final snackBar = SnackBar(content: Text('User logged...'));
+            // ignore: deprecated_member_use
             Scaffold.of(context).showSnackBar(snackBar);
           }
         },
@@ -178,13 +181,13 @@ class _SignInState extends State<SignIn> {
 }
 
 //   // final Function toggleView;
-//   // SignIn(this.toggleView);
+//   // LoginPage(this.toggleView);
 
 //   @override
-//   _SignInState createState() => _SignInState();
+//   _LoginPageState createState() => _LoginPageState();
 // }
 
-// class _SignInState extends State<SignIn> {
+// class _LoginPageState extends State<LoginPage> {
 //   TextEditingController emailEditingController = new TextEditingController();
 //   TextEditingController passwordEditingController = new TextEditingController();
 //   AuthService authService = new AuthService();
@@ -257,7 +260,7 @@ class _SignInState extends State<SignIn> {
 //                   ),
 //                   GestureDetector(
 //                     onTap: () {
-//                       //signIn();
+//                       //LoginPage();
 //                     },
 //                     child: Container(
 //                       padding: EdgeInsets.symmetric(vertical: 16),
