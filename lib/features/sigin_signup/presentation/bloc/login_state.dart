@@ -2,7 +2,6 @@ part of 'login_bloc.dart';
 
 abstract class LoginState extends Equatable {
   const LoginState();
-
 }
 
 class LoginInitial extends LoginState {
@@ -11,7 +10,7 @@ class LoginInitial extends LoginState {
   List<Object?> get props => [];
 }
 
-class CheckLoginState extends LoginState {
+class CheckingLoginState extends LoginState {
   @override
   // TODO: implement props
   List<Object?> get props => [];
@@ -27,5 +26,4 @@ class ErrorLoggedState extends LoginState {
   @override
   // TODO: implement props
   List<Object?> get props => throw UnimplementedError();
-
 }

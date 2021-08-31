@@ -20,7 +20,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     LoginEvent event,
   ) async* {
     if (event is CheckLoginEvent) {
-      yield CheckLoginState();
+      yield CheckingLoginState();
       final result = await loginUseCase.call(
         Params(
           login: LoginModel(
