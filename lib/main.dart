@@ -1,4 +1,6 @@
 import 'package:clean_achitecture/features/sigin_signup/presentation/screen/login.dart';
+import 'package:clean_achitecture/routes/route_name.dart';
+import 'package:clean_achitecture/routes/router.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -52,15 +54,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Login Demo',
+      debugShowCheckedModeBanner: false,
+      //title: 'Something Else',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        // This makes the visual density adapt to the platform that you run
-        // the app on. For desktop platforms, the controls will be smaller and
-        // closer together (more dense) than on mobile platforms.
-        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: SignIn(),
+      initialRoute: RouteName.loginPage,
+      onGenerateRoute: Routers.generateRoute,
     );
   }
 }
