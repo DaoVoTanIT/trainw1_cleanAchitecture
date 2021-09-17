@@ -1,9 +1,11 @@
+import 'package:clean_achitecture/Theme/color.dart';
 import 'package:clean_achitecture/features/sigin_signup/presentation/screen/login.dart';
 import 'package:clean_achitecture/routes/route_name.dart';
 import 'package:clean_achitecture/routes/router.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'Theme/theme.dart';
 import 'injection_container.dart' as di;
 
 // Future<void> main() async {
@@ -55,11 +57,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      //title: 'Something Else',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        // appBarTheme: AppBarTheme(
+        //     color: kPrimaryColorVariant,
+        //     brightness: Brightness.light,
+        //     elevation: 0.0,
+        //     iconTheme: IconThemeData(color: Colors.black26)),
       ),
-      initialRoute: RouteName.loginPage,
+      //set up router
+
+      initialRoute: RouteName.splashPage,
       onGenerateRoute: Routers.generateRoute,
     );
   }
