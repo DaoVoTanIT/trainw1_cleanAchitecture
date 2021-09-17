@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.clean_achitecture">
    <application
-        android:label="clean_achitecture"
+        android:label="Find Room"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
