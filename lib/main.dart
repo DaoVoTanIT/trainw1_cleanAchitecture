@@ -8,43 +8,6 @@ import 'package:flutter/material.dart';
 import 'Theme/theme.dart';
 import 'injection_container.dart' as di;
 
-// Future<void> main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await Firebase.initializeApp();
-//   await di.init();
-//   runApp(MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) => MaterialApp(
-//         // home: ChangeNotifierProvider(
-//         //   create: (context) => AuthService(),
-//         //   child: StreamBuilder(
-//         //     stream: FirebaseAuth.instance.authStateChanges(),
-//         //     builder: (context, snapshot) {
-//         //       final provider = Provider.of<AuthService>(context);
-//         //       if (provider.isSigningIn) {
-//         //         return buildLoading();
-//         //       } else if (snapshot.hasData) {
-//         //         return HomeScreen();
-//         //       } else {
-//         //         //return SigninOrSignupScreen();
-//         //         return SignIn();
-//         //       }
-//         //     },
-//         //   ),
-//         // ),
-//         home: SignIn(),
-//       );
-//   Widget buildLoading() => Stack(
-//         fit: StackFit.expand,
-//         children: [
-//           Center(child: CircularProgressIndicator()),
-//         ],
-//       );
-// }
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.init();
