@@ -1,114 +1,144 @@
 import 'package:clean_achitecture/Theme/color.dart';
-import 'package:clean_achitecture/features/account/presentation/model/inforRoom.dart';
 import 'package:clean_achitecture/features/room/data/repositories/data.dart';
-import 'package:clean_achitecture/features/room/presentation/widget/inforRoomWiget.dart';
-import 'package:clean_achitecture/features/room/presentation/widget/tabItem.dart';
+import 'package:clean_achitecture/features/room/presentation/widget/item_card.dart';
 import 'package:clean_achitecture/routes/route_name.dart';
+import 'package:clean_achitecture/style/styleAppBar.dart';
+import 'package:custom_grid_view/custom_grid_view.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class Room extends StatefulWidget {
+class RoomPage extends StatefulWidget {
   @override
-  _RoomState createState() => _RoomState();
+  _RoomPageState createState() => _RoomPageState();
 }
 
-final tabs = ['Nhà trọ', 'Bản đồ', 'Yêu thích', 'Tài khoản'];
-
-class _RoomState extends State<Room> {
+class _RoomPageState extends State<RoomPage> {
   int selectedPosition = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // appBar: AppBar(
-        //   title: Text('Tìm Phòng'),
-        // ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: kPrimaryColorVariant,
-          onPressed: () {},
-          child: Icon(Icons.add),
+      appBar: StyleAppBar(
+        backgroundColor: kBackgroudColor,
+        elevation: 0.0,
+        height: 60,
+        leading: InkWell(
+          onTap: () {},
+          child: Container(
+            margin: EdgeInsetsDirectional.only(start: 5),
+            child: ShaderMask(
+                child: Icon(
+                  FontAwesomeIcons.infoCircle,
+                  size: 30,
+                  color: Colors.redAccent,
+                ),
+                blendMode: BlendMode.srcATop,
+                shaderCallback: (bounds) {
+                  return LinearGradient(
+                          colors: [
+                        Colors.redAccent,
+                        Colors.deepPurpleAccent,
+                      ],
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
+                          tileMode: TileMode.repeated)
+                      .createShader(bounds);
+                }),
+          ),
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        bottomNavigationBar: _buildBottomTab(),
-        body: _buildBodyRoom());
-  }
-
-  _buildBodyRoom() {
-    // return GridView.count(
-    //   crossAxisCount: 1,
-    //   children: List.generate(50, (index) {
-    //     return Container(
-    //       child: Card(
-    //           //color: Colors.,
-    //           ),
-    //     );
-    //   }),
-    //);
-
-    return GridView(
-      physics:
-          BouncingScrollPhysics(), // if you want IOS bouncing effect, otherwise remove this line
-
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2), //change the number as you want
-    );
-  }
-
-  _buildBottomTab() {
-    return BottomAppBar(
-      color: kblueColor,
-      shape: CircularNotchedRectangle(),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          TabItem(
-            text: tabs[0],
-            icon: Icons.home,
-            isSelected: selectedPosition == 0,
-            onTap: () {
-              // setState(() {
-              //   selectedPosition = RouteName.homePage as int;
-              // });
-              Navigator.pushNamed(context, RouteName.homePage);
-            },
-          ),
-          TabItem(
-            text: tabs[1],
-            icon: Icons.map_rounded,
-            isSelected: selectedPosition == 1,
-            onTap: () {
-              // setState(() {
-              //   selectedPosition = 1;
-              // });
-              Navigator.pushNamed(context, RouteName.searchMapPage);
-            },
-          ),
-          SizedBox(
-            width: 48,
-          ),
-          TabItem(
-            text: tabs[2],
-            icon: Icons.favorite,
-            isSelected: selectedPosition == 2,
-            onTap: () {
-              // setState(() {
-              //   //selectedPosition = 2;
-              // });
-              Navigator.pushNamed(context, RouteName.savedRoomPage);
-            },
-          ),
-          TabItem(
-            text: tabs[3],
-            icon: Icons.person,
-            isSelected: selectedPosition == 3,
-            onTap: () {
-              // setState(() {
-              //   selectedPosition = 3;
-              // });
-              Navigator.pushNamed(context, RouteName.profilePage);
-            },
-          ),
+        title: Text(
+          'Phòng mới đăng',
+          style: TextStyle(fontSize: 20.0, color: Colors.blue),
+        ),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.settings),
+              color: Colors.grey,
+              onPressed: () {
+                Navigator.of(context).pushNamed('/notification');
+              })
         ],
       ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Expanded(
+              child: GridView.builder(
+                  itemCount: inforRoom.length,
+                  scrollDirection: Axis.vertical,
+                  addRepaintBoundaries: false,
+                  physics: PageScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 5,
+                    crossAxisSpacing: 15,
+                    childAspectRatio: 1,
+                  ),
+                  itemBuilder: (context, index) => ItemCard(
+                        room: inforRoom[index],
+                        press: () {},
+                      )),
+            ),
+          ],
+        ),
+      ),
     );
+
+    // _buildBodyRoom() {
+    //   return GridView.count(
+    //     crossAxisCount: inforRoom.length,
+    //     children: List.generate(100, (index) {
+    //       return ItemCard(
+    //         function: () {},
+    //         room: inforRoom[index],
+    //       );
+    //     }),
+    //   );
+
+    // return CustomGridView(
+    //   rows: 2,
+    //   rowSpace: 0,
+    //   children: [
+    //     // Container(
+    //     //   color: Colors.red,
+    //     // ),
+    //     // Container(
+    //     //   color: Colors.blue,
+    //     // ),
+    //     // Container(
+    //     //   color: Colors.blue,
+    //     // ),
+    //     // Container(
+    //     //   color: Colors.red,
+    //     // ),
+    //     // Container(
+    //     //   color: Colors.red,
+    //     // ),
+    //     // Container(
+    //     //   color: Colors.blue,
+    //     // ),
+    //     // Container(
+    //     //   color: Colors.blue,
+    //     // ),
+    //     // Container(
+    //     //   color: Colors.red,
+    //     // ),
+    //     // Container(
+    //     //   color: Colors.red,
+    //     // ),
+    //     // Container(
+    //     //   color: Colors.blue,
+    //     // ),
+    //     // Container(
+    //     //   color: Colors.blue,
+    //     // ),
+    //     // Container(
+    //     //   color: Colors.red,
+    //     // ),
+    //     ItemCard(function: (){}, room: null,)
+    //   ],
+    // );
   }
 }
