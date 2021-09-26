@@ -59,7 +59,7 @@ class _SigninPageState extends State<SigninPage> {
           if (state is ErrorLoggedState) {
             // final snackBar = SnackBar(content: Text('Invalid credentials...'));
             // Scaffold.of(context).showSnackBar(snackBar);
-            Navigator.pushNamed(context, RouteName.homePage);
+            Navigator.pushNamed(context, RouteName.curvedNavigationBarWidget);
           } else if (state is LoggedState) {
             final snackBar = SnackBar(content: Text('User logged...'));
             // ignore: deprecated_member_use
