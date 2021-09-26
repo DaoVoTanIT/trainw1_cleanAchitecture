@@ -1,9 +1,10 @@
 import 'package:clean_achitecture/features/Map/presentation/page/SearchMap.dart';
 import 'package:clean_achitecture/features/account/presentation/page/account.dart';
+import 'package:clean_achitecture/features/favorite/presentation/page/favorite.dart';
 import 'package:clean_achitecture/features/room/presentation/page/Room.dart';
-import 'package:clean_achitecture/features/saveRoom/presentation/page/savedRoom.dart';
 import 'package:clean_achitecture/features/sigin_signup/presentation/screen/login.dart';
 import 'package:clean_achitecture/features/sigin_signup/presentation/screen/signup.dart';
+import 'package:clean_achitecture/features/tab/presentation/screen/tab.dart';
 import 'package:clean_achitecture/splash/presentation/page/splash.dart';
 import 'package:flutter/material.dart';
 
@@ -16,12 +17,15 @@ class Routers {
         return MaterialPageRoute(builder: (context) => SigninPage());
       case 'SignUpPage':
         return MaterialPageRoute(builder: (context) => SignUpPage());
+      case 'CurvedNavigationBarWidget':
+        return MaterialPageRoute(
+            builder: (context) => CurvedNavigationBarWidget());
       case 'HomePage':
-        return MaterialPageRoute(builder: (context) => Room());
+        return MaterialPageRoute(builder: (context) => RoomPage());
       case 'MapPage':
-        return MaterialPageRoute(builder: (context) => SearchMap());
+        return MaterialPageRoute(builder: (context) => SearchMapPage());
       case 'SavedRoomPage':
-        return MaterialPageRoute(builder: (context) => SavedRoom());
+        return MaterialPageRoute(builder: (context) => FavoritePage());
       case 'ProfilePage':
         return MaterialPageRoute(builder: (context) => ProfilePage());
       default:
