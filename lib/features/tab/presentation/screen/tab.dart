@@ -1,7 +1,7 @@
 import 'package:clean_achitecture/features/Map/presentation/page/SearchMap.dart';
+import 'package:clean_achitecture/features/Post/presentation/screen/Post.dart';
 import 'package:clean_achitecture/features/account/presentation/page/account.dart';
 import 'package:clean_achitecture/features/favorite/presentation/page/favorite.dart';
-import 'package:clean_achitecture/features/postRoom/presentation/screen/postRoom.dart';
 import 'package:clean_achitecture/features/room/presentation/page/Room.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +20,7 @@ class _CurvedNavigationBarWidgetState extends State {
   var PagesAll = [
     RoomPage(),
     SearchMapPage(),
-    PostRoomPage(),
+    PostPage(),
     FavoritePage(),
     ProfilePage()
   ];
