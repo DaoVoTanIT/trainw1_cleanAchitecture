@@ -15,9 +15,9 @@ class CurvedNavigationBarWidget extends StatefulWidget {
 }
 
 class _CurvedNavigationBarWidgetState extends State {
-  GlobalKey _NavKey = GlobalKey();
+  GlobalKey _navKey = GlobalKey();
 
-  var PagesAll = [
+  var pagesAll = [
     RoomPage(),
     SearchMapPage(),
     PostPage(),
@@ -33,7 +33,7 @@ class _CurvedNavigationBarWidgetState extends State {
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.transparent,
         height: 50,
-        key: _NavKey,
+        key: _navKey,
         items: [
           Icon((myindex == 0) ? Icons.home_outlined : Icons.home),
           Icon((myindex == 1) ? Icons.map : Icons.map_outlined),
@@ -50,7 +50,7 @@ class _CurvedNavigationBarWidgetState extends State {
         animationCurve: Curves.fastLinearToSlowEaseIn,
         color: Colors.blue,
       ),
-      body: PagesAll[myindex],
+      body: pagesAll[myindex],
     );
   }
 }
