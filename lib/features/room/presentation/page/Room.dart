@@ -3,7 +3,6 @@ import 'package:clean_achitecture/features/room/data/repositories/data.dart';
 import 'package:clean_achitecture/features/room/presentation/widget/item_card.dart';
 import 'package:clean_achitecture/routes/route_name.dart';
 import 'package:clean_achitecture/style/styleAppBar.dart';
-import 'package:custom_grid_view/custom_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
