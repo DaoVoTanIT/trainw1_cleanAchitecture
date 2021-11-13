@@ -1,0 +1,112 @@
+[
+    {
+        "id_District": "Q1",
+        "name": "Quận 1",
+        "type": "Quận"
+    },
+    {
+        "id_District": "Q12",
+        "name": "Quận 12",
+        "type": "Quận"
+    },
+    {
+        "id_District": "QGV",
+        "name": "Quận Gò Vấp",
+        "type": "Quận"
+    },
+    {
+        "id_District": "QBT",
+        "name": "Quận Bình Thạnh",
+        "type": "Quận"
+    },
+    {
+        "id_District": "QTB",
+        "name": "Quận Tân Bình",
+        "type": "Quận"
+    },
+    {
+        "id_District": "QTP",
+        "name": "Quận Tân Phú",
+        "type": "Quận"
+    },
+    {
+        "id_District": "QPN",
+        "name": "Quận Phú Nhuận",
+        "type": "Quận"
+    },
+    {
+        "id_District": "TPTD",
+        "name": "Thành phố Thủ Đức",
+        "type": "Thành phố"
+    },
+    {
+        "id_District": "Q3",
+        "name": "Quận 3",
+        "type": "Quận"
+    },
+    {
+        "id_District": "Q10",
+        "name": "Quận 3",
+        "type": "Quận"
+    },
+    {
+        "id_District": "Q11",
+        "name": "Quận 11",
+        "type": "Quận"
+    },
+    {
+        "id_District": "Q4",
+        "name": "Quận 4",
+        "type": "Quận"
+    },
+    {
+        "id_District": "Q5",
+        "name": "Quận 5",
+        "type": "Quận"
+    },
+    {
+        "id_District": "Q6",
+        "name": "Quận 6",
+        "type": "Quận"
+    },
+    {
+        "id_District": "Q8",
+        "name": "Quận 8",
+        "type": "Quận"
+    },
+    {
+        "id_District": "QBTAN",
+        "name": "Quận Bình Tân",
+        "type": "Quận"
+    },
+    {
+        "id_District": "Q7",
+        "name": "Quận 7",
+        "type": "Quận"
+    },
+    {
+        "id_District": "HCC",
+        "name": "Huyện Củ Chi",
+        "type": "Huyện"
+    },
+    {
+        "id_District": "HHM",
+        "name": "Huyện Hóc Môn",
+        "type": "Huyện"
+    },
+    {
+        "id_District": "HBC",
+        "name": "Huyện Bình Chánh",
+        "type": "Huyện"
+    },
+    {
+        "id_District": "HNB",
+        "name": "Huyện Nhà Bè",
+        "type": "Huyện"
+    },
+    {
+        "id_District": "HCG",
+        "name": "Huyện Cần Giờ",
+        "type": "Huyện"
+    }
+]

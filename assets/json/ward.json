@@ -1,0 +1,1873 @@
+[
+    {
+        "id_Ward": "26734",
+        "name": "Phường Tân Định",
+        "type": "Phường",
+        "id_District": "Q1"
+    },
+    {
+        "id_Ward": "26737",
+        "name": "Phường Đa Kao",
+        "type": "Phường",
+        "id_District": "Q1"
+    },
+    {
+        "id_Ward": "26740",
+        "name": "Phường Bến Nghé",
+        "type": "Phường",
+        "id_District": "Q1"
+    },
+    {
+        "id_Ward": "26743",
+        "name": "Phường Bến Thành",
+        "type": "Phường",
+        "id_District": "Q1"
+    },
+    {
+        "id_Ward": "26746",
+        "name": "Phường Nguyễn Thái Bình",
+        "type": "Phường",
+        "id_District": "Q1"
+    },
+    {
+        "id_Ward": "26749",
+        "name": "Phường Phạm Ngũ Lão",
+        "type": "Phường",
+        "id_District": "Q1"
+    },
+    {
+        "id_Ward": "26752",
+        "name": "Phường Cầu Ông Lãnh",
+        "type": "Phường",
+        "id_District": "Q1"
+    },
+    {
+        "id_Ward": "26755",
+        "name": "Phường Cô Giang",
+        "type": "Phường",
+        "id_District": "Q1"
+    },
+    {
+        "id_Ward": "26758",
+        "name": "Phường Nguyễn Cư Trinh",
+        "type": "Phường",
+        "id_District": "Q1"
+    },
+    {
+        "id_Ward": "26761",
+        "name": "Phường Cầu Kho",
+        "type": "Phường",
+        "id_District": "Q1"
+    },
+    {
+        "id_Ward": "26764",
+        "name": "Phường Thạnh Xuân",
+        "type": "Phường",
+        "id_District": "Q12"
+    },
+    {
+        "id_Ward": "26767",
+        "name": "Phường Thạnh Lộc",
+        "type": "Phường",
+        "id_District": "Q12"
+    },
+    {
+        "id_Ward": "26770",
+        "name": "Phường Hiệp Thành",
+        "type": "Phường",
+        "id_District": "Q12"
+    },
+    {
+        "id_Ward": "26773",
+        "name": "Phường Thới An",
+        "type": "Phường",
+        "id_District": "Q12"
+    },
+    {
+        "id_Ward": "26776",
+        "name": "Phường Tân Chánh Hiệp",
+        "type": "Phường",
+        "id_District": "Q12"
+    },
+    {
+        "id_Ward": "26779",
+        "name": "Phường An Phú Đông",
+        "type": "Phường",
+        "id_District": "Q12"
+    },
+    {
+        "id_Ward": "26782",
+        "name": "Phường Tân Thới Hiệp",
+        "type": "Phường",
+        "id_District": "Q12"
+    },
+    {
+        "id_Ward": "26785",
+        "name": "Phường Trung Mỹ Tây",
+        "type": "Phường",
+        "id_District": "Q12"
+    },
+    {
+        "id_Ward": "26787",
+        "name": "Phường Tân Hưng Thuận",
+        "type": "Phường",
+        "id_District": "Q12"
+    },
+    {
+        "id_Ward": "26788",
+        "name": "Phường Đông Hưng Thuận",
+        "type": "Phường",
+        "id_District": "Q12"
+    },
+    {
+        "id_Ward": "26791",
+        "name": "Phường Tân Thới Nhất",
+        "type": "Phường",
+        "id_District": "Q12"
+    },
+    {
+        "id_Ward": "26869",
+        "name": "Phường 15",
+        "type": "Phường",
+        "id_District": "QGV"
+    },
+    {
+        "id_Ward": "26872",
+        "name": "Phường 13",
+        "type": "Phường",
+        "id_District": "QGV"
+    },
+    {
+        "id_Ward": "26875",
+        "name": "Phường 17",
+        "type": "Phường",
+        "id_District": "QGV"
+    },
+    {
+        "id_Ward": "26876",
+        "name": "Phường 6",
+        "type": "Phường",
+        "id_District": "QGV"
+    },
+    {
+        "id_Ward": "26878",
+        "name": "Phường 16",
+        "type": "Phường",
+        "id_District": "QGV"
+    },
+    {
+        "id_Ward": "26881",
+        "name": "Phường 12",
+        "type": "Phường",
+        "id_District": "QGV"
+    },
+    {
+        "id_Ward": "26882",
+        "name": "Phường 14",
+        "type": "Phường",
+        "id_District": "QGV"
+    },
+    {
+        "id_Ward": "26884",
+        "name": "Phường 10",
+        "type": "Phường",
+        "id_District": "QGV"
+    },
+    {
+        "id_Ward": "26887",
+        "name": "Phường 05",
+        "type": "Phường",
+        "id_District": "QGV"
+    },
+    {
+        "id_Ward": "26890",
+        "name": "Phường 07",
+        "type": "Phường",
+        "id_District": "QGV"
+    },
+    {
+        "id_Ward": "26893",
+        "name": "Phường 04",
+        "type": "Phường",
+        "id_District": "QGV"
+    },
+    {
+        "id_Ward": "26896",
+        "name": "Phường 01",
+        "type": "Phường",
+        "id_District": "QGV"
+    },
+    {
+        "id_Ward": "26897",
+        "name": "Phường 9",
+        "type": "Phường",
+        "id_District": "QGV"
+    },
+    {
+        "id_Ward": "26898",
+        "name": "Phường 8",
+        "type": "Phường",
+        "id_District": "QGV"
+    },
+    {
+        "id_Ward": "26899",
+        "name": "Phường 11",
+        "type": "Phường",
+        "id_District": "QGV"
+    },
+    {
+        "id_Ward": "26902",
+        "name": "Phường 03",
+        "type": "Phường",
+        "id_District": "QGV"
+    },
+    {
+        "id_Ward": "26905",
+        "name": "Phường 13",
+        "type": "Phường",
+        "id_District": "QBT"
+    },
+    {
+        "id_Ward": "26908",
+        "name": "Phường 11",
+        "type": "Phường",
+        "id_District": "QBT"
+    },
+    {
+        "id_Ward": "26911",
+        "name": "Phường 27",
+        "type": "Phường",
+        "id_District": "QBT"
+    },
+    {
+        "id_Ward": "26914",
+        "name": "Phường 26",
+        "type": "Phường",
+        "id_District": "QBT"
+    },
+    {
+        "id_Ward": "26917",
+        "name": "Phường 12",
+        "type": "Phường",
+        "id_District": "QBT"
+    },
+    {
+        "id_Ward": "26920",
+        "name": "Phường 25",
+        "type": "Phường",
+        "id_District": "QBT"
+    },
+    {
+        "id_Ward": "26923",
+        "name": "Phường 05",
+        "type": "Phường",
+        "id_District": "QBT"
+    },
+    {
+        "id_Ward": "26926",
+        "name": "Phường 07",
+        "type": "Phường",
+        "id_District": "QBT"
+    },
+    {
+        "id_Ward": "26929",
+        "name": "Phường 24",
+        "type": "Phường",
+        "id_District": "QBT"
+    },
+    {
+        "id_Ward": "26932",
+        "name": "Phường 06",
+        "type": "Phường",
+        "id_District": "QBT"
+    },
+    {
+        "id_Ward": "26935",
+        "name": "Phường 14",
+        "type": "Phường",
+        "id_District": "QBT"
+    },
+    {
+        "id_Ward": "26938",
+        "name": "Phường 15",
+        "type": "Phường",
+        "id_District": "QBT"
+    },
+    {
+        "id_Ward": "26941",
+        "name": "Phường 02",
+        "type": "Phường",
+        "id_District": "QBT"
+    },
+    {
+        "id_Ward": "26944",
+        "name": "Phường 01",
+        "type": "Phường",
+        "id_District": "QBT"
+    },
+    {
+        "id_Ward": "26947",
+        "name": "Phường 03",
+        "type": "Phường",
+        "id_District": "QBT"
+    },
+    {
+        "id_Ward": "26950",
+        "name": "Phường 17",
+        "type": "Phường",
+        "id_District": "QBT"
+    },
+    {
+        "id_Ward": "26953",
+        "name": "Phường 21",
+        "type": "Phường",
+        "id_District": "QBT"
+    },
+    {
+        "id_Ward": "26956",
+        "name": "Phường 22",
+        "type": "Phường",
+        "id_District": "QBT"
+    },
+    {
+        "id_Ward": "26959",
+        "name": "Phường 19",
+        "type": "Phường",
+        "id_District": "QBT"
+    },
+    {
+        "id_Ward": "26962",
+        "name": "Phường 28",
+        "type": "Phường",
+        "id_District": "QBT"
+    },
+    {
+        "id_Ward": "26965",
+        "name": "Phường 02",
+        "type": "Phường",
+        "id_District": "QTB"
+    },
+    {
+        "id_Ward": "26968",
+        "name": "Phường 04",
+        "type": "Phường",
+        "id_District": "QTB"
+    },
+    {
+        "id_Ward": "26971",
+        "name": "Phường 12",
+        "type": "Phường",
+        "id_District": "QTB"
+    },
+    {
+        "id_Ward": "26974",
+        "name": "Phường 13",
+        "type": "Phường",
+        "id_District": "QTB"
+    },
+    {
+        "id_Ward": "26977",
+        "name": "Phường 01",
+        "type": "Phường",
+        "id_District": "QTB"
+    },
+    {
+        "id_Ward": "26980",
+        "name": "Phường 03",
+        "type": "Phường",
+        "id_District": "QTB"
+    },
+    {
+        "id_Ward": "26983",
+        "name": "Phường 11",
+        "type": "Phường",
+        "id_District": "QTB"
+    },
+    {
+        "id_Ward": "26986",
+        "name": "Phường 07",
+        "type": "Phường",
+        "id_District": "QTB"
+    },
+    {
+        "id_Ward": "26989",
+        "name": "Phường 05",
+        "type": "Phường",
+        "id_District": "QTB"
+    },
+    {
+        "id_Ward": "26992",
+        "name": "Phường 10",
+        "type": "Phường",
+        "id_District": "QTB"
+    },
+    {
+        "id_Ward": "26995",
+        "name": "Phường 06",
+        "type": "Phường",
+        "id_District": "QTB"
+    },
+    {
+        "id_Ward": "26998",
+        "name": "Phường 08",
+        "type": "Phường",
+        "id_District": "QTB"
+    },
+    {
+        "id_Ward": "27001",
+        "name": "Phường 09",
+        "type": "Phường",
+        "id_District": "QTB"
+    },
+    {
+        "id_Ward": "27004",
+        "name": "Phường 14",
+        "type": "Phường",
+        "id_District": "QTB"
+    },
+    {
+        "id_Ward": "27007",
+        "name": "Phường 15",
+        "type": "Phường",
+        "id_District": "QTB"
+    },
+    {
+        "id_Ward": "27010",
+        "name": "Phường Tân Sơn Nhì",
+        "type": "Phường",
+        "id_District": "QTP"
+    },
+    {
+        "id_Ward": "27013",
+        "name": "Phường Tây Thạnh",
+        "type": "Phường",
+        "id_District": "QTP"
+    },
+    {
+        "id_Ward": "27016",
+        "name": "Phường Sơn Kỳ",
+        "type": "Phường",
+        "id_District": "QTP"
+    },
+    {
+        "id_Ward": "27019",
+        "name": "Phường Tân Quý",
+        "type": "Phường",
+        "id_District": "QTP"
+    },
+    {
+        "id_Ward": "27022",
+        "name": "Phường Tân Thành",
+        "type": "Phường",
+        "id_District": "QTP"
+    },
+    {
+        "id_Ward": "27025",
+        "name": "Phường Phú Thọ Hòa",
+        "type": "Phường",
+        "id_District": "QTP"
+    },
+    {
+        "id_Ward": "27028",
+        "name": "Phường Phú Thạnh",
+        "type": "Phường",
+        "id_District": "QTP"
+    },
+    {
+        "id_Ward": "27031",
+        "name": "Phường Phú Trung",
+        "type": "Phường",
+        "id_District": "QTP"
+    },
+    {
+        "id_Ward": "27034",
+        "name": "Phường Hòa Thạnh",
+        "type": "Phường",
+        "id_District": "QTP"
+    },
+    {
+        "id_Ward": "27037",
+        "name": "Phường Hiệp Tân",
+        "type": "Phường",
+        "id_District": "QTP"
+    },
+    {
+        "id_Ward": "27040",
+        "name": "Phường Tân Thới Hòa",
+        "type": "Phường",
+        "id_District": "QTP"
+    },
+    {
+        "id_Ward": "27043",
+        "name": "Phường 04",
+        "type": "Phường",
+        "id_District": "QPN"
+    },
+    {
+        "id_Ward": "27046",
+        "name": "Phường 05",
+        "type": "Phường",
+        "id_District": "QPN"
+    },
+    {
+        "id_Ward": "27049",
+        "name": "Phường 09",
+        "type": "Phường",
+        "id_District": "QPN"
+    },
+    {
+        "id_Ward": "27052",
+        "name": "Phường 07",
+        "type": "Phường",
+        "id_District": "QPN"
+    },
+    {
+        "id_Ward": "27055",
+        "name": "Phường 03",
+        "type": "Phường",
+        "id_District": "QPN"
+    },
+    {
+        "id_Ward": "27058",
+        "name": "Phường 01",
+        "type": "Phường",
+        "id_District": "QPN"
+    },
+    {
+        "id_Ward": "27061",
+        "name": "Phường 02",
+        "type": "Phường",
+        "id_District": "QPN"
+    },
+    {
+        "id_Ward": "27064",
+        "name": "Phường 08",
+        "type": "Phường",
+        "id_District": "QPN"
+    },
+    {
+        "id_Ward": "27067",
+        "name": "Phường 15",
+        "type": "Phường",
+        "id_District": "QPN"
+    },
+    {
+        "id_Ward": "27070",
+        "name": "Phường 10",
+        "type": "Phường",
+        "id_District": "QPN"
+    },
+    {
+        "id_Ward": "27073",
+        "name": "Phường 11",
+        "type": "Phường",
+        "id_District": "QPN"
+    },
+    {
+        "id_Ward": "27076",
+        "name": "Phường 17",
+        "type": "Phường",
+        "id_District": "QPN"
+    },
+    {
+        "id_Ward": "27085",
+        "name": "Phường 13",
+        "type": "Phường",
+        "id_District": "QPN"
+    },
+    {
+        "id_Ward": "26794",
+        "name": "Phường Linh Xuân",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "26797",
+        "name": "Phường Bình Chiểu",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "26800",
+        "name": "Phường Linh Trung",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "26803",
+        "name": "Phường Tam Bình",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "26806",
+        "name": "Phường Tam Phú",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "26809",
+        "name": "Phường Hiệp Bình Phước",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "26812",
+        "name": "Phường Hiệp Bình Chánh",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "26815",
+        "name": "Phường Linh Chiểu",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "26818",
+        "name": "Phường Linh Tây",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "26821",
+        "name": "Phường Linh Đông",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "26824",
+        "name": "Phường Bình Thọ",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "26827",
+        "name": "Phường Trường Thọ",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "26830",
+        "name": "Phường Long Bình",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "26833",
+        "name": "Phường Long Thạnh Mỹ",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "26836",
+        "name": "Phường Tân Phú",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "26839",
+        "name": "Phường Hiệp Phú",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "26842",
+        "name": "Phường Tăng Nhơn Phú A",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "26845",
+        "name": "Phường Tăng Nhơn Phú B",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "26848",
+        "name": "Phường Phước Long B",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "26851",
+        "name": "Phường Phước Long A",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "26854",
+        "name": "Phường Trường Thạnh",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "26857",
+        "name": "Phường Long Phước",
+        "type": "Phường"
+    },
+    {
+        "id_Ward": "26860",
+        "name": "Phường Long Trường",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "26863",
+        "name": "Phường Phước Bình",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "26866",
+        "name": "Phường Phú Hữu",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "27088",
+        "name": "Phường Thảo Điền",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "27091",
+        "name": "Phường An Phú",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "27094",
+        "name": "Phường An Khánh",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "27097",
+        "name": "Phường Bình Trưng Đông",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "27100",
+        "name": "Phường Bình Trưng Tây",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "27109",
+        "name": "Phường Cát Lái",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "27112",
+        "name": "Phường Thạnh Mỹ Lợi",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "27115",
+        "name": "Phường An Lợi Đông",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "27118",
+        "name": "Phường Thủ Thiêm",
+        "type": "Phường",
+        "id_District": "TPTD"
+    },
+    {
+        "id_Ward": "27127",
+        "name": "Phường 14",
+        "type": "Phường",
+        "id_District": "Q3"
+    },
+    {
+        "id_Ward": "27130",
+        "name": "Phường 12",
+        "type": "Phường",
+        "id_District": "Q3"
+    },
+    {
+        "id_Ward": "27133",
+        "name": "Phường 11",
+        "type": "Phường",
+        "id_District": "Q3"
+    },
+    {
+        "id_Ward": "27136",
+        "name": "Phường 13",
+        "type": "Phường",
+        "id_District": "Q3"
+    },
+    {
+        "id_Ward": "27139",
+        "name": "Phường Võ Thị Sáu",
+        "type": "Phường",
+        "id_District": "Q3"
+    },
+    {
+        "id_Ward": "27142",
+        "name": "Phường 09",
+        "type": "Phường",
+        "id_District": "Q3"
+    },
+    {
+        "id_Ward": "27145",
+        "name": "Phường 10",
+        "type": "Phường",
+        "id_District": "Q3"
+    },
+    {
+        "id_Ward": "27148",
+        "name": "Phường 04",
+        "type": "Phường",
+        "id_District": "Q3"
+    },
+    {
+        "id_Ward": "27151",
+        "name": "Phường 05",
+        "type": "Phường",
+        "id_District": "Q3"
+    },
+    {
+        "id_Ward": "27154",
+        "name": "Phường 03",
+        "type": "Phường",
+        "id_District": "Q3"
+    },
+    {
+        "id_Ward": "27157",
+        "name": "Phường 02",
+        "type": "Phường",
+        "id_District": "Q3"
+    },
+    {
+        "id_Ward": "27160",
+        "name": "Phường 01",
+        "type": "Phường",
+        "id_District": "Q3"
+    },
+    {
+        "id_Ward": "27163",
+        "name": "Phường 15",
+        "type": "Phường",
+        "id_District": "Q10"
+    },
+    {
+        "id_Ward": "27166",
+        "name": "Phường 13",
+        "type": "Phường",
+        "id_District": "Q10"
+    },
+    {
+        "id_Ward": "27169",
+        "name": "Phường 14",
+        "type": "Phường",
+        "id_District": "Q10"
+    },
+    {
+        "id_Ward": "27172",
+        "name": "Phường 12",
+        "type": "Phường",
+        "id_District": "Q10"
+    },
+    {
+        "id_Ward": "27175",
+        "name": "Phường 11",
+        "type": "Phường",
+        "id_District": "Q10"
+    },
+    {
+        "id_Ward": "27178",
+        "name": "Phường 10",
+        "type": "Phường",
+        "id_District": "Q10"
+    },
+    {
+        "id_Ward": "27181",
+        "name": "Phường 09",
+        "type": "Phường",
+        "id_District": "Q10"
+    },
+    {
+        "id_Ward": "27184",
+        "name": "Phường 01",
+        "type": "Phường",
+        "id_District": "Q10"
+    },
+    {
+        "id_Ward": "27187",
+        "name": "Phường 08",
+        "type": "Phường",
+        "id_District": "Q10"
+    },
+    {
+        "id_Ward": "27190",
+        "name": "Phường 02",
+        "type": "Phường",
+        "id_District": "Q10"
+    },
+    {
+        "id_Ward": "27193",
+        "name": "Phường 04",
+        "type": "Phường",
+        "id_District": "Q10"
+    },
+    {
+        "id_Ward": "27196",
+        "name": "Phường 07",
+        "type": "Phường",
+        "id_District": "Q10"
+    },
+    {
+        "id_Ward": "27199",
+        "name": "Phường 05",
+        "type": "Phường",
+        "id_District": "Q10"
+    },
+    {
+        "id_Ward": "27202",
+        "name": "Phường 06",
+        "type": "Phường",
+        "id_District": "Q10"
+    },
+    {
+        "id_Ward": "27208",
+        "name": "Phường 15",
+        "type": "Phường",
+        "id_District": "Q11"
+    },
+    {
+        "id_Ward": "27211",
+        "name": "Phường 05",
+        "type": "Phường",
+        "id_District": "Q11"
+    },
+    {
+        "id_Ward": "27214",
+        "name": "Phường 14",
+        "type": "Phường",
+        "id_District": "Q11"
+    },
+    {
+        "id_Ward": "27217",
+        "name": "Phường 11",
+        "type": "Phường",
+        "id_District": "Q11"
+    },
+    {
+        "id_Ward": "27220",
+        "name": "Phường 03",
+        "type": "Phường",
+        "id_District": "Q11"
+    },
+    {
+        "id_Ward": "27223",
+        "name": "Phường 10",
+        "type": "Phường",
+        "id_District": "Q11"
+    },
+    {
+        "id_Ward": "27226",
+        "name": "Phường 13",
+        "type": "Phường",
+        "id_District": "Q11"
+    },
+    {
+        "id_Ward": "27229",
+        "name": "Phường 08",
+        "type": "Phường",
+        "id_District": "Q11"
+    },
+    {
+        "id_Ward": "27232",
+        "name": "Phường 09",
+        "type": "Phường",
+        "id_District": "Q11"
+    },
+    {
+        "id_Ward": "27235",
+        "name": "Phường 12",
+        "type": "Phường",
+        "id_District": "Q11"
+    },
+    {
+        "id_Ward": "27238",
+        "name": "Phường 07",
+        "type": "Phường",
+        "id_District": "Q11"
+    },
+    {
+        "id_Ward": "27241",
+        "name": "Phường 06",
+        "type": "Phường",
+        "id_District": "Q11"
+    },
+    {
+        "id_Ward": "27244",
+        "name": "Phường 04",
+        "type": "Phường",
+        "id_District": "Q11"
+    },
+    {
+        "id_Ward": "27247",
+        "name": "Phường 01",
+        "type": "Phường",
+        "id_District": "Q11"
+    },
+    {
+        "id_Ward": "27250",
+        "name": "Phường 02",
+        "type": "Phường",
+        "id_District": "Q11"
+    },
+    {
+        "id_Ward": "27253",
+        "name": "Phường 16",
+        "type": "Phường",
+        "id_District": "Q11"
+    },
+    {
+        "id_Ward": "27259",
+        "name": "Phường 13",
+        "type": "Phường",
+        "id_District": "Q4"
+    },
+    {
+        "id_Ward": "27262",
+        "name": "Phường 09",
+        "type": "Phường",
+        "id_District": "Q4"
+    },
+    {
+        "id_Ward": "27265",
+        "name": "Phường 06",
+        "type": "Phường",
+        "id_District": "Q4"
+    },
+    {
+        "id_Ward": "27268",
+        "name": "Phường 08",
+        "type": "Phường",
+        "id_District": "Q4"
+    },
+    {
+        "id_Ward": "27271",
+        "name": "Phường 10",
+        "type": "Phường",
+        "id_District": "Q4"
+    },
+    {
+        "id_Ward": "27277",
+        "name": "Phường 18",
+        "type": "Phường",
+        "id_District": "Q4"
+    },
+    {
+        "id_Ward": "27280",
+        "name": "Phường 14",
+        "type": "Phường",
+        "id_District": "Q4"
+    },
+    {
+        "id_Ward": "27283",
+        "name": "Phường 04",
+        "type": "Phường",
+        "id_District": "Q4"
+    },
+    {
+        "id_Ward": "27286",
+        "name": "Phường 03",
+        "type": "Phường",
+        "id_District": "Q4"
+    },
+    {
+        "id_Ward": "27289",
+        "name": "Phường 16",
+        "type": "Phường",
+        "id_District": "Q4"
+    },
+    {
+        "id_Ward": "27292",
+        "name": "Phường 02",
+        "type": "Phường",
+        "id_District": "Q4"
+    },
+    {
+        "id_Ward": "27295",
+        "name": "Phường 15",
+        "type": "Phường",
+        "id_District": "Q4"
+    },
+    {
+        "id_Ward": "27298",
+        "name": "Phường 01",
+        "type": "Phường",
+        "id_District": "Q4"
+    },
+    {
+        "id_Ward": "27301",
+        "name": "Phường 04",
+        "type": "Phường",
+        "id_District": "Q5"
+    },
+    {
+        "id_Ward": "27304",
+        "name": "Phường 09",
+        "type": "Phường",
+        "id_District": "Q5"
+    },
+    {
+        "id_Ward": "27307",
+        "name": "Phường 03",
+        "type": "Phường",
+        "id_District": "Q5"
+    },
+    {
+        "id_Ward": "27310",
+        "name": "Phường 12",
+        "type": "Phường",
+        "id_District": "Q5"
+    },
+    {
+        "id_Ward": "27313",
+        "name": "Phường 02",
+        "type": "Phường",
+        "id_District": "Q5"
+    },
+    {
+        "id_Ward": "27316",
+        "name": "Phường 08",
+        "type": "Phường",
+        "id_District": "Q5"
+    },
+    {
+        "id_Ward": "27322",
+        "name": "Phường 07",
+        "type": "Phường",
+        "id_District": "Q5"
+    },
+    {
+        "id_Ward": "27325",
+        "name": "Phường 01",
+        "type": "Phường",
+        "id_District": "Q5"
+    },
+    {
+        "id_Ward": "27328",
+        "name": "Phường 11",
+        "type": "Phường",
+        "id_District": "Q5"
+    },
+    {
+        "id_Ward": "27331",
+        "name": "Phường 14",
+        "type": "Phường",
+        "id_District": "Q5"
+    },
+    {
+        "id_Ward": "27334",
+        "name": "Phường 05",
+        "type": "Phường",
+        "id_District": "Q5"
+    },
+    {
+        "id_Ward": "27337",
+        "name": "Phường 06",
+        "type": "Phường",
+        "id_District": "Q5"
+    },
+    {
+        "id_Ward": "27340",
+        "name": "Phường 10",
+        "type": "Phường",
+        "id_District": "Q5"
+    },
+    {
+        "id_Ward": "27343",
+        "name": "Phường 13",
+        "type": "Phường",
+        "id_District": "Q5"
+    },
+    {
+        "id_Ward": "27346",
+        "name": "Phường 14",
+        "type": "Phường",
+        "id_District": "Q6"
+    },
+    {
+        "id_Ward": "27349",
+        "name": "Phường 13",
+        "type": "Phường",
+        "id_District": "Q6"
+    },
+    {
+        "id_Ward": "27352",
+        "name": "Phường 09",
+        "type": "Phường",
+        "id_District": "Q6"
+    },
+    {
+        "id_Ward": "27355",
+        "name": "Phường 06",
+        "type": "Phường",
+        "id_District": "Q6"
+    },
+    {
+        "id_Ward": "27358",
+        "name": "Phường 12",
+        "type": "Phường",
+        "id_District": "Q6"
+    },
+    {
+        "id_Ward": "27361",
+        "name": "Phường 05",
+        "type": "Phường",
+        "id_District": "Q6"
+    },
+    {
+        "id_Ward": "27364",
+        "name": "Phường 11",
+        "type": "Phường",
+        "id_District": "Q6"
+    },
+    {
+        "id_Ward": "27367",
+        "name": "Phường 02",
+        "type": "Phường",
+        "id_District": "Q6"
+    },
+    {
+        "id_Ward": "27370",
+        "name": "Phường 01",
+        "type": "Phường",
+        "id_District": "Q6"
+    },
+    {
+        "id_Ward": "27373",
+        "name": "Phường 04",
+        "type": "Phường",
+        "id_District": "Q6"
+    },
+    {
+        "id_Ward": "27376",
+        "name": "Phường 08",
+        "type": "Phường",
+        "id_District": "Q6"
+    },
+    {
+        "id_Ward": "27379",
+        "name": "Phường 03",
+        "type": "Phường",
+        "id_District": "Q6"
+    },
+    {
+        "id_Ward": "27382",
+        "name": "Phường 07",
+        "type": "Phường",
+        "id_District": "Q6"
+    },
+    {
+        "id_Ward": "27385",
+        "name": "Phường 10",
+        "type": "Phường",
+        "id_District": "Q6"
+    },
+    {
+        "id_Ward": "27388",
+        "name": "Phường 08",
+        "type": "Phường",
+        "id_District": "Q8"
+    },
+    {
+        "id_Ward": "27391",
+        "name": "Phường 02",
+        "type": "Phường",
+        "id_District": "Q8"
+    },
+    {
+        "id_Ward": "27394",
+        "name": "Phường 01",
+        "type": "Phường",
+        "id_District": "Q8"
+    },
+    {
+        "id_Ward": "27397",
+        "name": "Phường 03",
+        "type": "Phường",
+        "id_District": "Q8"
+    },
+    {
+        "id_Ward": "27400",
+        "name": "Phường 11",
+        "type": "Phường",
+        "id_District": "Q8"
+    },
+    {
+        "id_Ward": "27403",
+        "name": "Phường 09",
+        "type": "Phường",
+        "id_District": "Q8"
+    },
+    {
+        "id_Ward": "27406",
+        "name": "Phường 10",
+        "type": "Phường",
+        "id_District": "Q8"
+    },
+    {
+        "id_Ward": "27409",
+        "name": "Phường 04",
+        "type": "Phường",
+        "id_District": "Q8"
+    },
+    {
+        "id_Ward": "27412",
+        "name": "Phường 13",
+        "type": "Phường",
+        "id_District": "Q8"
+    },
+    {
+        "id_Ward": "27415",
+        "name": "Phường 12",
+        "type": "Phường",
+        "id_District": "Q8"
+    },
+    {
+        "id_Ward": "27418",
+        "name": "Phường 05",
+        "type": "Phường",
+        "id_District": "Q8"
+    },
+    {
+        "id_Ward": "27421",
+        "name": "Phường 14",
+        "type": "Phường",
+        "id_District": "Q8"
+    },
+    {
+        "id_Ward": "27424",
+        "name": "Phường 06",
+        "type": "Phường",
+        "id_District": "Q8"
+    },
+    {
+        "id_Ward": "27427",
+        "name": "Phường 15",
+        "type": "Phường",
+        "id_District": "Q8"
+    },
+    {
+        "id_Ward": "27430",
+        "name": "Phường 16",
+        "type": "Phường",
+        "id_District": "Q8"
+    },
+    {
+        "id_Ward": "27433",
+        "name": "Phường 07",
+        "type": "Phường",
+        "id_District": "Q8"
+    },
+    {
+        "id_Ward": "27436",
+        "name": "Phường Bình Hưng Hòa",
+        "type": "Phường",
+        "id_District": "QBTAN"
+    },
+    {
+        "id_Ward": "27439",
+        "name": "Phường Bình Hưng Hoà A",
+        "type": "Phường",
+        "id_District": "QBTAN"
+    },
+    {
+        "id_Ward": "27442",
+        "name": "Phường Bình Hưng Hoà B",
+        "type": "Phường",
+        "id_District": "QBTAN"
+    },
+    {
+        "id_Ward": "27445",
+        "name": "Phường Bình Trị Đông",
+        "type": "Phường",
+        "id_District": "QBTAN"
+    },
+    {
+        "id_Ward": "27448",
+        "name": "Phường Bình Trị Đông A",
+        "type": "Phường",
+        "id_District": "QBTAN"
+    },
+    {
+        "id_Ward": "27451",
+        "name": "Phường Bình Trị Đông B",
+        "type": "Phường",
+        "id_District": "QBTAN"
+    },
+    {
+        "id_Ward": "27454",
+        "name": "Phường Tân Tạo",
+        "type": "Phường",
+        "id_District": "QBTAN"
+    },
+    {
+        "id_Ward": "27457",
+        "name": "Phường Tân Tạo A",
+        "type": "Phường",
+        "id_District": "QBTAN"
+    },
+    {
+        "id_Ward": "27460",
+        "name": "Phường  An Lạc",
+        "type": "Phường",
+        "id_District": "QBTAN"
+    },
+    {
+        "id_Ward": "27463",
+        "name": "Phường An Lạc A",
+        "type": "Phường",
+        "id_District": "QBTAN"
+    },
+    {
+        "id_Ward": "27466",
+        "name": "Phường Tân Thuận Đông",
+        "type": "Phường",
+        "id_District": "Q7"
+    },
+    {
+        "id_Ward": "27469",
+        "name": "Phường Tân Thuận Tây",
+        "type": "Phường",
+        "id_District": "Q7"
+    },
+    {
+        "id_Ward": "27472",
+        "name": "Phường Tân Kiểng",
+        "type": "Phường",
+        "id_District": "Q7"
+    },
+    {
+        "id_Ward": "27475",
+        "name": "Phường Tân Hưng",
+        "type": "Phường",
+        "id_District": "Q7"
+    },
+    {
+        "id_Ward": "27478",
+        "name": "Phường Bình Thuận",
+        "type": "Phường",
+        "id_District": "Q7"
+    },
+    {
+        "id_Ward": "27481",
+        "name": "Phường Tân Quy",
+        "type": "Phường",
+        "id_District": "Q7"
+    },
+    {
+        "id_Ward": "27484",
+        "name": "Phường Phú Thuận",
+        "type": "Phường",
+        "id_District": "Q7"
+    },
+    {
+        "id_Ward": "27487",
+        "name": "Phường Tân Phú",
+        "type": "Phường",
+        "id_District": "Q7"
+    },
+    {
+        "id_Ward": "27490",
+        "name": "Phường Tân Phong",
+        "type": "Phường",
+        "id_District": "Q7"
+    },
+    {
+        "id_Ward": "27493",
+        "name": "Phường Phú Mỹ",
+        "type": "Phường",
+        "id_District": "Q7"
+    },
+    {
+        "id_Ward": "27496",
+        "name": "Thị trấn Củ Chi",
+        "type": "Thị trấn",
+        "id_District": "HCC"
+    },
+    {
+        "id_Ward": "27499",
+        "name": "Xã Phú Mỹ Hưng",
+        "type": "Xã",
+        "id_District": "HCC"
+    },
+    {
+        "id_Ward": "27502",
+        "name": "Xã An Phú",
+        "type": "Xã",
+        "id_District": "HCC"
+    },
+    {
+        "id_Ward": "27505",
+        "name": "Xã Trung Lập Thượng",
+        "type": "Xã",
+        "id_District": "HCC"
+    },
+    {
+        "id_Ward": "27508",
+        "name": "Xã An Nhơn Tây",
+        "type": "Xã",
+        "id_District": "HCC"
+    },
+    {
+        "id_Ward": "27511",
+        "name": "Xã Nhuận Đức",
+        "type": "Xã",
+        "id_District": "HCC"
+    },
+    {
+        "id_Ward": "27514",
+        "name": "Xã Phạm Văn Cội",
+        "type": "Xã",
+        "id_District": "HCC"
+    },
+    {
+        "id_Ward": "27517",
+        "name": "Xã Phú Hòa Đông",
+        "type": "Xã",
+        "id_District": "HCC"
+    },
+    {
+        "id_Ward": "27520",
+        "name": "Xã Trung Lập Hạ",
+        "type": "Xã",
+        "id_District": "HCC"
+    },
+    {
+        "id_Ward": "27523",
+        "name": "Xã Trung An",
+        "type": "Xã",
+        "id_District": "HCC"
+    },
+    {
+        "id_Ward": "27526",
+        "name": "Xã Phước Thạnh",
+        "type": "Xã",
+        "id_District": "HCC"
+    },
+    {
+        "id_Ward": "27529",
+        "name": "Xã Phước Hiệp",
+        "type": "Xã",
+        "id_District": "HCC"
+    },
+    {
+        "id_Ward": "27532",
+        "name": "Xã Tân An Hội",
+        "type": "Xã",
+        "id_District": "HCC"
+    },
+    {
+        "id_Ward": "27535",
+        "name": "Xã Phước Vĩnh An",
+        "type": "Xã",
+        "id_District": "HCC"
+    },
+    {
+        "id_Ward": "27538",
+        "name": "Xã Thái Mỹ",
+        "type": "Xã",
+        "id_District": "HCC"
+    },
+    {
+        "id_Ward": "27541",
+        "name": "Xã Tân Thạnh Tây",
+        "type": "Xã",
+        "id_District": "HCC"
+    },
+    {
+        "id_Ward": "27544",
+        "name": "Xã Hòa Phú",
+        "type": "Xã",
+        "id_District": "HCC"
+    },
+    {
+        "id_Ward": "27547",
+        "name": "Xã Tân Thạnh Đông",
+        "type": "Xã",
+        "id_District": "HCC"
+    },
+    {
+        "id_Ward": "27550",
+        "name": "Xã Bình Mỹ",
+        "type": "Xã",
+        "id_District": "HCC"
+    },
+    {
+        "id_Ward": "27553",
+        "name": "Xã Tân Phú Trung",
+        "type": "Xã",
+        "id_District": "HCC"
+    },
+    {
+        "id_Ward": "27556",
+        "name": "Xã Tân Thông Hội",
+        "type": "Xã",
+        "id_District": "HCC"
+    },
+    {
+        "id_Ward": "27559",
+        "name": "Thị trấn Hóc Môn",
+        "type": "Thị trấn",
+        "id_District": "HHM"
+    },
+    {
+        "id_Ward": "27562",
+        "name": "Xã Tân Hiệp",
+        "type": "Xã",
+        "id_District": "HHM"
+    },
+    {
+        "id_Ward": "27565",
+        "name": "Xã Nhị Bình",
+        "type": "Xã",
+        "id_District": "HHM"
+    },
+    {
+        "id_Ward": "27568",
+        "name": "Xã Đông Thạnh",
+        "type": "Xã",
+        "id_District": "HHM"
+    },
+    {
+        "id_Ward": "27571",
+        "name": "Xã Tân Thới Nhì",
+        "type": "Xã",
+        "id_District": "HHM"
+    },
+    {
+        "id_Ward": "27574",
+        "name": "Xã Thới Tam Thôn",
+        "type": "Xã",
+        "id_District": "HHM"
+    },
+    {
+        "id_Ward": "27577",
+        "name": "Xã Xuân Thới Sơn",
+        "type": "Xã",
+        "id_District": "HHM"
+    },
+    {
+        "id_Ward": "27580",
+        "name": "Xã Tân Xuân",
+        "type": "Xã",
+        "id_District": "HHM"
+    },
+    {
+        "id_Ward": "27583",
+        "name": "Xã Xuân Thới Đông",
+        "type": "Xã",
+        "id_District": "HHM"
+    },
+    {
+        "id_Ward": "27586",
+        "name": "Xã Trung Chánh",
+        "type": "Xã",
+        "id_District": "HHM"
+    },
+    {
+        "id_Ward": "27589",
+        "name": "Xã Xuân Thới Thượng",
+        "type": "Xã",
+        "id_District": "HHM"
+    },
+    {
+        "id_Ward": "27592",
+        "name": "Xã Bà Điểm",
+        "type": "Xã",
+        "id_District": "HHM"
+    },
+    {
+        "id_Ward": "27595",
+        "name": "Thị trấn Tân Túc",
+        "type": "Thị trấn",
+        "id_District": "HBC"
+    },
+    {
+        "id_Ward": "27598",
+        "name": "Xã Phạm Văn Hai",
+        "type": "Xã",
+        "id_District": "HBC"
+    },
+    {
+        "id_Ward": "27601",
+        "name": "Xã Vĩnh Lộc A",
+        "type": "Xã",
+        "id_District": "HBC"
+    },
+    {
+        "id_Ward": "27604",
+        "name": "Xã Vĩnh Lộc B",
+        "type": "Xã",
+        "id_District": "HBC"
+    },
+    {
+        "id_Ward": "27607",
+        "name": "Xã Bình Lợi",
+        "type": "Xã",
+        "id_District": "HBC"
+    },
+    {
+        "id_Ward": "27610",
+        "name": "Xã Lê Minh Xuân",
+        "type": "Xã",
+        "id_District": "HBC"
+    },
+    {
+        "id_Ward": "27613",
+        "name": "Xã Tân Nhựt",
+        "type": "Xã",
+        "id_District": "HBC"
+    },
+    {
+        "id_Ward": "27616",
+        "name": "Xã Tân Kiên",
+        "type": "Xã",
+        "id_District": "HBC"
+    },
+    {
+        "id_Ward": "27619",
+        "name": "Xã Bình Hưng",
+        "type": "Xã",
+        "id_District": "HBC"
+    },
+    {
+        "id_Ward": "27622",
+        "name": "Xã Phong Phú",
+        "type": "Xã",
+        "id_District": "HBC"
+    },
+    {
+        "id_Ward": "27625",
+        "name": "Xã An Phú Tây",
+        "type": "Xã",
+        "id_District": "HBC"
+    },
+    {
+        "id_Ward": "27628",
+        "name": "Xã Hưng Long",
+        "type": "Xã",
+        "id_District": "HBC"
+    },
+    {
+        "id_Ward": "27631",
+        "name": "Xã Đa Phước",
+        "type": "Xã",
+        "id_District": "HBC"
+    },
+    {
+        "id_Ward": "27634",
+        "name": "Xã Tân Quý Tây",
+        "type": "Xã",
+        "id_District": "HBC"
+    },
+    {
+        "id_Ward": "27637",
+        "name": "Xã Bình Chánh",
+        "type": "Xã",
+        "id_District": "HBC"
+    },
+    {
+        "id_Ward": "27640",
+        "name": "Xã Quy Đức",
+        "type": "Xã",
+        "id_District": "HBC"
+    },
+    {
+        "id_Ward": "27643",
+        "name": "Thị trấn Nhà Bè",
+        "type": "Thị trấn",
+        "id_District": "HNB"
+    },
+    {
+        "id_Ward": "27646",
+        "name": "Xã Phước Kiển",
+        "type": "Xã",
+        "id_District": "HNB"
+    },
+    {
+        "id_Ward": "27649",
+        "name": "Xã Phước Lộc",
+        "type": "Xã",
+        "id_District": "HNB"
+    },
+    {
+        "id_Ward": "27652",
+        "name": "Xã Nhơn Đức",
+        "type": "Xã",
+        "id_District": "HNB"
+    },
+    {
+        "id_Ward": "27655",
+        "name": "Xã Phú Xuân",
+        "type": "Xã",
+        "id_District": "HNB"
+    },
+    {
+        "id_Ward": "27658",
+        "name": "Xã Long Thới",
+        "type": "Xã",
+        "id_District": "HNB"
+    },
+    {
+        "id_Ward": "27661",
+        "name": "Xã Hiệp Phước",
+        "type": "Xã",
+        "id_District": "HNB"
+    },
+    {
+        "id_Ward": "27664",
+        "name": "Thị trấn Cần Thạnh",
+        "type": "Thị trấn",
+        "id_District": "HCG"
+    },
+    {
+        "id_Ward": "27667",
+        "name": "Xã Bình Khánh",
+        "type": "Xã",
+        "id_District": "HCG"
+    },
+    {
+        "id_Ward": "27670",
+        "name": "Xã Tam Thôn Hiệp",
+        "type": "Xã",
+        "id_District": "HCG"
+    },
+    {
+        "id_Ward": "27673",
+        "name": "Xã An Thới Đông",
+        "type": "Xã",
+        "id_District": "HCG"
+    },
+    {
+        "id_Ward": "27676",
+        "name": "Xã Thạnh An",
+        "type": "Xã",
+        "id_District": "HCG"
+    },
+    {
+        "id_Ward": "27679",
+        "name": "Xã Long Hòa",
+        "type": "Xã",
+        "id_District": "HCG"
+    },
+    {
+        "id_Ward": "27682",
+        "name": "Xã Lý Nhơn",
+        "type": "Xã",
+        "id_District": "HCG"
+    }
+]
