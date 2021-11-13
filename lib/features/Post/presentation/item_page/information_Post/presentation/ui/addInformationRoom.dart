@@ -12,14 +12,6 @@ class PostInformation extends StatefulWidget {
 }
 
 class _PostInformationState extends State<PostInformation> {
-  bool isSelectedWifi = false;
-  bool isSelectedWC = false;
-  bool isSelectedMB = false;
-  bool isSelectedClock = false;
-  bool isSelectedAirFresher = false;
-  bool isSelectedCook = false;
-  bool isSelectedFridge = false;
-  bool isSelectedWM = false;
   int counter = 0;
 
   @override
