@@ -25,16 +25,13 @@ class District {
     // ignore: non_constant_identifier_names
     required this.id_District,
     required this.name,
-    required this.type,
   });
 
   String id_District;
   String name;
-  Type type;
   static District fromJson(json) => District(
         id_District: json['id_District'],
         name: json['name'],
-        type: json['type'],
       );
 }
 

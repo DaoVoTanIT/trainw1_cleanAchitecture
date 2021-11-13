@@ -1,19 +1,17 @@
-// import 'dart:convert';
-// import 'package:clean_achitecture/features/Post/domain/model/ward.dart';
-// import 'package:clean_achitecture/features/Post/presentation/item_page/address/domain/entity/distric.dart';
+import 'dart:convert';
+import 'package:clean_achitecture/features/Post/presentation/item_page/address_Post/domain/entity/distric.dart';
 
-// class DistrictModel extends District {
-//   DistrictModel({
-//     required String id_District,
-//     required String name,
-//     //required Type type,
-//   }) : super(id_District: id_District, name: name);
+class DistrictModel extends District {
+  DistrictModel({
+    required String id_District,
+    required String name,
+  }) : super(id_District: id_District, name: name);
 
-//   static DistrictModel fromJson(json) => DistrictModel(
-//         id_District: json['id_DistrictModel'],
-//         name: json['name'],
-//         //type: json['type'],
-//       );
-// }
+  static DistrictModel fromJson(json) => DistrictModel(
+        id_District: json['id_DistrictModel'],
+        name: json['name'],
+        //type: json['type'],
+      );
+}
 
-// enum Type { QUN, THNH_PH, HUYN }
+enum Type { QUN, THNH_PH, HUYN }
