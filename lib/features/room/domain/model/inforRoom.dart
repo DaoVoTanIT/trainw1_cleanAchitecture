@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 class Room {
   final String id;
   final String address;
