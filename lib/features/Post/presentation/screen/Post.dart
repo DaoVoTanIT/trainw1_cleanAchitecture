@@ -69,6 +69,30 @@ class _PostPageState extends State<PostPage> {
         body: Stepper(
           type: StepperType.horizontal,
           currentStep: activeStepIndex,
+          controlsBuilder: (BuildContext context,
+              {VoidCallback? onStepContinue, VoidCallback? onStepCancel}) {
+            return Row(
+              children: <Widget>[
+                TextButton(
+                  onPressed: onStepCancel,
+                  child: const Text(
+                    'Quay lại',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ),
+                TextButton(
+                  onPressed: onStepContinue,
+                  child: const Text(
+                    'Tiếp',
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.redAccent,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            );
+          },
           steps: [
             Step(
               state:
