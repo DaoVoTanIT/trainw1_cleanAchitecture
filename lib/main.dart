@@ -22,14 +22,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        // appBarTheme: AppBarTheme(
-        //     color: kPrimaryColorVariant,
-        //     brightness: Brightness.light,
-        //     elevation: 0.0,
-        //     iconTheme: IconThemeData(color: Colors.black26)),
       ),
       //set up router
-
       initialRoute: RouteName.splashPage,
       onGenerateRoute: Routers.generateRoute,
     );
