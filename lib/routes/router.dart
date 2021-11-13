@@ -4,8 +4,8 @@ import 'package:clean_achitecture/features/favorite/presentation/page/favorite.d
 import 'package:clean_achitecture/features/room/presentation/page/Room.dart';
 import 'package:clean_achitecture/features/sigin_signup/presentation/screen/login.dart';
 import 'package:clean_achitecture/features/sigin_signup/presentation/screen/signup.dart';
+import 'package:clean_achitecture/features/splash/presentation/page/splash.dart';
 import 'package:clean_achitecture/features/tab/presentation/screen/tab.dart';
-import 'package:clean_achitecture/splash/presentation/page/splash.dart';
 import 'package:flutter/material.dart';
 
 class Routers {
