@@ -45,7 +45,6 @@ dependencies:
   bubble_tab_indicator: ^0.1.6
   multi_image_picker2: ^5.0.2
   http: ^0.13.4
-  dropdown_search: ^1.0.3
 dev_dependencies:
   flutter_test:
     sdk: flutter
