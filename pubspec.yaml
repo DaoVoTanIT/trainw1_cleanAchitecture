@@ -41,10 +41,16 @@ dependencies:
   curved_navigation_bar: ^1.0.1
   google_maps_flutter: ^2.0.10
   location: ^4.3.0
-  flutter_toggle_tab: ^1.1.7
   bubble_tab_indicator: ^0.1.6
   multi_image_picker2: ^5.0.2
   http: ^0.13.4
+  flutter_toggle_tab: ^1.1.7
+  dio: ^4.0.6
+  carousel_slider: ^4.1.1
+  dropdown_search: ^3.0.1
+  geolocator: ^8.2.1
+  provider: ^6.0.2
+  custom_info_window: ^1.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
