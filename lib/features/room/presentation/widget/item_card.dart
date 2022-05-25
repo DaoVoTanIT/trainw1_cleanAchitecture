@@ -1,56 +1,105 @@
-import 'package:clean_achitecture/features/room/domain/model/inforRoom.dart';
+import 'package:clean_achitecture/features/room/presentation/page/DetailRoomPage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../routes/route_name.dart';
+import '../../data/model/RoomModel.dart';
+
 class ItemCard extends StatelessWidget {
-  final Room room;
-  final Function() press;
+  final RoomModel room;
   const ItemCard({
     Key? key,
     required this.room,
-    required this.press,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: GestureDetector(
-            onTap: press,
-            child: new Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              // verticalDirection: VerticalDirection.down,
-              children: <Widget>[
-                Image.asset(
-                  room.imageUrl,
-                  fit: BoxFit.cover,
-                  height: 100,
-                  width: 100,
-                ),
-                new Padding(
-                  padding: EdgeInsets.only(left: 10.0),
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Icon(Icons.add_location_outlined, color: Colors.blue),
-                          new Text(room.address),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Icon(Icons.home, color: Colors.blue),
-                          new Text('DT ${room.area} m2'),
-                        ],
-                      ),
-                    ],
+    return GestureDetector(
+        onTap: () {
+          // Navigator.pushNamed(context, RouteName.detailRoomPage,
+          //     arguments: {room.toJson()});
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const DetailRoomPage(),
+              settings: RouteSettings(
+                arguments: room,
+              ),
+            ),
+          );
+        },
+        child: Container(
+          padding: EdgeInsets.symmetric(
+            vertical: 1,
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Column(
+                children: [
+                  Image.network(
+                    room.imageMain.toString(),
+                    fit: BoxFit.cover,
+                    height: 120,
+                    width: 120,
                   ),
-                )
-              ],
-            )));
+                ],
+              ),
+              SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(room.subject.toString(),
+                        style: TextStyle(
+                          fontSize: 16,
+                          // color: Colors.black,
+                        )),
+                    SizedBox(height: 10),
+                    Text('${room.size} m2',
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.grey,
+                        )),
+                    SizedBox(height: 7),
+                    Text(room.priceString.toString(),
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red,
+                        )),
+                    SizedBox(height: 7),
+                    Row(
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              CupertinoIcons.placemark,
+                              size: 20,
+                              color: Colors.grey,
+                            ),
+                            Text(room.areaName.toString(),
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.grey,
+                                ))
+                          ],
+                        ),
+                        Spacer(),
+                        GestureDetector(
+                          child: Icon(
+                            CupertinoIcons.heart,
+                            color: CupertinoColors.systemRed,
+                            size: 25,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ));
   }
 }
