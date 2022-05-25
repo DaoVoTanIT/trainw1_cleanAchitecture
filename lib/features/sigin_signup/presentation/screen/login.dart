@@ -4,6 +4,7 @@ import 'package:clean_achitecture/features/sigin_signup/presentation/bloc/login_
 import 'package:clean_achitecture/features/sigin_signup/presentation/dto/login_dto.dart';
 import 'package:clean_achitecture/features/sigin_signup/presentation/widget/Loading_widget.dart';
 import 'package:clean_achitecture/routes/route_name.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -83,7 +84,6 @@ class _SigninPageState extends State<SigninPage> {
 
   _buildForm() {
     return Scaffold(
-      //resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
             padding: const EdgeInsets.all(5.0),
@@ -137,6 +137,48 @@ class _SigninPageState extends State<SigninPage> {
                       )
                     ],
                   ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      padding: EdgeInsets.all(10.0),
+                      height: 60,
+                      width: double.infinity,
+                      color: Colors.white,
+                      child: CupertinoTextField(
+                        controller: emailEditingController,
+                        placeholder: "task",
+                        textInputAction: TextInputAction.send,
+                        suffix: GestureDetector(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Icon(
+                              CupertinoIcons.paperplane_fill,
+                              color: Colors.blue,
+                              size: 25,
+                            ),
+                          ),
+                          onTap: () async {
+                            if (emailEditingController.text.isEmpty) {
+                              //check empty text
+                              return null;
+                            } else {
+                              // await createToDo(id);
+                              // toDoController.clear();
+                              // SweetAlert.show(context,
+                              //     title: translate.text('success'),
+                              //     subtitle: "",
+                              //     style: SweetAlertStyle.success);
+                            }
+                          },
+                        ),
+                        decoration: BoxDecoration(
+                            //color: CupertinoColors.lightBackgroundGray,
+                            borderRadius: BorderRadius.circular(10.0),
+                            border: Border.all(
+                                color: CupertinoColors.systemGrey3, width: 1)),
+                      ),
+                    ),
+                  ),
                   Form(
                     autovalidateMode: AutovalidateMode.disabled,
                     key: _formKey,
@@ -147,53 +189,53 @@ class _SigninPageState extends State<SigninPage> {
                           SizedBox(
                             height: 30.0,
                           ),
-                          TextFormField(
-                            validator: (val) {
-                              return RegExp(
-                                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                      .hasMatch(val!)
-                                  ? null
-                                  : "Please Enter Correct Email";
-                            },
-                            onChanged: (value) {
-                              inputLogin = value;
-                            },
-                            controller: emailEditingController,
-                            decoration: InputDecoration(
-                                prefixIcon: Icon(Icons.mail),
-                                hintText: "Email",
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10))),
-                          ),
+                          // TextFormField(
+                          //   validator: (val) {
+                          //     return RegExp(
+                          //                 r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                          //             .hasMatch(val!)
+                          //         ? null
+                          //         : "Please Enter Correct Email";
+                          //   },
+                          //   onChanged: (value) {
+                          //     inputLogin = value;
+                          //   },
+                          //   controller: emailEditingController,
+                          //   decoration: InputDecoration(
+                          //       prefixIcon: Icon(Icons.mail),
+                          //       hintText: "Email",
+                          //       border: OutlineInputBorder(
+                          //           borderRadius: BorderRadius.circular(10))),
+                          // ),
                           SizedBox(
                             height: 10,
                           ),
-                          TextFormField(
-                            obscureText: _isObscure,
-                            validator: (val) {
-                              return val!.trim().length > 6
-                                  ? null
-                                  : "Enter Password 6+ characters";
-                            },
-                            onChanged: (value) {
-                              inputPassword = value;
-                            },
-                            controller: passwordEditingController,
-                            decoration: InputDecoration(
-                                hintText: 'Password',
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                suffixIcon: IconButton(
-                                    icon: Icon(_isObscure
-                                        ? Icons.visibility
-                                        : Icons.visibility_off),
-                                    onPressed: () {
-                                      setState(() {
-                                        _isObscure = !_isObscure;
-                                      });
-                                    }),
-                                prefixIcon: Icon(Icons.vpn_key)),
-                          ),
+                          // TextFormField(
+                          //   obscureText: _isObscure,
+                          //   validator: (val) {
+                          //     return val!.trim().length > 6
+                          //         ? null
+                          //         : "Enter Password 6+ characters";
+                          //   },
+                          //   onChanged: (value) {
+                          //     inputPassword = value;
+                          //   },
+                          //   controller: passwordEditingController,
+                          //   decoration: InputDecoration(
+                          //       hintText: 'Password',
+                          //       border: OutlineInputBorder(
+                          //           borderRadius: BorderRadius.circular(10)),
+                          //       suffixIcon: IconButton(
+                          //           icon: Icon(_isObscure
+                          //               ? Icons.visibility
+                          //               : Icons.visibility_off),
+                          //           onPressed: () {
+                          //             setState(() {
+                          //               _isObscure = !_isObscure;
+                          //             });
+                          //           }),
+                          //       prefixIcon: Icon(Icons.vpn_key)),
+                          // ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
@@ -216,15 +258,17 @@ class _SigninPageState extends State<SigninPage> {
                             child: Center(
                                 child: FlatButton(
                               onPressed: () {
-                                if (_formKey.currentState!.validate()) {
-                                  final loginDTO = LoginDTO(
-                                    username: inputLogin,
-                                    password: inputPassword,
-                                  );
-                                  _bloc.add(CheckLoginEvent(login: loginDTO));
-                                }
+                                // if (_formKey.currentState!.validate()) {
+                                //   final loginDTO = LoginDTO(
+                                //     username: inputLogin,
+                                //     password: inputPassword,
+                                //   );
+                                //   _bloc.add(CheckLoginEvent(login: loginDTO));
+                                // }
                                 // Navigator.pushNamed(
-                                //     context, RouteName.loginPage);
+                                //     context, RouteName.homePage);
+                                Navigator.pushNamed(context,
+                                    RouteName.curvedNavigationBarWidget);
                               },
                               child: Text(
                                 'Đăng kí',
