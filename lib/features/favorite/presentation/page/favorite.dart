@@ -1,5 +1,4 @@
 import 'package:clean_achitecture/Theme/color.dart';
-import 'package:clean_achitecture/features/favorite/presentation/widget/image.dart';
 import 'package:clean_achitecture/style/showdialog.dart';
 import 'package:clean_achitecture/style/styleAppBar.dart';
 import 'package:flutter/material.dart';
@@ -88,45 +87,7 @@ class _SavedRoomPageState extends State<FavoritePage> {
         ],
       ),
       body: Column(
-        children: <Widget>[
-          RaisedButton(
-            child: Text("Pick images"),
-            onPressed: pickImages,
-          ),
-          Expanded(
-            child: GridView.count(
-              crossAxisCount: 3,
-              children: List.generate(images.length, (index) {
-                Asset asset = images[index];
-                return Stack(children: [
-                  FlatButton(
-                    onPressed: () {},
-                    onLongPress: () {
-                      showDialog(
-                          context: context,
-                          builder: (context) {
-                            return CustomDialogBox(
-                                title: '',
-                                descriptions: 'Bạn có muốn xoá ảnh?',
-                                yes: 'Xoá',
-                                press: () {
-                                  images.removeAt(index);
-                                  setState(() {});
-                                });
-                          });
-                    },
-                    padding: EdgeInsets.all(6.0),
-                    child: AssetThumb(
-                      asset: asset,
-                      width: 300,
-                      height: 300,
-                    ),
-                  ),
-                ]);
-              }),
-            ),
-          )
-        ],
+        children: <Widget>[],
       ),
     );
   }
