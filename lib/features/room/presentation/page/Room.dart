@@ -1,6 +1,7 @@
 import 'package:clean_achitecture/Theme/color.dart';
-import 'package:clean_achitecture/features/room/data/datasource/RoomAPI.dart';
-import 'package:clean_achitecture/features/room/data/model/RoomModel.dart';
+import 'package:clean_achitecture/features/room/data/RoomAPI.dart';
+import 'package:clean_achitecture/features/room/model/RoomModel.dart';
+
 import 'package:clean_achitecture/features/room/presentation/widget/item_card.dart';
 import 'package:clean_achitecture/routes/route_name.dart';
 import 'package:clean_achitecture/style/styleAppBar.dart';

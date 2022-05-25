@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:clean_achitecture/features/room/data/model/RoomModel.dart';
+import 'package:clean_achitecture/features/room/model/RoomModel.dart';
+
 import 'package:clean_achitecture/features/room/presentation/page/MapRoom.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

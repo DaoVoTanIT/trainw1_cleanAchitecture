@@ -1,9 +1,7 @@
+import 'package:clean_achitecture/features/room/model/RoomModel.dart';
 import 'package:clean_achitecture/features/room/presentation/page/DetailRoomPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../routes/route_name.dart';
-import '../../data/model/RoomModel.dart';
 
 class ItemCard extends StatelessWidget {
   final RoomModel room;

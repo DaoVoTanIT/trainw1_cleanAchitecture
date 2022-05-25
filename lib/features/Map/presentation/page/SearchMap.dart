@@ -9,8 +9,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 
-import '../../../room/data/datasource/RoomAPI.dart';
-import '../../../room/data/model/RoomModel.dart';
+import '../../../room/data/RoomAPI.dart';
+import 'package:clean_achitecture/features/room/model/RoomModel.dart';
+
 import '../../../room/presentation/page/DetailRoomPage.dart';
 
 class SearchMapPage extends StatefulWidget {
