@@ -8,6 +8,9 @@ import 'package:clean_achitecture/features/splash/presentation/page/splash.dart'
 import 'package:clean_achitecture/features/tab/presentation/screen/tab.dart';
 import 'package:flutter/material.dart';
 
+import '../features/room/presentation/page/DetailRoomPage.dart';
+import '../features/room/presentation/page/MapRoom.dart';
+
 class Routers {
   static Route generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -28,6 +31,10 @@ class Routers {
         return MaterialPageRoute(builder: (context) => FavoritePage());
       case 'ProfilePage':
         return MaterialPageRoute(builder: (context) => ProfilePage());
+      case 'DetailRoomPage':
+        return MaterialPageRoute(builder: (context) => DetailRoomPage());
+      case 'MapRoomPage':
+        return MaterialPageRoute(builder: (context) => MapRoomPage());
       default:
         {
           return MaterialPageRoute(builder: (_) {
