@@ -1,6 +1,7 @@
 import 'package:clean_achitecture/Theme/color.dart';
 import 'package:clean_achitecture/features/room/data/RoomAPI.dart';
 import 'package:clean_achitecture/features/room/model/RoomModel.dart';
+import 'package:clean_achitecture/features/room/presentation/page/FilterRoom.dart';
 
 import 'package:clean_achitecture/features/room/presentation/widget/item_card.dart';
 import 'package:clean_achitecture/routes/route_name.dart';
@@ -91,6 +92,30 @@ class _RoomPageState extends State<RoomPage> {
               fontSize: 16,
             ),
           ),
+          trailing: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FliterScreen(),
+                    settings: RouteSettings(
+                      arguments: listRoom,
+                    ),
+                  ),
+                ).then((value) => {
+                      if (value != 0)
+                        {
+                          setState(() {
+                            listRoom = value;
+                          })
+                        }
+                    });
+              },
+              child: Icon(
+                Icons.filter_alt_outlined,
+                size: 26,
+                color: CupertinoColors.activeBlue,
+              )),
         ),
         child: Scaffold(
             body: SafeArea(
@@ -141,14 +166,16 @@ class _RoomPageState extends State<RoomPage> {
                   ],
                 ),
                 Expanded(
-                    child: ListView.builder(
-                        itemCount: listRoom.length,
-                        scrollDirection: Axis.vertical,
-                        addRepaintBoundaries: false,
-                        physics: PageScrollPhysics(),
-                        itemBuilder: (context, index) => ItemCard(
-                              room: listRoom[index],
-                            )))
+                    child: listRoom.length == 0
+                        ? Container()
+                        : ListView.builder(
+                            itemCount: listRoom.length,
+                            scrollDirection: Axis.vertical,
+                            addRepaintBoundaries: false,
+                            physics: PageScrollPhysics(),
+                            itemBuilder: (context, index) => ItemCard(
+                                  room: listRoom[index],
+                                )))
               ])),
         )));
   }
