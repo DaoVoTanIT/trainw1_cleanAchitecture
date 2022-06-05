@@ -1,39 +1,39 @@
 class RoomModel {
-  RoomModel({
-    this.id,
-    this.accountId,
-    this.accountName,
-    this.adId,
-    this.area,
-    this.areaName,
-    this.areaV2,
-    this.avatar,
-    this.body,
-    this.category,
-    this.categoryName,
-    this.containVideos,
-    this.date,
-    this.imageMain,
-    this.images,
-    this.latitude,
-    this.listId,
-    this.listTime,
-    this.longitude,
-    this.numberOfImages,
-    this.owner,
-    this.price,
-    this.priceString,
-    this.region,
-    this.regionName,
-    this.regionV2,
-    this.size,
-    this.streetName,
-    this.streetNumber,
-    this.subject,
-    this.typeName,
-    this.ward,
-    this.wardName,
-  });
+  RoomModel(
+      {this.id,
+      this.accountId,
+      this.accountName,
+      this.adId,
+      this.area,
+      this.areaName,
+      this.areaV2,
+      this.avatar,
+      this.body,
+      this.category,
+      this.categoryName,
+      this.containVideos,
+      this.date,
+      this.imageMain,
+      this.images,
+      this.latitude,
+      this.listId,
+      this.listTime,
+      this.longitude,
+      this.numberOfImages,
+      this.owner,
+      this.price,
+      this.priceString,
+      this.region,
+      this.regionName,
+      this.regionV2,
+      this.size,
+      this.streetName,
+      this.streetNumber,
+      this.subject,
+      this.typeName,
+      this.ward,
+      this.wardName,
+      this.statusRoom});
 
   String? id;
   String? accountId;
@@ -53,7 +53,7 @@ class RoomModel {
   String? latitude;
   int? listId;
   int? listTime;
-  dynamic longitude;
+  String? longitude;
   int? numberOfImages;
   bool? owner;
   int? price;
@@ -68,7 +68,7 @@ class RoomModel {
   String? typeName;
   int? ward;
   String? wardName;
-
+  int? statusRoom; //0 not save
   factory RoomModel.fromJson(Map<String, dynamic> json) => RoomModel(
         id: json["_id"],
         accountId: json["account_id"] as String,
@@ -83,13 +83,12 @@ class RoomModel {
         categoryName: json["category_name"],
         containVideos: json["contain_videos"],
         date: json["date"],
-        imageMain: json["image_main"] ?? '',
-        images: List<String>.from(json["images"].map((x) => x)),
+        imageMain: json["image_main"],
+        images: List<String>.from(json["images"] ?? [].map((x) => x)),
         latitude: json["latitude"] as String,
         listId: json["list_id"],
         listTime: json["list_time"],
         longitude: json['longitude'] != "null" ? json['longitude'] : '0.0',
-        //json["longitude"] ?? 0.0,
         numberOfImages: json["number_of_images"],
         owner: json["owner"],
         price: json["price"],
@@ -104,6 +103,7 @@ class RoomModel {
         typeName: json["type_name"],
         ward: json["ward"],
         wardName: json["ward_name"],
+        statusRoom: json["status_room"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -140,5 +140,6 @@ class RoomModel {
         "type_name": typeName,
         "ward": ward,
         "ward_name": wardName,
+        "status_room": statusRoom,
       };
 }

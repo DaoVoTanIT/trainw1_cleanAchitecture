@@ -9,11 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'Theme/theme.dart';
 import 'features/Map/data/geolocator_service.dart';
-import 'injection_container.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await di.init();
   runApp(MyApp());
 }
 

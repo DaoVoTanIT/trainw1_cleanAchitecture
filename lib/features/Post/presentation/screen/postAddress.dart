@@ -1,5 +1,5 @@
-import 'package:clean_achitecture/features/Post/presentation/item_page/address_Post/domain/entity/distric.dart';
-import 'package:clean_achitecture/features/Post/presentation/item_page/address_Post/domain/entity/ward.dart';
+import 'package:clean_achitecture/features/Post/model/distric.dart';
+import 'package:clean_achitecture/features/Post/model/ward.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';

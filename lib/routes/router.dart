@@ -33,8 +33,8 @@ class Routers {
         return MaterialPageRoute(builder: (context) => ProfilePage());
       case 'DetailRoomPage':
         return MaterialPageRoute(builder: (context) => DetailRoomPage());
-      case 'MapRoomPage':
-        return MaterialPageRoute(builder: (context) => MapRoomPage());
+      // case 'MapRoomPage':
+      //   return MaterialPageRoute(builder: (context) => MapRoomPage());
       default:
         {
           return MaterialPageRoute(builder: (_) {

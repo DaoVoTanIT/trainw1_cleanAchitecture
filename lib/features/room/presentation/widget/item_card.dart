@@ -1,3 +1,5 @@
+import 'package:art_sweetalert/art_sweetalert.dart';
+import 'package:clean_achitecture/features/room/data/SaveRoomFavoriteAPI.dart';
 import 'package:clean_achitecture/features/room/model/RoomModel.dart';
 import 'package:clean_achitecture/features/room/presentation/page/DetailRoomPage.dart';
 import 'package:flutter/cupertino.dart';
@@ -5,10 +7,12 @@ import 'package:flutter/material.dart';
 
 class ItemCard extends StatelessWidget {
   final RoomModel room;
-  const ItemCard({
+  ItemCard({
     Key? key,
     required this.room,
   }) : super(key: key);
+  RoomModel saveRoomFavorite = RoomModel();
+  SaveFavoriteRoomAPI saveFavoriteRoomAPI = SaveFavoriteRoomAPI();
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +39,19 @@ class ItemCard extends StatelessWidget {
             children: <Widget>[
               Column(
                 children: [
-                  Image.network(
-                    room.imageMain.toString(),
-                    fit: BoxFit.cover,
-                    height: 120,
-                    width: 120,
-                  ),
+                  room.imageMain == null
+                      ? Image.asset(
+                          "assets/images/room2.jpeg",
+                          fit: BoxFit.cover,
+                          height: 120,
+                          width: 120,
+                        )
+                      : Image.network(
+                          room.imageMain.toString(),
+                          fit: BoxFit.cover,
+                          height: 120,
+                          width: 120,
+                        ),
                 ],
               ),
               SizedBox(width: 10),
@@ -48,19 +59,19 @@ class ItemCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(room.subject.toString(),
+                    Text(room.subject == null ? "" : room.subject.toString(),
                         style: TextStyle(
                           fontSize: 16,
                           // color: Colors.black,
                         )),
                     SizedBox(height: 10),
-                    Text('${room.size} m2',
+                    Text(room.size == null ? "" : '${room.size} m2',
                         style: TextStyle(
                           fontSize: 15,
                           color: Colors.grey,
                         )),
                     SizedBox(height: 7),
-                    Text(room.priceString.toString(),
+                    Text(room.price == null ? "" : room.priceString.toString(),
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -76,7 +87,10 @@ class ItemCard extends StatelessWidget {
                               size: 20,
                               color: Colors.grey,
                             ),
-                            Text(room.areaName.toString(),
+                            Text(
+                                room.areaName == null
+                                    ? ""
+                                    : room.areaName.toString(),
                                 style: TextStyle(
                                   fontSize: 15,
                                   color: Colors.grey,
@@ -90,6 +104,46 @@ class ItemCard extends StatelessWidget {
                             color: CupertinoColors.systemRed,
                             size: 25,
                           ),
+                          onTap: () async {
+                            ArtDialogResponse response =
+                                await ArtSweetAlert.show(
+                                    barrierDismissible: false,
+                                    context: context,
+                                    artDialogArgs: ArtDialogArgs(
+                                        denyButtonText: "Huỷ",
+                                        title: "Bạn có muốn lưu phòng?",
+                                        confirmButtonText: "Lưu",
+                                        type: ArtSweetAlertType.warning));
+                            if (response == null) {
+                              return;
+                            }
+
+                            if (response.isTapConfirmButton) {
+                              saveRoomFavorite.accountId = room.accountId;
+                              saveRoomFavorite.images = room.images;
+                              saveRoomFavorite.subject = room.subject;
+                              saveRoomFavorite.imageMain = room.imageMain;
+                              saveRoomFavorite.price = room.price;
+                              saveRoomFavorite.priceString = room.priceString;
+                              saveRoomFavorite.date = room.date;
+                              saveRoomFavorite.streetName = room.streetName;
+                              saveRoomFavorite.avatar = room.avatar;
+                              saveRoomFavorite.accountName = room.accountName;
+                              saveRoomFavorite.body = room.body;
+                              saveRoomFavorite.categoryName = room.categoryName;
+                              saveRoomFavorite.size = room.size;
+
+                              await saveFavoriteRoomAPI
+                                  .saveFavoriteRoom(saveRoomFavorite);
+                              ArtSweetAlert.show(
+                                  context: context,
+                                  artDialogArgs: ArtDialogArgs(
+                                      sizeSuccessIcon: 70,
+                                      type: ArtSweetAlertType.success,
+                                      title: "Lưu thành công"));
+                              return;
+                            }
+                          },
                         ),
                       ],
                     )

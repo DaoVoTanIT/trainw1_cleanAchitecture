@@ -1,4 +1,6 @@
+import 'package:art_sweetalert/art_sweetalert.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:clean_achitecture/features/room/data/SaveRoomFavoriteAPI.dart';
 import 'package:clean_achitecture/features/room/model/RoomModel.dart';
 
 import 'package:clean_achitecture/features/room/presentation/page/MapRoom.dart';
@@ -15,21 +17,25 @@ class DetailRoomPage extends StatefulWidget {
 }
 
 class _DetailRoomPageState extends State<DetailRoomPage> {
-  // RoomModel roomDetail = RoomModel();
+  RoomModel saveRoomFavorite = RoomModel();
   String? body;
+  SaveFavoriteRoomAPI saveFavoriteRoomAPI = SaveFavoriteRoomAPI();
+  late RoomModel roomDetail;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     Future.delayed(Duration.zero, () {
+      roomDetail =
+          ((ModalRoute.of(context)!.settings.arguments)! as RoomModel?)!;
       setState(() {});
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final roomDetail =
-        ((ModalRoute.of(context)!.settings.arguments)! as RoomModel?)!;
+    // final roomDetail =
+    //     ((ModalRoute.of(context)!.settings.arguments)! as RoomModel?)!;
     int _currentIndex = 0;
     return CupertinoPageScaffold(
         backgroundColor: CupertinoColors.systemGrey,
@@ -153,7 +159,9 @@ class _DetailRoomPageState extends State<DetailRoomPage> {
                       Column(
                         children: [
                           Text(
-                            roomDetail.priceString.toString(),
+                            roomDetail.price == null
+                                ? ''
+                                : roomDetail.price.toString(),
                             style: TextStyle(
                                 fontSize: 15, color: CupertinoColors.systemRed),
                           ),
@@ -161,7 +169,9 @@ class _DetailRoomPageState extends State<DetailRoomPage> {
                             height: 5,
                           ),
                           Text(
-                            roomDetail.date.toString(),
+                            roomDetail.date == null
+                                ? ''
+                                : roomDetail.date.toString(),
                             style: TextStyle(
                                 fontSize: 15,
                                 color: CupertinoColors.systemGrey),
@@ -195,7 +205,9 @@ class _DetailRoomPageState extends State<DetailRoomPage> {
                               width: 20,
                             ),
                             GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                alert();
+                              },
                               child: Icon(
                                 CupertinoIcons.heart,
                                 color: CupertinoColors.systemRed,
@@ -246,7 +258,9 @@ class _DetailRoomPageState extends State<DetailRoomPage> {
                             //     });
                           },
                           child: Text(
-                            roomDetail.streetName.toString(),
+                            roomDetail.streetName == null
+                                ? ''
+                                : roomDetail.streetName.toString(),
                           ),
                         ),
                       ],
@@ -282,7 +296,9 @@ class _DetailRoomPageState extends State<DetailRoomPage> {
                         width: 10,
                       ),
                       Text(
-                        roomDetail.accountName.toString(),
+                        roomDetail.accountName == null
+                            ? ''
+                            : roomDetail.accountName.toString(),
                         style: TextStyle(
                             fontSize: 15, fontWeight: FontWeight.bold),
                       )
@@ -298,7 +314,7 @@ class _DetailRoomPageState extends State<DetailRoomPage> {
                 height: 10,
               ),
               Text(
-                roomDetail.body.toString(),
+                roomDetail.body == null ? '' : roomDetail.body.toString(),
                 style: TextStyle(color: CupertinoColors.black, fontSize: 15),
               ),
               SizedBox(
@@ -314,7 +330,9 @@ class _DetailRoomPageState extends State<DetailRoomPage> {
                     width: 5,
                   ),
                   Text(
-                    'Diện tích: ' + roomDetail.size.toString() + ' m2',
+                    'Diện tích: ' + roomDetail.size.toString() == null
+                        ? ''
+                        : roomDetail.size.toString() + ' m2',
                     style:
                         TextStyle(color: CupertinoColors.black, fontSize: 15),
                   ),
@@ -323,5 +341,46 @@ class _DetailRoomPageState extends State<DetailRoomPage> {
             ],
           ),
         )));
+  }
+
+  alert() async {
+    ArtDialogResponse response = await ArtSweetAlert.show(
+        barrierDismissible: false,
+        context: context,
+        artDialogArgs: ArtDialogArgs(
+            denyButtonText: "Huỷ",
+            title: "Bạn có muốn lưu phòng?",
+            confirmButtonText: "Lưu",
+            type: ArtSweetAlertType.warning));
+    if (response == null) {
+      return;
+    }
+
+    if (response.isTapConfirmButton) {
+      saveRoomFavorite.accountId = roomDetail.accountId;
+      saveRoomFavorite.images = roomDetail.images;
+      saveRoomFavorite.subject = roomDetail.subject;
+      saveRoomFavorite.price = roomDetail.price;
+      saveRoomFavorite.priceString = roomDetail.priceString;
+      saveRoomFavorite.date = roomDetail.date;
+      saveRoomFavorite.streetName = roomDetail.streetName;
+      saveRoomFavorite.avatar = roomDetail.avatar;
+      saveRoomFavorite.accountName = roomDetail.accountName;
+      saveRoomFavorite.body = roomDetail.body;
+      saveRoomFavorite.categoryName = roomDetail.categoryName;
+      saveRoomFavorite.imageMain = roomDetail.imageMain;
+      saveRoomFavorite.size = roomDetail.size;
+      saveRoomFavorite.statusRoom = 1;
+      saveRoomFavorite.id = roomDetail.id;
+
+      await saveFavoriteRoomAPI.saveFavoriteRoom(saveRoomFavorite);
+      ArtSweetAlert.show(
+          context: context,
+          artDialogArgs: ArtDialogArgs(
+              sizeSuccessIcon: 70,
+              type: ArtSweetAlertType.success,
+              title: "Lưu thành công"));
+      return;
+    }
   }
 }

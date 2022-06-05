@@ -30,52 +30,52 @@ class _CurvedNavigationBarWidgetState extends State {
 
   @override
   Widget build(BuildContext context) {
-//    return Scaffold(
-//       bottomNavigationBar: CurvedNavigationBar(
-//         backgroundColor: Colors.transparent,
-//         height: 50,
-//         key: _navKey,
-//         items: [
-//           Icon((myindex == 0) ? Icons.home_outlined : Icons.home),
-//           Icon((myindex == 1) ? Icons.map : Icons.map_outlined),
-//           Icon((myindex == 2) ? Icons.add : Icons.add),
-//           Icon((myindex == 3) ? Icons.favorite_border : Icons.favorite),
-//           Icon((myindex == 4) ? Icons.people : Icons.people_alt)
-//         ],
-//         buttonBackgroundColor: Colors.white,
-//         onTap: (index) {
-//           setState(() {
-//             myindex = index;
-//           });
-//         },
-//         animationCurve: Curves.fastLinearToSlowEaseIn,
-//         color: Colors.blue,
-//       ),
-//       body: pagesAll[myindex],
-//     );
-//   }
-// }
-    return CupertinoPageScaffold(
-      // navigationBar: CupertinoNavigationBar(
-      //   middle: Text('Kindacode.com'),
-      // ),
-      child: CupertinoTabScaffold(
-          tabBar: CupertinoTabBar(
-            items: [
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.home), label: 'Trang chủ'),
-              BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Bản đồ'),
-              BottomNavigationBarItem(
-                  icon: Icon(CupertinoIcons.add), label: 'Đăng'),
-              BottomNavigationBarItem(
-                  icon: Icon(CupertinoIcons.heart), label: 'Tin lưu'),
-              BottomNavigationBarItem(
-                  icon: Icon(CupertinoIcons.person), label: 'Tài khoản')
-            ],
-          ),
-          tabBuilder: (BuildContext context, index) {
-            return pagesAll[index];
-          }),
+    return Scaffold(
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Colors.transparent,
+        height: 50,
+        key: _navKey,
+        items: [
+          Icon((myindex == 0) ? Icons.home_outlined : Icons.home),
+          Icon((myindex == 1) ? Icons.map : Icons.map_outlined),
+          Icon((myindex == 2) ? Icons.add : Icons.add),
+          Icon((myindex == 3) ? Icons.favorite_border : Icons.favorite),
+          Icon((myindex == 4) ? Icons.people : Icons.people_alt)
+        ],
+        buttonBackgroundColor: Colors.white,
+        onTap: (index) {
+          setState(() {
+            myindex = index;
+          });
+        },
+        animationCurve: Curves.fastLinearToSlowEaseIn,
+        color: Colors.blue,
+      ),
+      body: pagesAll[myindex],
     );
   }
+//}
+  // return CupertinoPageScaffold(
+  // navigationBar: CupertinoNavigationBar(
+  //   middle: Text('Kindacode.com'),
+  // ),
+  //     child: CupertinoTabScaffold(
+  //         tabBar: CupertinoTabBar(
+  //           items: [
+  //             BottomNavigationBarItem(
+  //                 icon: Icon(Icons.home), label: 'Trang chủ'),
+  //             BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Bản đồ'),
+  //             BottomNavigationBarItem(
+  //                 icon: Icon(CupertinoIcons.add), label: 'Đăng'),
+  //             BottomNavigationBarItem(
+  //                 icon: Icon(CupertinoIcons.heart), label: 'Tin lưu'),
+  //             BottomNavigationBarItem(
+  //                 icon: Icon(CupertinoIcons.person), label: 'Tài khoản')
+  //           ],
+  //         ),
+  //         tabBuilder: (BuildContext context, index) {
+  //           return pagesAll[index];
+  //         }),
+  //   );
+  // }
 }

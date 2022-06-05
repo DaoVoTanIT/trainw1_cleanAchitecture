@@ -1,10 +1,21 @@
+import 'dart:convert';
+
 import 'package:clean_achitecture/Theme/color.dart';
-import 'package:clean_achitecture/features/Post/presentation/item_page/address_Post/presentation/page/postAddress.dart';
-import 'package:clean_achitecture/features/Post/presentation/item_page/information_Post/presentation/ui/addInformationRoom.dart';
+import 'package:clean_achitecture/features/Post/data/CreateRoom.dart';
+import 'package:clean_achitecture/features/Post/model/distric.dart';
+import 'package:clean_achitecture/features/Post/model/ward.dart';
+import 'package:clean_achitecture/features/Post/presentation/screen/addInformationRoom.dart';
+import 'package:clean_achitecture/features/room/presentation/page/Room.dart';
+import 'package:clean_achitecture/features/tab/presentation/screen/tab.dart';
 import 'package:clean_achitecture/style/styleAppBar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:multi_image_picker2/multi_image_picker2.dart';
+
+import '../../../room/model/RoomModel.dart';
 
 class PostPage extends StatefulWidget {
   @override
@@ -12,6 +23,8 @@ class PostPage extends StatefulWidget {
 }
 
 class _PostPageState extends State<PostPage> {
+  final _formKey = GlobalKey<FormState>();
+
   int activeStepIndex = 0;
   bool isSelectedWifi = false;
   bool isSelectedWC = false;
@@ -22,6 +35,44 @@ class _PostPageState extends State<PostPage> {
   bool isSelectedFridge = false;
   bool isSelectedWM = false;
   int counter = 0;
+  late String countryValue;
+  late String stateValue;
+  late String cityValue;
+  late Ward ward;
+  String? _selectionDistrict;
+  String? _selectionWard;
+  List dataD = [];
+  List dataW = []; //edited line
+  late RoomModel roomModel = RoomModel();
+  TextEditingController wardController = new TextEditingController();
+  TextEditingController nameStreetController = new TextEditingController();
+  TextEditingController phoneController = new TextEditingController();
+
+  TextEditingController priceController = new TextEditingController();
+  TextEditingController sizeRoomController = new TextEditingController();
+  TextEditingController decribleRoomController = new TextEditingController();
+  TextEditingController titleRoomController = new TextEditingController();
+
+  List<Asset> images = [];
+
+  CreateRoomAPI createRoomAPI = CreateRoomAPI();
+  Future<String> getDataDistict() async {
+    final assetBundle = DefaultAssetBundle.of(context);
+    final data = await assetBundle.loadString('assets/json/district.json');
+    final body = json.decode(data);
+    setState(() {
+      dataD = body;
+    });
+    return body.map<District>(District.fromJson).toList();
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getDataDistict();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,6 +132,9 @@ class _PostPageState extends State<PostPage> {
                 ),
                 TextButton(
                   onPressed: controls.onStepContinue,
+                  // () {
+                  //   createRoomAPI.createPostRoom(roomModel);
+                  // },
                   child: const Text(
                     'Tiếp',
                     style: TextStyle(
@@ -98,7 +152,7 @@ class _PostPageState extends State<PostPage> {
                   activeStepIndex <= 0 ? StepState.editing : StepState.complete,
               isActive: activeStepIndex >= 0,
               title: Text('Vị trí'),
-              content: PostAddress(),
+              content: postAddress(),
             ),
             Step(
                 state: activeStepIndex <= 1
@@ -106,12 +160,12 @@ class _PostPageState extends State<PostPage> {
                     : StepState.complete,
                 isActive: activeStepIndex >= 1,
                 title: Text('Thông tin'),
-                content: PostInformation()),
+                content: postInformationRoom()),
             Step(
                 state: StepState.editing,
                 isActive: activeStepIndex >= 2,
                 title: Text('Xác nhận'),
-                content: Text('hi'))
+                content: decribleRoom())
           ],
           onStepContinue: () {
             if (activeStepIndex <= 3) {
@@ -127,5 +181,349 @@ class _PostPageState extends State<PostPage> {
             setState(() {});
           },
         ));
+  }
+
+  Widget postAddress() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Chọn Tỉnh/TP', style: TextStyle(fontSize: 16)),
+            Row(
+              children: [
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.add_location, color: Colors.blue)),
+                Text('Vị trí hiện tại', style: TextStyle(color: Colors.blue))
+              ],
+            ),
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text('Chọn Quận/Huyện', style: TextStyle(fontSize: 16)),
+        ),
+        DropdownButtonFormField(
+          decoration: InputDecoration(
+            border: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.blue, width: 2),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            filled: true,
+          ),
+          hint: Text('Chọn quận/huyện'),
+          value: _selectionDistrict,
+          onChanged: (newVal) {
+            setState(() {
+              _selectionDistrict = newVal as String?;
+              roomModel.areaName = _selectionDistrict;
+            });
+          },
+          items: dataD.map((item) {
+            return new DropdownMenuItem(
+              child: new Text(item['name'].toString()),
+              value: item['name'].toString(),
+            );
+          }).toList(),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text('Phường/Xã', style: TextStyle(fontSize: 16)),
+        ),
+        // DropdownButtonFormField(
+        //   decoration: InputDecoration(
+        //     // enabledBorder: OutlineInputBorder(
+        //     //   borderSide: BorderSide(color: Colors.blue, width: 2),
+        //     //   borderRadius: BorderRadius.circular(20),
+        //     // ),
+        //     border: OutlineInputBorder(
+        //       borderSide: BorderSide(color: Colors.blue, width: 2),
+        //       borderRadius: BorderRadius.circular(10),
+        //     ),
+        //     filled: true,
+        //   ),
+        //   hint: Text('Chọn phường/xã'),
+        //   onChanged: (newVal) {
+        //     setState(() {
+        //       _selectionWard = newVal! as String?;
+        //     });
+        //   },
+        //   value: _selectionWard,
+        //   items: dataW.map((item) {
+        //     return new DropdownMenuItem(
+        //       child: new Text(item['name'].toString()),
+        //       value: item['id_Ward'].toString(),
+        //     );
+        //   }).toList(),
+        // ),
+
+        TextFormField(
+          textAlign: TextAlign.start,
+          controller: wardController,
+          decoration: InputDecoration(
+              hintText: "Nhập phường/xã",
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
+          onChanged: (value) {
+            //wardController.text = value;
+            roomModel.wardName = wardController.text;
+          },
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text('Số nhà, tên đường', style: TextStyle(fontSize: 16)),
+        ),
+        TextFormField(
+          textAlign: TextAlign.start,
+          controller: nameStreetController,
+          decoration: InputDecoration(
+              hintText: "Nhập số nhà, tên đường",
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
+          onChanged: (text) {
+            //nameStreetController.text = value;
+            roomModel.streetName = nameStreetController.text +
+                wardController.text +
+                " " +
+                _selectionDistrict.toString();
+            ;
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget postInformationRoom() {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          FlutterToggleTab(
+            width: 85,
+            borderRadius: 30,
+            height: 40,
+            selectedTextStyle: TextStyle(
+                color: Colors.white, fontSize: 16, fontWeight: FontWeight.w700),
+            unSelectedTextStyle: TextStyle(
+                color: Colors.black87,
+                fontSize: 14,
+                fontWeight: FontWeight.w500),
+            labels: ["Phòng trọ", "Căn hộ", "Nguyên căn"],
+            selectedLabelIndex: (index) {
+              setState(() {
+                counter = index;
+              });
+              if (index == 0) {
+                roomModel.categoryName = "Phòng trọ";
+              } else if (index == 1) {
+                roomModel.categoryName = "Căn hộ";
+              } else {
+                roomModel.categoryName = "Nguyên căn";
+              }
+              print("Selected Index $index");
+            },
+            selectedIndex: counter,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Giá phòng(VND)', style: TextStyle(fontSize: 16)),
+                Text('Diện tích(m2)', style: TextStyle(fontSize: 16)),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Row(
+              children: <Widget>[
+                Flexible(
+                    child: Container(
+                  child: TextFormField(
+                    controller: priceController,
+                    decoration: InputDecoration(
+                        hintText: "3.000.000",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10))),
+                    onChanged: (value) {
+                      roomModel.price = int.parse(priceController.text);
+                    },
+                  ),
+                )),
+                SizedBox(width: 10),
+                Flexible(
+                    child: Container(
+                  child: TextFormField(
+                    controller: sizeRoomController,
+                    decoration: InputDecoration(
+                        hintText: "20",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10))),
+                    onChanged: (value) {
+                      roomModel.size = int.parse(sizeRoomController.text);
+                    },
+                  ),
+                ))
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text('Tiện ích phòng', style: TextStyle(fontSize: 16)),
+          ),
+          //UtilitiesRoom(),
+          //PostImage()
+          Column(
+            children: <Widget>[
+              ElevatedButton(
+                child: Text("Chọn 6 ảnh"),
+                onPressed: pickImages,
+              ),
+              GridView.count(
+                crossAxisCount: 2,
+                controller: new ScrollController(keepScrollOffset: false),
+                shrinkWrap: true,
+                //scrollDirection: Axis.vertical,
+                children: List.generate(images.length, (index) {
+                  Asset asset = images[index];
+                  return Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child: Stack(children: [
+                      AssetThumb(
+                        asset: asset,
+                        width: 300,
+                        height: 300,
+                      ),
+                      Positioned(
+                          right: -10,
+                          top: 5,
+                          child: Container(
+                            child: MaterialButton(
+                              onPressed: () {
+                                images.removeAt(index);
+                                setState(() {});
+                              },
+                              color: Colors.blue,
+                              textColor: Colors.white,
+                              child: Icon(
+                                Icons.close,
+                                size: 20,
+                              ),
+                              padding: EdgeInsets.all(10),
+                              shape: CircleBorder(),
+                              //shape: CircleBorder(),
+                            ),
+                          ))
+                    ]),
+                  );
+                }),
+              )
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  Future<void> pickImages() async {
+    List<Asset> resultList = [];
+    try {
+      resultList = await MultiImagePicker.pickImages(
+        maxImages: 10,
+        enableCamera: true,
+        selectedAssets: images,
+        materialOptions: MaterialOptions(
+          actionBarTitle: "Chọn ảnh",
+        ),
+      );
+    } on Exception catch (e) {
+      print(e);
+    }
+
+    setState(() {
+      images = resultList;
+      // roomModel.imageMain = images[0];
+      // roomModel.images = images.cast<String>();
+    });
+  }
+
+  Widget decribleRoom() {
+    return Form(
+      key: _formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          TextFormField(
+            controller: titleRoomController,
+            decoration: InputDecoration(
+                fillColor: Colors.grey, focusColor: Colors.grey),
+            onChanged: (value) {
+              roomModel.subject = titleRoomController.text;
+            },
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'Mô tả phải nhiều hơn 100 từ';
+              }
+              return null;
+            },
+          ),
+          TextFormField(
+            controller: decribleRoomController,
+            decoration: InputDecoration(
+                fillColor: Colors.grey, focusColor: Colors.grey),
+            onChanged: (value) {
+              roomModel.body = decribleRoomController.text;
+            },
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'Mô tả phải nhiều hơn 100 từ';
+              }
+              return null;
+            },
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: FlatButton(
+              onPressed: () async {
+                if (_formKey.currentState!.validate()) {
+                  var date = DateTime.now();
+                  roomModel.date = date.toString();
+                  roomModel.statusRoom = 0;
+                  await createRoomAPI.createPostRoom(roomModel);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CurvedNavigationBarWidget(),
+                        settings: RouteSettings(
+                          arguments: roomModel,
+                        ),
+                      ));
+                }
+              },
+              child: Container(
+                  alignment: Alignment.center,
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.width * 0.15,
+                  child: Text('Đăng bài',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 25)),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(200),
+                      gradient: LinearGradient(colors: <Color>[
+                        Colors.orange,
+                        Colors.purple,
+                      ]))),
+              textColor: Colors.white,
+            ),
+          )
+        ],
+      ),
+    );
   }
 }

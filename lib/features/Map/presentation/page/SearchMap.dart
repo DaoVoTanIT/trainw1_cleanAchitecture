@@ -50,8 +50,8 @@ class _SearchMapPageState extends State<SearchMapPage> {
         print("For Loop");
         final marker = Marker(
           markerId: MarkerId(listRoom[i].id.toString()),
-          position: LatLng(
-              double.parse(listRoom[i].latitude!), listRoom[i].longitude!),
+          position: LatLng(double.parse(listRoom[i].latitude!),
+              double.parse(listRoom[i].longitude!)),
           icon: BitmapDescriptor.defaultMarkerWithHue(
             BitmapDescriptor.hueViolet,
           ),
@@ -76,7 +76,7 @@ class _SearchMapPageState extends State<SearchMapPage> {
                       );
                     },
                     child: Container(
-                      padding: EdgeInsets.only(top: 10, left: 7, right: 7),
+                      // padding: EdgeInsets.only(top: 10, left: 7, right: 7),
                       height: 350,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,7 +85,7 @@ class _SearchMapPageState extends State<SearchMapPage> {
                             height: 200,
                             decoration: BoxDecoration(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(16)),
+                                  BorderRadius.all(Radius.circular(10)),
                               image: DecorationImage(
                                 image: NetworkImage(listRoom[i].imageMain),
                                 fit: BoxFit.cover,
@@ -184,10 +184,13 @@ class _SearchMapPageState extends State<SearchMapPage> {
       body: listRoom.length != 0
           ? Stack(children: [
               GoogleMap(
+                mapType: MapType.satellite,
                 onMapCreated: _onMapCreated,
                 initialCameraPosition: CameraPosition(
                   target: LatLng(double.parse(listRoom[0].latitude!),
-                      listRoom[0].longitude!),
+                      double.parse(listRoom[0].longitude!)),
+                  // target: LatLng(
+                  //     currentPosition.latitude, currentPosition.longitude),
                   zoom: 16,
                 ),
                 markers: _markers.values.toSet(),

@@ -1,5 +1,3 @@
-import 'package:clean_achitecture/features/Post/presentation/item_page/information_Post/presentation/widget/Utilities_room.dart';
-import 'package:clean_achitecture/features/Post/presentation/item_page/information_Post/presentation/widget/postImage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -79,8 +77,8 @@ class _PostInformationState extends State<PostInformation> {
             padding: const EdgeInsets.all(8.0),
             child: Text('Tiện ích phòng', style: TextStyle(fontSize: 16)),
           ),
-          UtilitiesRoom(),
-          PostImage()
+          // UtilitiesRoom(),
+          // PostImage()
         ],
       ),
     );

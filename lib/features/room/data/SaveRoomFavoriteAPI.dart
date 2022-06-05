@@ -3,19 +3,19 @@ import 'dart:convert';
 import 'package:clean_achitecture/features/room/model/RoomModel.dart';
 import 'package:dio/dio.dart';
 
-class RoomAPI {
+class SaveFavoriteRoomAPI {
   final Dio _dio = Dio();
-  List<RoomModel>? roomModel;
   var listRoom;
-  Future<List<RoomModel>> getListRoom() async {
+  Future<void> saveFavoriteRoom(RoomModel model) async {
     try {
-      Response roomList =
-          await _dio.get("http://192.168.0.100:8000/findroom/room");
+      Response roomPost = await _dio.post(
+          "http://192.168.0.100:8000/findroom/favoriteRoom",
+          data: model.toJson());
 
-      print('User Info: ${roomList}');
-      var getUsersData = roomList.data as List;
-      listRoom = getUsersData.map((e) => RoomModel.fromJson(e)).toList();
-      print('aaaa');
+      print('Save rom: ${roomPost}');
+      var roomData = roomPost.data;
+      listRoom = RoomModel.fromJson(roomData);
+      print('post');
     } on DioError catch (e) {
       if (e.response != null) {
         print('Dio error!');
@@ -27,6 +27,5 @@ class RoomAPI {
         print(e.message);
       }
     }
-    return listRoom;
   }
 }

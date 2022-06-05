@@ -1,15 +1,13 @@
+import 'package:art_sweetalert/art_sweetalert.dart';
 import 'package:clean_achitecture/Theme/color.dart';
 import 'package:clean_achitecture/Theme/theme.dart';
-import 'package:clean_achitecture/features/sigin_signup/presentation/bloc/login_bloc.dart';
-import 'package:clean_achitecture/features/sigin_signup/presentation/dto/login_dto.dart';
+import 'package:clean_achitecture/features/sigin_signup/data/loginAPI.dart';
 import 'package:clean_achitecture/features/sigin_signup/presentation/widget/Loading_widget.dart';
 import 'package:clean_achitecture/routes/route_name.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import '../../../../injection_container.dart';
 
 class SigninPage extends StatefulWidget {
   const SigninPage({Key? key}) : super(key: key);
@@ -19,7 +17,6 @@ class SigninPage extends StatefulWidget {
 }
 
 class _SigninPageState extends State<SigninPage> {
-  late LoginBloc _bloc;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late String inputLogin;
   late String inputPassword;
@@ -27,16 +24,10 @@ class _SigninPageState extends State<SigninPage> {
   TextEditingController passwordEditingController = new TextEditingController();
   bool _isObscure = true;
   bool isLoading = false;
+  LoginAPI loginAPI = LoginAPI();
   @override
   void dispose() {
-    _bloc.close();
     super.dispose();
-  }
-
-  @override
-  void didChangeDependencies() {
-    _bloc = serviceLocator<LoginBloc>();
-    super.didChangeDependencies();
   }
 
   @override
@@ -46,38 +37,7 @@ class _SigninPageState extends State<SigninPage> {
       //   title: Text('Login Demo'),
       // ),
       body: Center(
-        child: _buildBody(),
-      ),
-    );
-  }
-
-  _buildBody() {
-    return BlocProvider(
-      create: (_) => _bloc,
-      child: BlocListener(
-        bloc: _bloc,
-        listener: (context, state) {
-          if (state is ErrorLoggedState) {
-            // final snackBar = SnackBar(content: Text('Invalid credentials...'));
-            // Scaffold.of(context).showSnackBar(snackBar);
-            Navigator.pushNamed(context, RouteName.curvedNavigationBarWidget);
-          } else if (state is LoggedState) {
-            final snackBar = SnackBar(content: Text('User logged...'));
-            // ignore: deprecated_member_use
-            Scaffold.of(context).showSnackBar(snackBar);
-          }
-        },
-        child: BlocBuilder<LoginBloc, LoginState>(
-          builder: (BuildContext context, state) {
-            if (state is LoginInitial) {
-              return _buildForm();
-            } else if (state is CheckLoginEvent) {
-              return LoadingWidget();
-            } else {
-              return _buildForm();
-            }
-          },
-        ),
+        child: _buildForm(),
       ),
     );
   }
@@ -137,48 +97,6 @@ class _SigninPageState extends State<SigninPage> {
                       )
                     ],
                   ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      padding: EdgeInsets.all(10.0),
-                      height: 60,
-                      width: double.infinity,
-                      color: Colors.white,
-                      child: CupertinoTextField(
-                        controller: emailEditingController,
-                        placeholder: "task",
-                        textInputAction: TextInputAction.send,
-                        suffix: GestureDetector(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Icon(
-                              CupertinoIcons.paperplane_fill,
-                              color: Colors.blue,
-                              size: 25,
-                            ),
-                          ),
-                          onTap: () async {
-                            if (emailEditingController.text.isEmpty) {
-                              //check empty text
-                              return null;
-                            } else {
-                              // await createToDo(id);
-                              // toDoController.clear();
-                              // SweetAlert.show(context,
-                              //     title: translate.text('success'),
-                              //     subtitle: "",
-                              //     style: SweetAlertStyle.success);
-                            }
-                          },
-                        ),
-                        decoration: BoxDecoration(
-                            //color: CupertinoColors.lightBackgroundGray,
-                            borderRadius: BorderRadius.circular(10.0),
-                            border: Border.all(
-                                color: CupertinoColors.systemGrey3, width: 1)),
-                      ),
-                    ),
-                  ),
                   Form(
                     autovalidateMode: AutovalidateMode.disabled,
                     key: _formKey,
@@ -189,53 +107,53 @@ class _SigninPageState extends State<SigninPage> {
                           SizedBox(
                             height: 30.0,
                           ),
-                          // TextFormField(
-                          //   validator: (val) {
-                          //     return RegExp(
-                          //                 r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                          //             .hasMatch(val!)
-                          //         ? null
-                          //         : "Please Enter Correct Email";
-                          //   },
-                          //   onChanged: (value) {
-                          //     inputLogin = value;
-                          //   },
-                          //   controller: emailEditingController,
-                          //   decoration: InputDecoration(
-                          //       prefixIcon: Icon(Icons.mail),
-                          //       hintText: "Email",
-                          //       border: OutlineInputBorder(
-                          //           borderRadius: BorderRadius.circular(10))),
-                          // ),
+                          TextFormField(
+                            // validator: (val) {
+                            //   return RegExp(
+                            //               r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                            //           .hasMatch(val!)
+                            //       ? null
+                            //       : "Please Enter Correct Email";
+                            // },
+                            onChanged: (value) {
+                              inputLogin = value;
+                            },
+                            controller: emailEditingController,
+                            decoration: InputDecoration(
+                                prefixIcon: Icon(Icons.people),
+                                hintText: "Tên đăng nhập",
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10))),
+                          ),
                           SizedBox(
                             height: 10,
                           ),
-                          // TextFormField(
-                          //   obscureText: _isObscure,
-                          //   validator: (val) {
-                          //     return val!.trim().length > 6
-                          //         ? null
-                          //         : "Enter Password 6+ characters";
-                          //   },
-                          //   onChanged: (value) {
-                          //     inputPassword = value;
-                          //   },
-                          //   controller: passwordEditingController,
-                          //   decoration: InputDecoration(
-                          //       hintText: 'Password',
-                          //       border: OutlineInputBorder(
-                          //           borderRadius: BorderRadius.circular(10)),
-                          //       suffixIcon: IconButton(
-                          //           icon: Icon(_isObscure
-                          //               ? Icons.visibility
-                          //               : Icons.visibility_off),
-                          //           onPressed: () {
-                          //             setState(() {
-                          //               _isObscure = !_isObscure;
-                          //             });
-                          //           }),
-                          //       prefixIcon: Icon(Icons.vpn_key)),
-                          // ),
+                          TextFormField(
+                            obscureText: _isObscure,
+                            validator: (val) {
+                              return val!.trim().length >= 6
+                                  ? null
+                                  : "Enter Password 6+ characters";
+                            },
+                            onChanged: (value) {
+                              inputPassword = value;
+                            },
+                            controller: passwordEditingController,
+                            decoration: InputDecoration(
+                                hintText: 'Mật khẩu',
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                suffixIcon: IconButton(
+                                    icon: Icon(_isObscure
+                                        ? Icons.visibility
+                                        : Icons.visibility_off),
+                                    onPressed: () {
+                                      setState(() {
+                                        _isObscure = !_isObscure;
+                                      });
+                                    }),
+                                prefixIcon: Icon(Icons.vpn_key)),
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
@@ -257,18 +175,29 @@ class _SigninPageState extends State<SigninPage> {
                                 color: Colors.lightBlueAccent),
                             child: Center(
                                 child: FlatButton(
-                              onPressed: () {
-                                // if (_formKey.currentState!.validate()) {
-                                //   final loginDTO = LoginDTO(
-                                //     username: inputLogin,
-                                //     password: inputPassword,
-                                //   );
-                                //   _bloc.add(CheckLoginEvent(login: loginDTO));
-                                // }
+                              onPressed: () async {
+                                if (_formKey.currentState!.validate()) {
+                                  try {
+                                    String token =
+                                        await loginAPI.authenticateAPI(
+                                            inputLogin, inputPassword);
+                                    if (token.isNotEmpty) {
+                                      Navigator.pushNamed(context,
+                                          RouteName.curvedNavigationBarWidget);
+                                    }
+                                  } catch (e) {
+                                    ArtSweetAlert.show(
+                                        context: context,
+                                        artDialogArgs: ArtDialogArgs(
+                                            sizeSuccessIcon: 70,
+                                            type: ArtSweetAlertType.danger,
+                                            title:
+                                                "Tài khoản không hợp lệ. Vui lòng thử lại"));
+                                    return;
+                                  }
+                                }
                                 // Navigator.pushNamed(
                                 //     context, RouteName.homePage);
-                                Navigator.pushNamed(context,
-                                    RouteName.curvedNavigationBarWidget);
                               },
                               child: Text(
                                 'Đăng kí',

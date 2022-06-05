@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 
 import '../../data/RoomAPI.dart';
 import '../../model/RoomModel.dart';
@@ -15,6 +16,8 @@ enum SingingCharacter { priceOption1, priceOption2, priceOption3 }
 class _FliterScreenState extends State<FliterScreen> {
   //fliter ở đây
   var selectedPriceValue;
+  RangeValues _currentRangeValues = const RangeValues(0, 10000000);
+  RangeValues _currentRangeSizeRoomValues = const RangeValues(10, 100);
 
   List<RoomModel> listRoomModel = [];
   RoomAPI roomAPI = RoomAPI();
@@ -50,16 +53,18 @@ class _FliterScreenState extends State<FliterScreen> {
           .toList();
     }
     if (selectedPriceValue == 3) {
-      newList =
-          techMobile.where((element) => element.price! > 1000000).toList();
+      newList = techMobile
+          .where((element) =>
+              element.price! > _currentRangeValues.start &&
+              element.price! < _currentRangeValues.end)
+          .toList();
     }
     if (selectedPriceValue == 4) {
-      newList =
-          techMobile.where((element) => element.price! > 2000000).toList();
-    }
-    if (selectedPriceValue == 5) {
-      newList =
-          techMobile.where((element) => element.price! > 10000000).toList();
+      newList = techMobile
+          .where((element) =>
+              element.size! > _currentRangeSizeRoomValues.start &&
+              element.size! < _currentRangeSizeRoomValues.end)
+          .toList();
     }
     return newList;
   }
@@ -72,323 +77,169 @@ class _FliterScreenState extends State<FliterScreen> {
       statusBarIconBrightness: Brightness.light,
       //statusBarBrightness: Brightness.dark,
     ));
-    return Scaffold(
-        // extendBodyBehindAppBar: true,
-        // extendBody: true,
-        body: SafeArea(
-      child: Stack(
-        children: [
-          SingleChildScrollView(
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Text(
-                    'Lọc theo bạn mong muốn',
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    'C',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  RadioListTile(
-                    value: 1,
-                    groupValue: selectedPriceValue,
-                    title: Text('Phòng trọ'),
-                    onChanged: (val) {
-                      setState(() {
-                        selectedPriceValue = 1;
-                      });
-                    },
-                    activeColor: Colors.grey,
-                    selected: false,
-                  ),
-                  SizedBox(
-                    height: 7,
-                  ),
-                  RadioListTile(
-                    value: 2,
-                    groupValue: selectedPriceValue,
-                    title: Text('Căn hộ'),
-                    onChanged: (val) {
-                      setState(() {
-                        selectedPriceValue = 2;
-                      });
-                    },
-                    activeColor: Colors.grey,
-                    selected: false,
-                  ),
-                  Text('Prices',
-                      style:
-                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-                  SizedBox(
-                    height: 7,
-                  ),
-                  SizedBox(
-                    height: 7,
-                  ),
-                  Divider(
-                    thickness: 1,
-                    color: Colors.grey.withOpacity(0.3),
-                    height: 20,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text('Prices',
-                      style:
-                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-                  RadioListTile(
-                    value: 3,
-                    groupValue: selectedPriceValue,
-                    title: Text('> 1.000.000 VND'),
-                    onChanged: (val) {
-                      setState(() {
-                        selectedPriceValue = 3;
-                      });
-                    },
-                    activeColor: Colors.grey,
-                    selected: false,
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  RadioListTile(
-                    value: 4,
-                    groupValue: selectedPriceValue,
-                    title: Text('> 2.000.000 VND'),
-                    onChanged: (val) {
-                      setState(() {
-                        selectedPriceValue = 4;
-                      });
-                    },
-                    activeColor: Colors.grey,
-                    selected: false,
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  RadioListTile(
-                    value: 5,
-                    groupValue: selectedPriceValue,
-                    title: Text('> 3.000.000 VND'),
-                    onChanged: (val) {
-                      setState(() {
-                        selectedPriceValue = 5;
-                      });
-                    },
-                    activeColor: Colors.grey,
-                    selected: false,
-                  ),
-                  SizedBox(
-                    height: 150,
-                  )
-                ],
-              ),
+    return SafeArea(
+      child: Scaffold(
+          appBar: AppBar(
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.pop(context);
+              },
             ),
+            title: Text("Bạn muốn lọc"),
           ),
-          Positioned(
-            bottom: 0,
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.3),
-                    spreadRadius: .1,
-                    blurRadius: 2,
-                    offset: Offset(0, -1), // changes position of shadow
-                  ),
-                ],
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 180,
-                    child: ElevatedButton(
-                        child: Text("Fliter".toUpperCase(),
-                            style: TextStyle(fontSize: 14)),
-                        style: ButtonStyle(
-                            foregroundColor:
-                                MaterialStateProperty.all<Color>(Colors.white),
-                            backgroundColor:
-                                MaterialStateProperty.all<Color>(Colors.red),
-                            shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(7),
-                                    side: BorderSide(color: Colors.red)))),
-                        onPressed: () {
+          body: Stack(
+            children: [
+              SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Danh mục',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      RadioListTile(
+                        value: 1,
+                        groupValue: selectedPriceValue,
+                        title: Text('Phòng trọ',
+                            style: TextStyle(
+                              fontSize: 17,
+                            )),
+                        onChanged: (val) {
                           setState(() {
-                            filterOptions();
+                            selectedPriceValue = 1;
                           });
-                          Navigator.of(context).pop(newList);
-                        }),
-                  )
-                ],
+                        },
+                        activeColor: Colors.red,
+                        selected: false,
+                      ),
+                      RadioListTile(
+                        value: 2,
+                        groupValue: selectedPriceValue,
+                        title: Text('Căn hộ',
+                            style: TextStyle(
+                              fontSize: 17,
+                            )),
+                        onChanged: (val) {
+                          setState(() {
+                            selectedPriceValue = 2;
+                          });
+                        },
+                        activeColor: Colors.red,
+                        selected: false,
+                      ),
+                      Divider(
+                        thickness: 1,
+                        color: Colors.grey.withOpacity(0.3),
+                        height: 20,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        children: [
+                          Text('Giá từ:',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold)),
+                          Text(' ${_currentRangeValues.start}',
+                              style: TextStyle(
+                                  fontSize: 17, fontWeight: FontWeight.bold)),
+                          Text(' đến',
+                              style: TextStyle(
+                                fontSize: 17,
+                              )),
+                          Text(' ${_currentRangeValues.end}',
+                              style: TextStyle(
+                                  fontSize: 17, fontWeight: FontWeight.bold)),
+                        ],
+                      ),
+                      RangeSlider(
+                        values: _currentRangeValues,
+                        max: 10000000,
+                        divisions: 20,
+                        labels: RangeLabels(
+                          _currentRangeValues.start.round().toString(),
+                          _currentRangeValues.end.round().toString(),
+                        ),
+                        onChanged: (RangeValues values) {
+                          setState(() {
+                            _currentRangeValues = values;
+                            selectedPriceValue = 3;
+                          });
+                        },
+                      ),
+                      Divider(
+                        thickness: 1,
+                        color: Colors.grey.withOpacity(0.3),
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Text('Kích thước: ',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold)),
+                          Text('${_currentRangeSizeRoomValues.start}',
+                              style: TextStyle(
+                                  fontSize: 17, fontWeight: FontWeight.bold)),
+                          Text(' đến',
+                              style: TextStyle(
+                                fontSize: 17,
+                              )),
+                          Text(' ${_currentRangeSizeRoomValues.end}',
+                              style: TextStyle(
+                                  fontSize: 17, fontWeight: FontWeight.bold)),
+                        ],
+                      ),
+                      RangeSlider(
+                        values: _currentRangeSizeRoomValues,
+                        max: 100,
+                        min: 10,
+                        divisions: 20,
+                        labels: RangeLabels(
+                          _currentRangeSizeRoomValues.start.round().toString(),
+                          _currentRangeSizeRoomValues.end.round().toString(),
+                        ),
+                        onChanged: (RangeValues values) {
+                          setState(() {
+                            _currentRangeSizeRoomValues = values;
+                            selectedPriceValue = 4;
+                          });
+                        },
+                      ),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: FlatButton(
+                          onPressed: () {
+                            setState(() {
+                              filterOptions();
+                            });
+                            Navigator.of(context).pop(newList);
+                          },
+                          child: Container(
+                              alignment: Alignment.center,
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.width * 0.15,
+                              child: Text('Áp dụng',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(fontSize: 25)),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(200),
+                                  gradient: LinearGradient(colors: <Color>[
+                                    Colors.orange,
+                                    Colors.purple,
+                                  ]))),
+                          textColor: Colors.white,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               ),
-            ),
-          ),
-        ],
-      ),
-    ));
-  }
-}
-
-class FliterFacility extends StatelessWidget {
-  String? title;
-  FliterFacility({
-    required Key key,
-    this.title,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          title!,
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
-        ),
-        Container(
-          width: MediaQuery.of(context).size.width / 2,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              MaterialButton(
-                  onPressed: () {},
-                  //color: Colors.white,
-                  textColor: Colors.black,
-                  child:
-                      Container(alignment: Alignment.center, child: Text('-')),
-                  padding: EdgeInsets.all(6),
-                  shape: CircleBorder(
-                      side: BorderSide(width: 1, color: Colors.grey))),
-              Text('0'),
-              MaterialButton(
-                  onPressed: () {},
-                  //color: Colors.white,
-                  textColor: Colors.black,
-                  child:
-                      Container(alignment: Alignment.center, child: Text('+')),
-                  padding: EdgeInsets.all(6),
-                  shape: CircleBorder(
-                      side: BorderSide(width: 1, color: Colors.grey))),
             ],
-          ),
-        )
-      ],
-    );
-  }
-}
-
-class MyClass {
-  String title;
-  bool value;
-  MyClass(this.title, this.value);
-  @override
-  String toString() {
-    return 'MyClass{title: $title, value: $value}';
-  }
-}
-
-// class DynamicallyCheckbox extends StatefulWidget {
-//   final String subtitle;
-
-//   const DynamicallyCheckbox({Key key, this.subtitle}) : super(key: key);
-//   @override
-//   DynamicallyCheckboxState createState() => new DynamicallyCheckboxState();
-// }
-
-// class DynamicallyCheckboxState extends State {
-//   Map<String, bool> List = {
-//     'Entire Room': false,
-//     'Private Room': false,
-//   };
-
-//   var holder_1 = [];
-
-//   getItems() {
-//     List.forEach((key, value) {
-//       if (value == true) {
-//         holder_1.add(key);
-//       }
-//     });
-
-//     print(holder_1);
-//     holder_1.clear();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     var techMobile = TechMobile.of(context);
-//     return Container(
-//       height: 300,
-//       child: ListView(
-//         children: List.keys.map((String key) {
-//           return new CheckboxListTile(
-//             title: new Text(key),
-//             value: List[key],
-//             activeColor: Colors.deepPurple[400],
-//             checkColor: Colors.white,
-//             onChanged: (bool value) {
-//               setState(() {
-//                 List[key] = value;
-//                 List.forEach((key, value) {
-//                   if (value) {
-//                     techMobile.onFilterEntireRoom(List[value]);
-//                   }
-//                 });
-//               });
-//             },
-//           );
-//         }).toList(),
-//       ),
-//     );
-//   }
-// }
-
-class FilterItem extends StatelessWidget {
-  String? title;
-  String? subtitle;
-  FilterItem({
-    required Key key,
-    this.title,
-    this.subtitle,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(title!.toUpperCase()),
-              Text(
-                subtitle!,
-                style: TextStyle(color: Colors.grey),
-              )
-            ],
-          ),
-        ),
-        Checkbox(value: false, onChanged: null)
-      ],
+          )),
     );
   }
 }
