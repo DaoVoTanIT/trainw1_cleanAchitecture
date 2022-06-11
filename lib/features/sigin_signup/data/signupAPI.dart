@@ -1,26 +1,17 @@
 import 'package:dio/dio.dart';
 
-class LoginAPI {
+class SignUpAPI {
   final Dio _dio = Dio();
-  String? token;
-  String? name;
-  Future<String> authenticateAPI(String username, String password) async {
+  bool? authenDB;
+  Future<bool> createAccountAPI(String username, String password) async {
     try {
-      Response<dynamic> _result =
-          await _dio.post("http://192.168.0.100:8000/findroom/authenticate",
+      Response<dynamic> authenticateDB =
+          await _dio.post("http://192.168.0.100:8000/findroom/adduser",
               data: {
                 "name": username,
                 "password": password,
               },
               options: Options(contentType: Headers.formUrlEncodedContentType));
-      if (_result.statusCode == 400) return "";
-      token = _result.data!["token"].toString();
-      // Response<dynamic> _result =
-      //     await _dio.get("http://192.168.0.100:8000/findroom/getinfo",
-      //         options: Options(headers: {
-      //           'Authorization': 'Bearer $token',
-      //         }));
-
     } on DioError catch (e) {
       if (e.response != null) {
         print('Dio error!');
@@ -32,6 +23,6 @@ class LoginAPI {
         print(e.message);
       }
     }
-    return token!;
+    return true;
   }
 }

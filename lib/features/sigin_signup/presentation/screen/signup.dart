@@ -1,6 +1,7 @@
 import 'package:art_sweetalert/art_sweetalert.dart';
 import 'package:clean_achitecture/Theme/color.dart';
 import 'package:clean_achitecture/Theme/theme.dart';
+import 'package:clean_achitecture/features/sigin_signup/data/signupAPI.dart';
 import 'package:clean_achitecture/features/sigin_signup/presentation/widget/Loading_widget.dart';
 import 'package:clean_achitecture/routes/route_name.dart';
 import 'package:flutter/material.dart';
@@ -16,11 +17,11 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  late String inputLogin;
+  late String username;
   late String inputPassword;
   late String inputConfirmPassword;
 
-  TextEditingController emailEditingController = new TextEditingController();
+  TextEditingController usernameEditingController = new TextEditingController();
   TextEditingController passwordEditingController = new TextEditingController();
   TextEditingController passwordConfirmEditingController =
       new TextEditingController();
@@ -30,6 +31,7 @@ class _SignUpPageState extends State<SignUpPage> {
       new TextEditingController();
   bool _isObscure = true;
   bool isLoading = false;
+  SignUpAPI signUpAPI = SignUpAPI();
   @override
   void dispose() {
     super.dispose();
@@ -120,6 +122,9 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           TextFormField(
                             controller: nameEditingController,
+                            onChanged: (value) {
+                              username = value;
+                            },
                             decoration: InputDecoration(
                                 prefixIcon: Icon(Icons.people),
                                 hintText: "Tên đăng nhập",
@@ -209,19 +214,23 @@ class _SignUpPageState extends State<SignUpPage> {
                                 color: Colors.lightBlueAccent),
                             child: Center(
                                 child: FlatButton(
-                              onPressed: () {
-                                if (_formKey.currentState!.validate()) {
-                                  if (passwordEditingController !=
-                                      passwordConfirmEditingController) {
-                                    ArtSweetAlert.show(
-                                        context: context,
-                                        artDialogArgs: ArtDialogArgs(
-                                            sizeSuccessIcon: 70,
-                                            type: ArtSweetAlertType.success,
-                                            title:
-                                                "Đăng kí tài khoản thành công"));
-                                    return;
-                                  }
+                              onPressed: () async {
+                                if (_formKey.currentState!.validate() &&
+                                    inputPassword == inputConfirmPassword) {
+                                  await signUpAPI
+                                      .createAccountAPI(username, inputPassword)
+                                      .then((value) {
+                                    if (value == true) {
+                                      ArtSweetAlert.show(
+                                          context: context,
+                                          artDialogArgs: ArtDialogArgs(
+                                              sizeSuccessIcon: 70,
+                                              type: ArtSweetAlertType.success,
+                                              title:
+                                                  "Đăng kí tài thành công. Bạn có thể đăng nhập!"));
+                                      return;
+                                    }
+                                  });
                                 }
                               },
                               child: Text(

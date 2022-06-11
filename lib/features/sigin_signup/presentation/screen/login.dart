@@ -1,13 +1,19 @@
 import 'package:art_sweetalert/art_sweetalert.dart';
+import 'package:clean_achitecture/LocalStoreKey.dart';
 import 'package:clean_achitecture/Theme/color.dart';
 import 'package:clean_achitecture/Theme/theme.dart';
+import 'package:clean_achitecture/common/Config.dart';
+import 'package:clean_achitecture/common/DioClientInit.dart';
+import 'package:clean_achitecture/features/Loading/LoadingPage.dart';
 import 'package:clean_achitecture/features/sigin_signup/data/loginAPI.dart';
 import 'package:clean_achitecture/features/sigin_signup/presentation/widget/Loading_widget.dart';
 import 'package:clean_achitecture/routes/route_name.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:localstorage/localstorage.dart';
 
 class SigninPage extends StatefulWidget {
   const SigninPage({Key? key}) : super(key: key);
@@ -25,6 +31,16 @@ class _SigninPageState extends State<SigninPage> {
   bool _isObscure = true;
   bool isLoading = false;
   LoginAPI loginAPI = LoginAPI();
+  late Dio dio;
+  bool loading = false;
+
+  final LocalStorage storage = new LocalStorage(keyLocalStore);
+  void initState() {
+    super.initState();
+    dio = createDioClientNoAuthentication(storage);
+    dio.options.headers["Content-Type"] = "application/json";
+  }
+
   @override
   void dispose() {
     super.dispose();
@@ -32,13 +48,22 @@ class _SigninPageState extends State<SigninPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('Login Demo'),
-      // ),
-      body: Center(
-        child: _buildForm(),
-      ),
+    // return Scaffold(
+    //   body: Center(
+    //     child: _buildForm(),
+    //   ),
+    // );
+    if (loading == true) return LoadingPage();
+
+    return FutureBuilder(
+      future: storage.ready,
+      builder: (BuildContext context, snapshot) {
+        if (snapshot.data == true) {
+          return _buildForm();
+        } else {
+          return LoadingPage();
+        }
+      },
     );
   }
 
@@ -177,30 +202,31 @@ class _SigninPageState extends State<SigninPage> {
                                 child: FlatButton(
                               onPressed: () async {
                                 if (_formKey.currentState!.validate()) {
-                                  try {
-                                    String token =
-                                        await loginAPI.authenticateAPI(
-                                            inputLogin, inputPassword);
-                                    if (token.isNotEmpty) {
-                                      Navigator.pushNamed(context,
-                                          RouteName.curvedNavigationBarWidget);
-                                    }
-                                  } catch (e) {
-                                    ArtSweetAlert.show(
-                                        context: context,
-                                        artDialogArgs: ArtDialogArgs(
-                                            sizeSuccessIcon: 70,
-                                            type: ArtSweetAlertType.danger,
-                                            title:
-                                                "Tài khoản không hợp lệ. Vui lòng thử lại"));
-                                    return;
-                                  }
+                                  // try {
+                                  //   String token =
+                                  //       await loginAPI.authenticateAPI(
+                                  //           inputLogin, inputPassword);
+                                  //   if (token.isNotEmpty) {
+                                  //     Navigator.pushNamed(context,
+                                  //         RouteName.curvedNavigationBarWidget);
+                                  //   }
+                                  // } catch (e) {
+                                  //   ArtSweetAlert.show(
+                                  //       context: context,
+                                  //       artDialogArgs: ArtDialogArgs(
+                                  //           sizeSuccessIcon: 70,
+                                  //           type: ArtSweetAlertType.danger,
+                                  //           title:
+                                  //               "Tài khoản không hợp lệ. Vui lòng thử lại"));
+                                  //   return;
+                                  // }
+                                  _submitPhone();
                                 }
                                 // Navigator.pushNamed(
                                 //     context, RouteName.homePage);
                               },
                               child: Text(
-                                'Đăng kí',
+                                'Đăng nhập',
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -289,5 +315,49 @@ class _SigninPageState extends State<SigninPage> {
             )),
       ),
     );
+  }
+
+  Future<void> _submitPhone() async {
+    setState(() {
+      loading = true;
+    });
+    try {
+      var result = await loginAPI.authenticateAPI(inputLogin, inputPassword);
+      if (result == "") {
+        ArtSweetAlert.show(
+            context: context,
+            artDialogArgs: ArtDialogArgs(
+                sizeSuccessIcon: 70,
+                type: ArtSweetAlertType.danger,
+                title: "Tài khoản không hợp lệ. Vui lòng thử lại"));
+        setState(() {
+          loading = false;
+        });
+        return;
+      } else {
+        storage.setItem(LocalStoreKey.tokenUser, result);
+        var test = storage.getItem(LocalStoreKey.tokenUser);
+        print(test);
+        try {
+          Navigator.pushNamedAndRemoveUntil(
+              context,
+              RouteName.curvedNavigationBarWidget,
+              (Route<dynamic> route) => false);
+        } catch (e) {
+          print(e);
+        }
+      }
+    } catch (error) {
+      setState(() {
+        loading = false;
+      });
+      ArtSweetAlert.show(
+          context: context,
+          artDialogArgs: ArtDialogArgs(
+              sizeSuccessIcon: 70,
+              type: ArtSweetAlertType.danger,
+              title: "Không truy cập được. Vui lòng thử lại"));
+      return;
+    }
   }
 }
