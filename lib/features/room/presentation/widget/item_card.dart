@@ -1,4 +1,5 @@
 import 'package:art_sweetalert/art_sweetalert.dart';
+import 'package:clean_achitecture/Theme/color.dart';
 import 'package:clean_achitecture/features/room/data/SaveRoomFavoriteAPI.dart';
 import 'package:clean_achitecture/features/room/model/RoomModel.dart';
 import 'package:clean_achitecture/features/room/presentation/page/DetailRoomPage.dart';
@@ -101,7 +102,7 @@ class ItemCard extends StatelessWidget {
                         GestureDetector(
                           child: Icon(
                             CupertinoIcons.heart,
-                            color: CupertinoColors.systemRed,
+                            color: red,
                             size: 25,
                           ),
                           onTap: () async {

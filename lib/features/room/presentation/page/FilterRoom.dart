@@ -1,3 +1,4 @@
+import 'package:clean_achitecture/Theme/color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -77,168 +78,192 @@ class _FliterScreenState extends State<FliterScreen> {
       statusBarIconBrightness: Brightness.light,
       //statusBarBrightness: Brightness.dark,
     ));
-    return SafeArea(
-      child: Scaffold(
-          appBar: AppBar(
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () {
+    return CupertinoPageScaffold(
+      backgroundColor: appBgColor,
+      navigationBar: CupertinoNavigationBar(
+        leading: Row(
+          children: [
+            GestureDetector(
+              child: Row(
+                children: [
+                  Image.asset(
+                    "assets/images/logo.png",
+                    fit: BoxFit.fill,
+                    color: CupertinoColors.activeBlue,
+                  ),
+                ],
+              ),
+              onTap: () {
                 Navigator.pop(context);
               },
             ),
-            title: Text("Bạn muốn lọc"),
+          ],
+        ),
+        middle: Text(
+          "Bạn muốn lọc?",
+          style: TextStyle(
+            fontSize: 16,
           ),
-          body: Stack(
-            children: [
-              SingleChildScrollView(
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Danh mục',
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      RadioListTile(
-                        value: 1,
-                        groupValue: selectedPriceValue,
-                        title: Text('Phòng trọ',
-                            style: TextStyle(
-                              fontSize: 17,
-                            )),
-                        onChanged: (val) {
-                          setState(() {
-                            selectedPriceValue = 1;
-                          });
-                        },
-                        activeColor: Colors.red,
-                        selected: false,
-                      ),
-                      RadioListTile(
-                        value: 2,
-                        groupValue: selectedPriceValue,
-                        title: Text('Căn hộ',
-                            style: TextStyle(
-                              fontSize: 17,
-                            )),
-                        onChanged: (val) {
-                          setState(() {
-                            selectedPriceValue = 2;
-                          });
-                        },
-                        activeColor: Colors.red,
-                        selected: false,
-                      ),
-                      Divider(
-                        thickness: 1,
-                        color: Colors.grey.withOpacity(0.3),
-                        height: 20,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          Text('Giá từ:',
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold)),
-                          Text(' ${_currentRangeValues.start}',
-                              style: TextStyle(
-                                  fontSize: 17, fontWeight: FontWeight.bold)),
-                          Text(' đến',
+        ),
+      ),
+      child: Scaffold(
+          backgroundColor: appBgColor,
+          body: SafeArea(
+            child: Stack(
+              children: [
+                SingleChildScrollView(
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Danh mục',
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        RadioListTile(
+                          value: 1,
+                          groupValue: selectedPriceValue,
+                          title: Text('Phòng trọ',
                               style: TextStyle(
                                 fontSize: 17,
                               )),
-                          Text(' ${_currentRangeValues.end}',
-                              style: TextStyle(
-                                  fontSize: 17, fontWeight: FontWeight.bold)),
-                        ],
-                      ),
-                      RangeSlider(
-                        values: _currentRangeValues,
-                        max: 10000000,
-                        divisions: 20,
-                        labels: RangeLabels(
-                          _currentRangeValues.start.round().toString(),
-                          _currentRangeValues.end.round().toString(),
-                        ),
-                        onChanged: (RangeValues values) {
-                          setState(() {
-                            _currentRangeValues = values;
-                            selectedPriceValue = 3;
-                          });
-                        },
-                      ),
-                      Divider(
-                        thickness: 1,
-                        color: Colors.grey.withOpacity(0.3),
-                        height: 20,
-                      ),
-                      Row(
-                        children: [
-                          Text('Kích thước: ',
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold)),
-                          Text('${_currentRangeSizeRoomValues.start}',
-                              style: TextStyle(
-                                  fontSize: 17, fontWeight: FontWeight.bold)),
-                          Text(' đến',
-                              style: TextStyle(
-                                fontSize: 17,
-                              )),
-                          Text(' ${_currentRangeSizeRoomValues.end}',
-                              style: TextStyle(
-                                  fontSize: 17, fontWeight: FontWeight.bold)),
-                        ],
-                      ),
-                      RangeSlider(
-                        values: _currentRangeSizeRoomValues,
-                        max: 100,
-                        min: 10,
-                        divisions: 20,
-                        labels: RangeLabels(
-                          _currentRangeSizeRoomValues.start.round().toString(),
-                          _currentRangeSizeRoomValues.end.round().toString(),
-                        ),
-                        onChanged: (RangeValues values) {
-                          setState(() {
-                            _currentRangeSizeRoomValues = values;
-                            selectedPriceValue = 4;
-                          });
-                        },
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: FlatButton(
-                          onPressed: () {
+                          onChanged: (val) {
                             setState(() {
-                              filterOptions();
+                              selectedPriceValue = 1;
                             });
-                            Navigator.of(context).pop(newList);
                           },
-                          child: Container(
-                              alignment: Alignment.center,
-                              width: MediaQuery.of(context).size.width,
-                              height: MediaQuery.of(context).size.width * 0.15,
-                              child: Text('Áp dụng',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 25)),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(200),
-                                  gradient: LinearGradient(colors: <Color>[
-                                    Colors.orange,
-                                    Colors.purple,
-                                  ]))),
-                          textColor: Colors.white,
+                          activeColor: Colors.red,
+                          selected: false,
                         ),
-                      )
-                    ],
+                        RadioListTile(
+                          value: 2,
+                          groupValue: selectedPriceValue,
+                          title: Text('Căn hộ',
+                              style: TextStyle(
+                                fontSize: 17,
+                              )),
+                          onChanged: (val) {
+                            setState(() {
+                              selectedPriceValue = 2;
+                            });
+                          },
+                          activeColor: Colors.red,
+                          selected: false,
+                        ),
+                        Divider(
+                          thickness: 1,
+                          color: Colors.grey.withOpacity(0.3),
+                          height: 20,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            Text('Giá từ:',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold)),
+                            Text(' ${_currentRangeValues.start}',
+                                style: TextStyle(
+                                    fontSize: 17, fontWeight: FontWeight.bold)),
+                            Text(' đến',
+                                style: TextStyle(
+                                  fontSize: 17,
+                                )),
+                            Text(' ${_currentRangeValues.end}',
+                                style: TextStyle(
+                                    fontSize: 17, fontWeight: FontWeight.bold)),
+                          ],
+                        ),
+                        RangeSlider(
+                          values: _currentRangeValues,
+                          max: 10000000,
+                          divisions: 20,
+                          labels: RangeLabels(
+                            _currentRangeValues.start.round().toString(),
+                            _currentRangeValues.end.round().toString(),
+                          ),
+                          onChanged: (RangeValues values) {
+                            setState(() {
+                              _currentRangeValues = values;
+                              selectedPriceValue = 3;
+                            });
+                          },
+                        ),
+                        Divider(
+                          thickness: 1,
+                          color: Colors.grey.withOpacity(0.3),
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            Text('Kích thước: ',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold)),
+                            Text('${_currentRangeSizeRoomValues.start}',
+                                style: TextStyle(
+                                    fontSize: 17, fontWeight: FontWeight.bold)),
+                            Text(' đến',
+                                style: TextStyle(
+                                  fontSize: 17,
+                                )),
+                            Text(' ${_currentRangeSizeRoomValues.end}',
+                                style: TextStyle(
+                                    fontSize: 17, fontWeight: FontWeight.bold)),
+                          ],
+                        ),
+                        RangeSlider(
+                          values: _currentRangeSizeRoomValues,
+                          max: 100,
+                          min: 10,
+                          divisions: 20,
+                          labels: RangeLabels(
+                            _currentRangeSizeRoomValues.start
+                                .round()
+                                .toString(),
+                            _currentRangeSizeRoomValues.end.round().toString(),
+                          ),
+                          onChanged: (RangeValues values) {
+                            setState(() {
+                              _currentRangeSizeRoomValues = values;
+                              selectedPriceValue = 4;
+                            });
+                          },
+                        ),
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: FlatButton(
+                            onPressed: () {
+                              setState(() {
+                                filterOptions();
+                              });
+                              Navigator.of(context).pop(newList);
+                            },
+                            child: Container(
+                                alignment: Alignment.center,
+                                width: MediaQuery.of(context).size.width,
+                                height:
+                                    MediaQuery.of(context).size.width * 0.15,
+                                child: Text('Áp dụng',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontSize: 25)),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(200),
+                                    gradient: LinearGradient(colors: <Color>[
+                                      CupertinoColors.activeBlue,
+                                      CupertinoColors.activeGreen,
+                                    ]))),
+                            textColor: Colors.white,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           )),
     );
   }

@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        color: CupertinoColors.systemGroupedBackground,
+        //  color: CupertinoColors.systemGroupedBackground,
         localizationsDelegates: [],
         //set up router
         initialRoute: RouteName.splashPage,

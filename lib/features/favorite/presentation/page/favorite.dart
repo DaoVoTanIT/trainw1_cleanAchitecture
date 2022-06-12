@@ -1,6 +1,7 @@
 import 'package:clean_achitecture/Theme/color.dart';
 import 'package:clean_achitecture/style/showdialog.dart';
 import 'package:clean_achitecture/style/styleAppBar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:multi_image_picker2/multi_image_picker2.dart';
@@ -44,51 +45,39 @@ class _SavedRoomPageState extends State<FavoritePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: StyleAppBar(
-        backgroundColor: kBackgroudColor,
-        elevation: 0.3,
-        height: 60,
-        leading: InkWell(
-          onTap: () {},
-          child: Container(
-            margin: EdgeInsetsDirectional.only(start: 5),
-            child: ShaderMask(
-                child: Icon(
-                  FontAwesomeIcons.save,
-                  size: 42,
-                  color: Colors.redAccent,
+    return CupertinoPageScaffold(
+        backgroundColor: appBgColor,
+        navigationBar: CupertinoNavigationBar(
+          leading: Row(
+            children: [
+              GestureDetector(
+                child: Row(
+                  children: [
+                    Icon(
+                      CupertinoIcons.back,
+                      color: CupertinoColors.activeBlue,
+                      size: 25,
+                    ),
+                    Text(
+                      "",
+                      style: TextStyle(
+                          color: CupertinoColors.activeBlue, fontSize: 16),
+                    ),
+                  ],
                 ),
-                blendMode: BlendMode.srcATop,
-                shaderCallback: (bounds) {
-                  return LinearGradient(
-                          colors: [
-                        Colors.redAccent,
-                        Colors.deepPurpleAccent,
-                      ],
-                          begin: Alignment.bottomCenter,
-                          end: Alignment.topCenter,
-                          tileMode: TileMode.repeated)
-                      .createShader(bounds);
-                }),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+          middle: Text(
+            "Phòng đã lưu",
+            style: TextStyle(
+              fontSize: 16,
+            ),
           ),
         ),
-        title: Text(
-          'Phòng đã lưu',
-          style: TextStyle(fontSize: 20.0, color: Colors.blue),
-        ),
-        actions: [
-          IconButton(
-              icon: Icon(Icons.settings),
-              color: Colors.grey,
-              onPressed: () {
-                Navigator.of(context).pushNamed('/notification');
-              })
-        ],
-      ),
-      body: Column(
-        children: <Widget>[],
-      ),
-    );
+        child: Scaffold());
   }
 }

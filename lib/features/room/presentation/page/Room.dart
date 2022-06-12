@@ -59,7 +59,6 @@ class _RoomPageState extends State<RoomPage> {
             .toUpperCase()
             .contains(buldingChoose!.toUpperCase()))
         .toList();
-
     setState(() {
       // ignore: unrelated_type_equality_checks
       if (listRoomFilter != 0) {
@@ -88,23 +87,18 @@ class _RoomPageState extends State<RoomPage> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-        backgroundColor: CupertinoColors.systemGrey,
+        backgroundColor: appBgColor,
         navigationBar: CupertinoNavigationBar(
           leading: Row(
             children: [
               GestureDetector(
                 child: Row(
                   children: [
-                    Icon(
-                      CupertinoIcons.back,
+                    Image.asset(
+                      "assets/images/logo.png",
+                      fit: BoxFit.fill,
                       color: CupertinoColors.activeBlue,
-                      size: 25,
-                    ),
-                    Text(
-                      "Danh mục",
-                      style: TextStyle(
-                          color: CupertinoColors.activeBlue, fontSize: 16),
-                    ),
+                    )
                   ],
                 ),
                 onTap: () {
@@ -147,15 +141,14 @@ class _RoomPageState extends State<RoomPage> {
               )),
         ),
         child: Scaffold(
+            backgroundColor: appBgColor,
             body: RefreshIndicator(
-          onRefresh: _refreshData,
-          backgroundColor: Colors.teal,
-          color: Colors.white,
-          displacement: 200,
-          strokeWidth: 5,
-          child: SafeArea(
-            child: Padding(
-                padding: const EdgeInsets.all(8.0),
+              onRefresh: _refreshData,
+              backgroundColor: Colors.blue,
+              color: Colors.white,
+              displacement: 200,
+              strokeWidth: 5,
+              child: SafeArea(
                 child: SingleChildScrollView(
                   physics: ScrollPhysics(),
                   child: Column(children: [
@@ -173,18 +166,27 @@ class _RoomPageState extends State<RoomPage> {
                       ),
                       Positioned(
                         bottom: 55.0,
-                        right: 0.0,
-                        left: 0.0,
+                        right: -20.0,
+                        left: -40.0,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
                               width: MediaQuery.of(context).size.width * 0.8,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(30.0),
-                                  border: Border.all(color: Colors.blueAccent)),
                               alignment: Alignment.center,
+                              margin: EdgeInsets.symmetric(horizontal: 20),
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20),
+                                boxShadow: [
+                                  BoxShadow(
+                                    offset: Offset(0.0, 4.0),
+                                    color: Color(0xffe8f2ff),
+                                    blurRadius: 24.0,
+                                  ),
+                                ],
+                              ),
                               child: FormField<String>(
                                 builder: (FormFieldState<String> state) {
                                   return InputDecorator(
@@ -260,7 +262,8 @@ class _RoomPageState extends State<RoomPage> {
                       ),
                     ]),
                     Padding(
-                      padding: const EdgeInsets.only(top: 20.0),
+                      padding:
+                          const EdgeInsets.only(top: 20.0, left: 10, right: 10),
                       child: listRoom.length == 0
                           ? Container()
                           : ListView.builder(
@@ -274,8 +277,8 @@ class _RoomPageState extends State<RoomPage> {
                                   )),
                     )
                   ]),
-                )),
-          ),
-        )));
+                ),
+              ),
+            )));
   }
 }

@@ -34,8 +34,10 @@ class _SearchMapPageState extends State<SearchMapPage> {
   @override
   void initState() {
     // TODO: implement initState
-    getListRoom();
-    setState(() {});
+
+    setState(() {
+      getListRoom();
+    });
   }
 
   getListRoom() async {
@@ -76,7 +78,7 @@ class _SearchMapPageState extends State<SearchMapPage> {
                       );
                     },
                     child: Container(
-                      // padding: EdgeInsets.only(top: 10, left: 7, right: 7),
+                      //  padding: EdgeInsets.only(top: 10, left: 7, right: 7),
                       height: 350,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,8 +86,8 @@ class _SearchMapPageState extends State<SearchMapPage> {
                           Container(
                             height: 200,
                             decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
+                              // borderRadius:
+                              //     BorderRadius.all(Radius.circular(10)),
                               image: DecorationImage(
                                 image: NetworkImage(listRoom[i].imageMain),
                                 fit: BoxFit.cover,
@@ -93,46 +95,50 @@ class _SearchMapPageState extends State<SearchMapPage> {
                             ),
                           ),
                           SizedBox(width: 5),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(listRoom[i].subject.toString(),
-                                  style: TextStyle(
-                                      fontSize: 16, fontWeight: FontWeight.bold
-                                      // color: Colors.black,
-                                      )),
-                              SizedBox(height: 5),
-                              Text('${listRoom[i].size} m2',
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.grey,
-                                  )),
-                              SizedBox(height: 5),
-                              Text(listRoom[i].priceString.toString(),
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.red,
-                                  )),
-                              SizedBox(height: 5),
-                              Row(
-                                children: [
-                                  Icon(
-                                    CupertinoIcons.placemark,
-                                    size: 20,
-                                    color: Colors.grey,
-                                  ),
-                                  Expanded(
-                                    child:
-                                        Text(listRoom[i].streetName.toString(),
-                                            style: TextStyle(
-                                              fontSize: 15,
-                                              color: Colors.grey,
-                                            )),
-                                  ),
-                                ],
-                              )
-                            ],
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(listRoom[i].subject.toString(),
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold
+                                        // color: Colors.black,
+                                        )),
+                                SizedBox(height: 5),
+                                Text('${listRoom[i].size} m2',
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.grey,
+                                    )),
+                                SizedBox(height: 5),
+                                Text(listRoom[i].priceString.toString(),
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.red,
+                                    )),
+                                SizedBox(height: 5),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      CupertinoIcons.placemark,
+                                      size: 20,
+                                      color: Colors.grey,
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                          listRoom[i].streetName.toString(),
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            color: Colors.grey,
+                                          )),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
                           ),
                         ],
                       ),

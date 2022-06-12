@@ -33,7 +33,8 @@ class RoomModel {
       this.typeName,
       this.ward,
       this.wardName,
-      this.statusRoom});
+      this.statusRoom,
+      this.phoneNumber});
 
   String? id;
   String? accountId;
@@ -68,6 +69,7 @@ class RoomModel {
   String? typeName;
   int? ward;
   String? wardName;
+  String? phoneNumber;
   int? statusRoom; //0 not save
   factory RoomModel.fromJson(Map<String, dynamic> json) => RoomModel(
         id: json["_id"],
@@ -103,6 +105,7 @@ class RoomModel {
         typeName: json["type_name"],
         ward: json["ward"],
         wardName: json["ward_name"],
+        phoneNumber: json["phone_number"],
         statusRoom: json["status_room"],
       );
 
@@ -140,6 +143,7 @@ class RoomModel {
         "type_name": typeName,
         "ward": ward,
         "ward_name": wardName,
+        "phone_number": phoneNumber,
         "status_room": statusRoom,
       };
 }

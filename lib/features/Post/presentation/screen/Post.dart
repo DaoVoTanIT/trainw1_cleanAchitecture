@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:art_sweetalert/art_sweetalert.dart';
 import 'package:clean_achitecture/Theme/color.dart';
 import 'package:clean_achitecture/features/Post/data/CreateRoom.dart';
 import 'package:clean_achitecture/features/Post/model/distric.dart';
@@ -75,111 +76,110 @@ class _PostPageState extends State<PostPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: StyleAppBar(
-          backgroundColor: kBackgroudColor,
-          elevation: 0.3,
-          height: 60,
-          leading: InkWell(
-            onTap: () {},
-            child: Container(
-              margin: EdgeInsetsDirectional.only(start: 5),
-              child: ShaderMask(
-                  child: Icon(
-                    FontAwesomeIcons.heartBroken,
-                    size: 42,
-                    color: Colors.redAccent,
-                  ),
-                  blendMode: BlendMode.srcATop,
-                  shaderCallback: (bounds) {
-                    return LinearGradient(
-                            colors: [
-                          Colors.redAccent,
-                          Colors.deepPurpleAccent,
-                        ],
-                            begin: Alignment.bottomCenter,
-                            end: Alignment.topCenter,
-                            tileMode: TileMode.repeated)
-                        .createShader(bounds);
-                  }),
+    return CupertinoPageScaffold(
+        backgroundColor: appBgColor,
+        navigationBar: CupertinoNavigationBar(
+          leading: Row(
+            children: [
+              GestureDetector(
+                child: Row(
+                  children: [
+                    Image.asset(
+                      "assets/images/logo.png",
+                      fit: BoxFit.fill,
+                      color: CupertinoColors.activeBlue,
+                    )
+                    // Icon(
+                    //   CupertinoIcons.back,
+                    //   color: CupertinoColors.activeBlue,
+                    //   size: 25,
+                    // ),
+                    // Text(
+                    //   "Danh mục",
+                    //   style: TextStyle(
+                    //       color: CupertinoColors.activeBlue, fontSize: 16),
+                    // ),
+                  ],
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+          middle: Text(
+            "Đăng phòng",
+            style: TextStyle(
+              fontSize: 16,
             ),
           ),
-          title: Text(
-            'Đăng tin',
-            style: TextStyle(fontSize: 20.0, color: Colors.blue),
-          ),
-          actions: [
-            IconButton(
-                icon: Icon(Icons.settings),
-                color: Colors.grey,
-                onPressed: () {
-                  Navigator.of(context).pushNamed('/notification');
-                })
-          ],
         ),
-        body: Stepper(
-          type: StepperType.horizontal,
-          currentStep: activeStepIndex,
-          controlsBuilder: (BuildContext context, ControlsDetails controls) {
-            return Row(
-              children: <Widget>[
-                TextButton(
-                  onPressed: controls.onStepCancel,
-                  child: const Text(
-                    'Quay lại',
-                    style: TextStyle(fontSize: 18),
+        child: SafeArea(
+          child: Scaffold(
+              body: Stepper(
+            type: StepperType.horizontal,
+            currentStep: activeStepIndex,
+            controlsBuilder: (BuildContext context, ControlsDetails controls) {
+              return Row(
+                children: <Widget>[
+                  TextButton(
+                    onPressed: controls.onStepCancel,
+                    child: const Text('Quay lại',
+                        style: TextStyle(
+                            fontSize: 18, color: CupertinoColors.activeBlue)),
                   ),
-                ),
-                TextButton(
-                  onPressed: controls.onStepContinue,
-                  // () {
-                  //   createRoomAPI.createPostRoom(roomModel);
-                  // },
-                  child: const Text(
-                    'Tiếp',
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.redAccent,
-                        fontWeight: FontWeight.bold),
+                  TextButton(
+                    onPressed: controls.onStepContinue,
+                    // () {
+                    //   createRoomAPI.createPostRoom(roomModel);
+                    // },
+                    child: const Text(
+                      'Tiếp',
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: CupertinoColors.systemRed,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
-                ),
-              ],
-            );
-          },
-          steps: [
-            Step(
-              state:
-                  activeStepIndex <= 0 ? StepState.editing : StepState.complete,
-              isActive: activeStepIndex >= 0,
-              title: Text('Vị trí'),
-              content: postAddress(),
-            ),
-            Step(
-                state: activeStepIndex <= 1
+                ],
+              );
+            },
+            steps: [
+              Step(
+                state: activeStepIndex <= 0
                     ? StepState.editing
                     : StepState.complete,
-                isActive: activeStepIndex >= 1,
-                title: Text('Thông tin'),
-                content: postInformationRoom()),
-            Step(
-                state: StepState.editing,
-                isActive: activeStepIndex >= 2,
-                title: Text('Xác nhận'),
-                content: decribleRoom())
-          ],
-          onStepContinue: () {
-            if (activeStepIndex <= 3) {
-              activeStepIndex += 1;
-            }
-            setState(() {});
-          },
-          onStepCancel: () {
-            if (activeStepIndex == 0) {
-              return;
-            }
-            activeStepIndex -= 1;
-            setState(() {});
-          },
+                isActive: activeStepIndex >= 0,
+                title: Text('Vị trí'),
+                content: postAddress(),
+              ),
+              Step(
+                  state: activeStepIndex <= 1
+                      ? StepState.editing
+                      : StepState.complete,
+                  isActive: activeStepIndex >= 1,
+                  title: Text('Thông tin'),
+                  content: postInformationRoom()),
+              Step(
+                  state: StepState.editing,
+                  isActive: activeStepIndex >= 2,
+                  title: Text('Xác nhận'),
+                  content: decribleRoom())
+            ],
+            onStepContinue: () {
+              if (activeStepIndex <= 3) {
+                activeStepIndex += 1;
+              } else if (activeStepIndex > 3) {}
+              setState(() {});
+            },
+            onStepCancel: () {
+              if (activeStepIndex == 0) {
+                return;
+              }
+              activeStepIndex -= 1;
+              setState(() {});
+            },
+          )),
         ));
   }
 
@@ -187,20 +187,20 @@ class _PostPageState extends State<PostPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text('Chọn Tỉnh/TP', style: TextStyle(fontSize: 16)),
-            Row(
-              children: [
-                IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.add_location, color: Colors.blue)),
-                Text('Vị trí hiện tại', style: TextStyle(color: Colors.blue))
-              ],
-            ),
-          ],
-        ),
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   children: [
+        //     Text('Nhập thông tin địa chỉ', style: TextStyle(fontSize: 16)),
+        //     Row(
+        //       children: [
+        //         IconButton(
+        //             onPressed: () {},
+        //             icon: Icon(Icons.add_location, color: Colors.blue)),
+        //         Text('Vị trí hiện tại', style: TextStyle(color: Colors.blue))
+        //       ],
+        //     ),
+        //   ],
+        // ),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text('Chọn Quận/Huyện', style: TextStyle(fontSize: 16)),
@@ -232,33 +232,6 @@ class _PostPageState extends State<PostPage> {
           padding: const EdgeInsets.all(8.0),
           child: Text('Phường/Xã', style: TextStyle(fontSize: 16)),
         ),
-        // DropdownButtonFormField(
-        //   decoration: InputDecoration(
-        //     // enabledBorder: OutlineInputBorder(
-        //     //   borderSide: BorderSide(color: Colors.blue, width: 2),
-        //     //   borderRadius: BorderRadius.circular(20),
-        //     // ),
-        //     border: OutlineInputBorder(
-        //       borderSide: BorderSide(color: Colors.blue, width: 2),
-        //       borderRadius: BorderRadius.circular(10),
-        //     ),
-        //     filled: true,
-        //   ),
-        //   hint: Text('Chọn phường/xã'),
-        //   onChanged: (newVal) {
-        //     setState(() {
-        //       _selectionWard = newVal! as String?;
-        //     });
-        //   },
-        //   value: _selectionWard,
-        //   items: dataW.map((item) {
-        //     return new DropdownMenuItem(
-        //       child: new Text(item['name'].toString()),
-        //       value: item['id_Ward'].toString(),
-        //     );
-        //   }).toList(),
-        // ),
-
         TextFormField(
           textAlign: TextAlign.start,
           controller: wardController,
@@ -285,10 +258,26 @@ class _PostPageState extends State<PostPage> {
           onChanged: (text) {
             //nameStreetController.text = value;
             roomModel.streetName = nameStreetController.text +
+                " " +
                 wardController.text +
                 " " +
                 _selectionDistrict.toString();
-            ;
+          },
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text('Số điện thoại', style: TextStyle(fontSize: 16)),
+        ),
+        TextFormField(
+          textAlign: TextAlign.start,
+          controller: phoneController,
+          decoration: InputDecoration(
+              hintText: "Nhập SDT",
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
+          onChanged: (value) {
+            //wardController.text = value;
+            roomModel.phoneNumber = phoneController.text;
           },
         ),
       ],
@@ -458,31 +447,28 @@ class _PostPageState extends State<PostPage> {
         children: <Widget>[
           TextFormField(
             controller: titleRoomController,
+            minLines: 2,
+            maxLines: 5,
+            keyboardType: TextInputType.multiline,
             decoration: InputDecoration(
-                fillColor: Colors.grey, focusColor: Colors.grey),
-            onChanged: (value) {
-              roomModel.subject = titleRoomController.text;
-            },
-            validator: (value) {
-              if (value!.isEmpty) {
-                return 'Mô tả phải nhiều hơn 100 từ';
-              }
-              return null;
-            },
+                hintText: 'Nhập tiêu đề',
+                hintStyle: TextStyle(color: Colors.grey),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                )),
           ),
+          SizedBox(height: 20),
           TextFormField(
             controller: decribleRoomController,
+            minLines: 2,
+            maxLines: 5,
+            keyboardType: TextInputType.multiline,
             decoration: InputDecoration(
-                fillColor: Colors.grey, focusColor: Colors.grey),
-            onChanged: (value) {
-              roomModel.body = decribleRoomController.text;
-            },
-            validator: (value) {
-              if (value!.isEmpty) {
-                return 'Mô tả phải nhiều hơn 100 từ';
-              }
-              return null;
-            },
+                hintText: 'Nhập mô tả chi tiết',
+                hintStyle: TextStyle(color: Colors.grey),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                )),
           ),
           SizedBox(
             height: 20,
@@ -495,7 +481,16 @@ class _PostPageState extends State<PostPage> {
                   var date = DateTime.now();
                   roomModel.date = date.toString();
                   roomModel.statusRoom = 0;
-                  await createRoomAPI.createPostRoom(roomModel);
+                  await createRoomAPI.createPostRoom(roomModel).then((value) {
+                    ArtSweetAlert.show(
+                        context: context,
+                        artDialogArgs: ArtDialogArgs(
+                            sizeSuccessIcon: 70,
+                            type: ArtSweetAlertType.success,
+                            title:
+                                "Đăng kí tài thành công. Bạn có thể đăng nhập!"));
+                    return;
+                  });
                   Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -516,8 +511,8 @@ class _PostPageState extends State<PostPage> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(200),
                       gradient: LinearGradient(colors: <Color>[
-                        Colors.orange,
-                        Colors.purple,
+                        CupertinoColors.activeBlue,
+                        CupertinoColors.activeGreen,
                       ]))),
               textColor: Colors.white,
             ),

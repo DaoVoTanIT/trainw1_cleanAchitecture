@@ -35,6 +35,7 @@ class _SigninPageState extends State<SigninPage> {
   bool loading = false;
 
   final LocalStorage storage = new LocalStorage(keyLocalStore);
+  String token = '';
   void initState() {
     super.initState();
     dio = createDioClientNoAuthentication(storage);

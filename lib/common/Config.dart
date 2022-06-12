@@ -11,8 +11,6 @@ bool noInternet = false;
 const String noImgUrl =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png";
 
-const appBarColor = Colors.blue;
-
 extension FileExtention on FileSystemEntity {
   String? get name {
     return this.path.split("/").last.split(".").last;

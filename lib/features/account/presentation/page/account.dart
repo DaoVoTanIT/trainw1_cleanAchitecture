@@ -3,6 +3,7 @@ import 'package:clean_achitecture/Theme/color.dart';
 import 'package:clean_achitecture/common/config.dart';
 import 'package:clean_achitecture/features/account/data/profileAPI.dart';
 import 'package:clean_achitecture/features/account/presentation/widget/custom_image.dart';
+import 'package:clean_achitecture/routes/route_name.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
@@ -33,72 +34,12 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    // return CupertinoPageScaffold(
-    //     backgroundColor: CupertinoColors.systemGrey,
-    //     navigationBar: CupertinoNavigationBar(
-    //       leading: Row(
-    //         children: [
-    //           GestureDetector(
-    //             child: Row(
-    //               children: [
-    //                 Icon(
-    //                   CupertinoIcons.back,
-    //                   color: CupertinoColors.activeBlue,
-    //                   size: 25,
-    //                 ),
-    //                 Text(
-    //                   "Danh mục",
-    //                   style: TextStyle(
-    //                       color: CupertinoColors.activeBlue, fontSize: 16),
-    //                 ),
-    //               ],
-    //             ),
-    //             onTap: () {
-    //               Navigator.pop(context);
-    //             },
-    //           ),
-    //         ],
-    //       ),
-    //       middle: Text(
-    //         "Tài khoản",
-    //         style: TextStyle(
-    //           fontSize: 16,
-    //         ),
-    //       ),
-    //       trailing: GestureDetector(
-    //           onTap: () {
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (context) => FliterScreen(),
-    //     settings: RouteSettings(
-    //       arguments: listRoom,
-    //     ),
-    //   ),
-    // ).then((value) => {
-    //       if (value != null)
-    //         {
-    //           setState(() {
-    //             listRoom = value;
-    //           })
-    //         }
-    //       else
-    //         {getListRoom()}
-    //     });
-    //           },
-    //           child: Icon(
-    //             Icons.filter_alt_outlined,
-    //             size: 26,
-    //             color: CupertinoColors.activeBlue,
-    //           )),
-    //     ),
-    //     child: buildBody());
     return Scaffold(
         backgroundColor: appBgColor,
         body: CustomScrollView(
           slivers: [
             SliverAppBar(
-              // backgroundColor: appBarColor,
+              backgroundColor: appBarColor,
               pinned: true,
               snap: true,
               floating: true,
@@ -126,21 +67,13 @@ class _ProfilePageState extends State<ProfilePage> {
                 Text(
                   "Tài Khoản",
                   style: TextStyle(
-                      color: CupertinoColors.activeBlue,
+                      color: textColor,
                       fontSize: 24,
                       fontWeight: FontWeight.w600),
                 ),
               ],
             ),
           ),
-          // IconBox(
-          //   child: SvgPicture.asset(
-          //     "assets/icons/edit.svg",
-          //     width: 18,
-          //     height: 18,
-          //   ),
-          //   bgColor: appBgColor,
-          // ),
         ],
       ),
     );
@@ -148,6 +81,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget buildBody() {
     return SingleChildScrollView(
+      physics: AlwaysScrollableScrollPhysics(),
       padding: EdgeInsets.only(right: 20, top: 10),
       child: Column(
         children: [
@@ -155,20 +89,34 @@ class _ProfilePageState extends State<ProfilePage> {
             padding: EdgeInsets.only(left: 20),
             child: Column(
               children: <Widget>[
-                CustomImage(
-                  // profile["image"]!,
-                  'assets/images/avt.jpg',
-                  width: 80,
-                  height: 80,
-                  radius: 50,
+                // CustomImage(
+                //   // profile["image"]!,
+                //   'assets/images/avt.jpg',
+                //   width: 80,
+                //   height: 80,
+                //   radius: 50,
+                // ),
+                CircleAvatar(
+                  backgroundColor: CupertinoColors.systemGrey3,
+                  radius: 80,
+                  child: CircleAvatar(
+                    backgroundColor: CupertinoColors.systemGrey,
+                    radius: 75,
+                    child: CircleAvatar(
+                      backgroundImage:
+                          AssetImage("assets/images/avt.jpg"), //NetworkImage
+                      radius: 100,
+                    ), //CircleAvatar
+                  ), //CircleAvatar
                 ),
+
                 SizedBox(
                   height: 12,
                 ),
                 Text(
                   name,
                   style: TextStyle(
-                    //color: textColor,
+                    color: textColor,
                     fontSize: 20,
                     fontWeight: FontWeight.w500,
                   ),
@@ -188,31 +136,31 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           SizedBox(height: 40),
           SettingItem(
-              title: "General Setting",
+              title: "Cài đặt",
               leadingIcon: Icons.settings,
               leadingIconColor: orange,
               onTap: () {}),
           SizedBox(height: 10),
           SettingItem(
-              title: "Bookings",
+              title: "Phòng đã đăng",
               leadingIcon: Icons.bookmark_border,
               leadingIconColor: blue,
               onTap: () {}),
           SizedBox(height: 10),
           SettingItem(
-              title: "Favorites",
+              title: "Phòng đã lưu",
               leadingIcon: Icons.favorite,
               leadingIconColor: red,
               onTap: () {}),
           SizedBox(height: 10),
-          SettingItem(
-              title: "Privacy",
-              leadingIcon: Icons.privacy_tip_outlined,
-              leadingIconColor: green,
-              onTap: () {}),
+          // SettingItem(
+          //     title: "Privacy",
+          //     leadingIcon: Icons.privacy_tip_outlined,
+          //     leadingIconColor: green,
+          //     onTap: () {}),
           SizedBox(height: 10),
           SettingItem(
-            title: "Log Out",
+            title: "Đăng xuất",
             leadingIcon: Icons.logout_outlined,
             leadingIconColor: Colors.grey.shade400,
             onTap: () {
@@ -229,23 +177,32 @@ class _ProfilePageState extends State<ProfilePage> {
     showCupertinoModalPopup(
       context: context,
       builder: (context) => CupertinoActionSheet(
-        message: Text("Would you like to log out?"),
+        message: Text("Bạn có muốn đăng xuất không?"),
         actions: [
           CupertinoActionSheetAction(
-            onPressed: () {},
+            onPressed: () {
+              logout();
+            },
             child: Text(
-              "Log Out",
+              "Đăng xuất",
               style: TextStyle(color: actionColor),
             ),
           )
         ],
         cancelButton: CupertinoActionSheetAction(
-          child: Text("Cancel"),
+          child: Text("Huỷ"),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
       ),
     );
+  }
+
+  logout() {
+    storage.deleteItem(LocalStoreKey.keyStore).then((value) {
+      Navigator.pushNamedAndRemoveUntil(
+          context, RouteName.loginPage, (Route<dynamic> route) => false);
+    });
   }
 }
