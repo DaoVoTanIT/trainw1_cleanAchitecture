@@ -1,10 +1,10 @@
 # _ỨNG DỤNG TÌM KIẾM PHÒNG TRỌ CHO CƯ DÂN THÀNH PHỐ HỒ CHÍ MINH_
 
-* Giảng viên hướng dẫn: **THS.TRẦN PHONG NHÃ**
-* Sinh viên thực hiện:  **VÕ TẤN ĐÀO**
-* Lớp 	: **CÔNG NGHỆ THÔNG TIN**
-* Khoá : **59**
-* MSSV: **THS.TRẦN PHONG NHÃ**
+* **Giảng viên hướng dẫn:** THS.TRẦN PHONG NHÃ
+* **Sinh viên thực hiện:**  VÕ TẤN ĐÀO
+* **Lớp 	:** CÔNG NGHỆ THÔNG TIN
+* **Khoá :** 59
+* **MSSV:** 5951071011
 
 **✨GIAO DIỆN**
 
