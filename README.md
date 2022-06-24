@@ -23,13 +23,14 @@
 ![image](https://user-images.githubusercontent.com/67967917/173230892-abd88e32-2ba0-40d0-8404-0690ae6a26b6.png)
 ![image](https://user-images.githubusercontent.com/67967917/173230894-78978494-e81d-49b6-8b73-c1e02f3f3578.png)
 ![image](https://user-images.githubusercontent.com/67967917/173230896-044d39eb-f326-4e7b-aee6-bdf48853d6ba.png)
-![map](https://user-images.githubusercontent.com/67967917/175648599-223d6a2c-306b-466b-a03f-4f79d4b1162e.jpg)
-![rujn](https://user-images.githubusercontent.com/67967917/175648618-be61cebf-31ed-4b05-a10f-187ad2a4d13b.jpg)
-![post](https://user-images.githubusercontent.com/67967917/175648625-6adb2803-e863-4e3b-8ea0-d1279c568464.jpg)
+![image](https://user-images.githubusercontent.com/67967917/175650438-e567eafa-952b-4f42-abcf-65bdf1691fbc.png)
+![image](https://user-images.githubusercontent.com/67967917/175649352-37e2aa8f-8ee0-4624-b2fe-f47c4d89d960.png)
+![image](https://user-images.githubusercontent.com/67967917/175649361-c226db6a-20aa-4944-9964-34e5ffeb2cfd.png)
+![image](https://user-images.githubusercontent.com/67967917/175649508-0d29a63b-d6af-4698-8dd5-edf93b973a35.png)
+![image](https://user-images.githubusercontent.com/67967917/175649424-c17e0ae4-a431-427d-91c0-6e3c8a693426.png)
 
 **Hướng dẫn cài đặt**
 **1.Cách 1:** Quét mã scan dưới đây để download ứng dụng.
-
 ![image](https://user-images.githubusercontent.com/67967917/175647931-4097a85b-7288-4578-9016-8ad21f70e8f7.png)
 
 **:iphone:LIÊN HỆ**
