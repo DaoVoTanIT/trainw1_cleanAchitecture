@@ -1,21 +1,18 @@
-import 'dart:convert';
-
 import 'package:clean_achitecture/features/room/model/RoomModel.dart';
 import 'package:dio/dio.dart';
 
-class SaveFavoriteRoomAPI {
+class MyRoomAPI {
   final Dio _dio = Dio();
   var listRoom;
-  Future<void> saveFavoriteRoom(RoomModel model, String idUser) async {
+  Future<List<RoomModel>> getMyRoom(String idUser) async {
     try {
-      Response roomPost = await _dio.post(
-          "https://findroomapi.herokuapp.com/findroom/favoriteRoom/$idUser",
-          data: model.toJson());
+      Response myRoomData = await _dio.get(
+        "https://findroomapi.herokuapp.com/findroom/room/user/$idUser",
+      );
 
-      print('Save rom: ${roomPost}');
-      var roomData = roomPost.data;
-      listRoom = RoomModel.fromJson(roomData);
-      print('post');
+      print('My room: ${myRoomData}');
+      var roomData = myRoomData.data as List;
+      listRoom = roomData.map((e) => RoomModel.fromJson(e)).toList();
     } on DioError catch (e) {
       if (e.response != null) {
         print('Dio error!');
@@ -27,5 +24,6 @@ class SaveFavoriteRoomAPI {
         print(e.message);
       }
     }
+    return listRoom;
   }
 }

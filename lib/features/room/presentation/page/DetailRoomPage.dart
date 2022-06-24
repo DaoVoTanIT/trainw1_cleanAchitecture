@@ -1,12 +1,15 @@
 import 'package:art_sweetalert/art_sweetalert.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:clean_achitecture/LocalStoreKey.dart';
 import 'package:clean_achitecture/Theme/color.dart';
+import 'package:clean_achitecture/common/Config.dart';
 import 'package:clean_achitecture/features/room/data/SaveRoomFavoriteAPI.dart';
 import 'package:clean_achitecture/features/room/model/RoomModel.dart';
 
 import 'package:clean_achitecture/features/room/presentation/page/MapRoom.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:localstorage/localstorage.dart';
 
 import '../../../../routes/route_name.dart';
 
@@ -22,6 +25,9 @@ class _DetailRoomPageState extends State<DetailRoomPage> {
   String? body;
   SaveFavoriteRoomAPI saveFavoriteRoomAPI = SaveFavoriteRoomAPI();
   late RoomModel roomDetail;
+  String idUser = "";
+  final LocalStorage storage = new LocalStorage(keyLocalStore);
+
   @override
   void initState() {
     // TODO: implement initState
@@ -31,6 +37,7 @@ class _DetailRoomPageState extends State<DetailRoomPage> {
           ((ModalRoute.of(context)!.settings.arguments)! as RoomModel?)!;
       setState(() {});
     });
+    idUser = storage.getItem(LocalStoreKey.idUser);
   }
 
   @override
@@ -52,7 +59,7 @@ class _DetailRoomPageState extends State<DetailRoomPage> {
                       size: 25,
                     ),
                     Text(
-                      "Danh mục",
+                      "Trang chủ",
                       style: TextStyle(
                           color: CupertinoColors.activeBlue, fontSize: 16),
                     ),
@@ -246,17 +253,22 @@ class _DetailRoomPageState extends State<DetailRoomPage> {
                           children: [
                             TextButton(
                               onPressed: () {
-                                Navigator.push(
+                                Navigator.pushNamed(
                                   context,
-                                  MaterialPageRoute(
-                                    builder: (context) => MapRoomPage(),
-                                    settings: RouteSettings(
-                                      arguments: {
-                                        'longtitude': roomDetail.longitude,
-                                        'latitude': roomDetail.latitude
-                                      },
-                                    ),
-                                  ),
+                                  RouteName.mapRoomPage,
+                                  arguments: {
+                                    'longtitude': roomDetail.longitude,
+                                    'latitude': roomDetail.latitude
+                                  },
+                                  // MaterialPageRoute(
+                                  //   builder: (context) => MapRoomPage(),
+                                  //   settings: RouteSettings(
+                                  //     arguments: {
+                                  //       'longtitude': roomDetail.longitude,
+                                  //       'latitude': roomDetail.latitude
+                                  //     },
+                                  //   ),
+                                  // ),
                                 );
                                 // Navigator.pushNamed(context, RouteName.mapRoomPage,
                                 //     arguments: {
@@ -365,7 +377,7 @@ class _DetailRoomPageState extends State<DetailRoomPage> {
     }
 
     if (response.isTapConfirmButton) {
-      saveRoomFavorite.accountId = roomDetail.accountId;
+      saveRoomFavorite.accountId = idUser;
       saveRoomFavorite.images = roomDetail.images;
       saveRoomFavorite.subject = roomDetail.subject;
       saveRoomFavorite.price = roomDetail.price;
@@ -381,7 +393,7 @@ class _DetailRoomPageState extends State<DetailRoomPage> {
       saveRoomFavorite.statusRoom = 1;
       saveRoomFavorite.id = roomDetail.id;
 
-      await saveFavoriteRoomAPI.saveFavoriteRoom(saveRoomFavorite);
+      await saveFavoriteRoomAPI.saveFavoriteRoom(saveRoomFavorite, idUser);
       ArtSweetAlert.show(
           context: context,
           artDialogArgs: ArtDialogArgs(

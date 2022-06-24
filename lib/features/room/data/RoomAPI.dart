@@ -10,7 +10,7 @@ class RoomAPI {
   Future<List<RoomModel>> getListRoom() async {
     try {
       Response roomList =
-          await _dio.get("http://192.168.0.100:8000/findroom/room");
+          await _dio.get("https://findroomapi.herokuapp.com/findroom/room");
 
       print('User Info: ${roomList}');
       var getUsersData = roomList.data as List;

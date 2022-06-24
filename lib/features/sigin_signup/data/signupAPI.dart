@@ -6,7 +6,7 @@ class SignUpAPI {
   Future<bool> createAccountAPI(String username, String password) async {
     try {
       Response<dynamic> authenticateDB =
-          await _dio.post("http://192.168.0.100:8000/findroom/adduser",
+          await _dio.post("https://findroomapi.herokuapp.com/findroom/adduser",
               data: {
                 "name": username,
                 "password": password,

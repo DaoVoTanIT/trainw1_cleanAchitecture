@@ -66,52 +66,52 @@ class _MapRoomPageState extends State<MapRoomPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          GoogleMap(
-            mapType: _currentMapType,
-            onMapCreated: _onMapCreated,
-            // myLocationButtonEnabled: true,
-            // myLocationEnabled: true,
-            markers: _markers,
-            onCameraMove: _onCameraMove,
-            initialCameraPosition: CameraPosition(
-              target: _center,
-              zoom: 11.0,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(14.0),
-            child: Align(
-              alignment: Alignment.topRight,
-              child: FloatingActionButton(
-                onPressed: _onAddMarkerButtonPressed,
-                materialTapTargetSize: MaterialTapTargetSize.padded,
-                backgroundColor: Colors.green,
-                child: const Icon(Icons.map, size: 30.0),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 60.0, right: 10.0),
-            child: Align(
-              alignment: Alignment.topRight,
-              child: FloatingActionButton(
-                mini: true,
-                onPressed: () => {_onMapTypeButtonPressed()},
-                materialTapTargetSize: MaterialTapTargetSize.padded,
-                backgroundColor: Colors.white60,
-                child: Icon(
-                  Icons.map_outlined,
-                  // size: ScreenUtil().setWidth(20),
-                  color: Colors.black87.withOpacity(0.7),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+        // body: Stack(
+        //   children: [
+        //     GoogleMap(
+        //       mapType: _currentMapType,
+        //       onMapCreated: _onMapCreated,
+        //       // myLocationButtonEnabled: true,
+        //       // myLocationEnabled: true,
+        //       markers: _markers,
+        //       onCameraMove: _onCameraMove,
+        //       initialCameraPosition: CameraPosition(
+        //         target: _center,
+        //         zoom: 11.0,
+        //       ),
+        //     ),
+        //     Padding(
+        //       padding: const EdgeInsets.all(14.0),
+        //       child: Align(
+        //         alignment: Alignment.topRight,
+        //         child: FloatingActionButton(
+        //           onPressed: _onAddMarkerButtonPressed,
+        //           materialTapTargetSize: MaterialTapTargetSize.padded,
+        //           backgroundColor: Colors.green,
+        //           child: const Icon(Icons.map, size: 30.0),
+        //         ),
+        //       ),
+        //     ),
+        //     Padding(
+        //       padding: const EdgeInsets.only(top: 60.0, right: 10.0),
+        //       child: Align(
+        //         alignment: Alignment.topRight,
+        //         child: FloatingActionButton(
+        //           mini: true,
+        //           onPressed: () => {_onMapTypeButtonPressed()},
+        //           materialTapTargetSize: MaterialTapTargetSize.padded,
+        //           backgroundColor: Colors.white60,
+        //           child: Icon(
+        //             Icons.map_outlined,
+        //             // size: ScreenUtil().setWidth(20),
+        //             color: Colors.black87.withOpacity(0.7),
+        //           ),
+        //         ),
+        //       ),
+        //     ),
+        //   ],
+        // ),
+        );
   }
 
   void _onMapTypeButtonPressed() {

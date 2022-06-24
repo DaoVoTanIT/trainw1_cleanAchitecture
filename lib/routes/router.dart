@@ -1,4 +1,5 @@
 import 'package:clean_achitecture/features/Map/presentation/page/SearchMap.dart';
+import 'package:clean_achitecture/features/MyRoom/presentation/MyRoom.dart';
 import 'package:clean_achitecture/features/account/presentation/page/account.dart';
 import 'package:clean_achitecture/features/favorite/presentation/page/favorite.dart';
 import 'package:clean_achitecture/features/room/presentation/page/Room.dart';
@@ -33,6 +34,10 @@ class Routers {
         return MaterialPageRoute(builder: (context) => ProfilePage());
       case 'DetailRoomPage':
         return MaterialPageRoute(builder: (context) => DetailRoomPage());
+      case 'MapRoomPage':
+        return MaterialPageRoute(builder: (context) => MapRoomPage());
+      case 'MyRoomPage':
+        return MaterialPageRoute(builder: (context) => MyRoomPage());
       // case 'MapRoomPage':
       //   return MaterialPageRoute(builder: (context) => MapRoomPage());
       default:

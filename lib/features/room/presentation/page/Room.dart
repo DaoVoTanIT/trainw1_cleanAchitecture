@@ -108,7 +108,7 @@ class _RoomPageState extends State<RoomPage> {
             ],
           ),
           middle: Text(
-            "Chi tiết",
+            "Trang chủ",
             style: TextStyle(
               fontSize: 16,
             ),

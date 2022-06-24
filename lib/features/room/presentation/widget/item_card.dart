@@ -1,10 +1,13 @@
 import 'package:art_sweetalert/art_sweetalert.dart';
 import 'package:clean_achitecture/Theme/color.dart';
+import 'package:clean_achitecture/common/Config.dart';
 import 'package:clean_achitecture/features/room/data/SaveRoomFavoriteAPI.dart';
 import 'package:clean_achitecture/features/room/model/RoomModel.dart';
 import 'package:clean_achitecture/features/room/presentation/page/DetailRoomPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:localstorage/localstorage.dart';
 
 class ItemCard extends StatelessWidget {
   final RoomModel room;
@@ -14,6 +17,7 @@ class ItemCard extends StatelessWidget {
   }) : super(key: key);
   RoomModel saveRoomFavorite = RoomModel();
   SaveFavoriteRoomAPI saveFavoriteRoomAPI = SaveFavoriteRoomAPI();
+  final LocalStorage storage = new LocalStorage(keyLocalStore);
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +76,8 @@ class ItemCard extends StatelessWidget {
                           color: Colors.grey,
                         )),
                     SizedBox(height: 7),
-                    Text(room.price == null ? "" : room.priceString.toString(),
+                    Text(
+                        '${NumberFormat.decimalPattern().format(room.price).toString()} triệu/tháng',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -134,8 +139,8 @@ class ItemCard extends StatelessWidget {
                               saveRoomFavorite.categoryName = room.categoryName;
                               saveRoomFavorite.size = room.size;
 
-                              await saveFavoriteRoomAPI
-                                  .saveFavoriteRoom(saveRoomFavorite);
+                              // await saveFavoriteRoomAPI.saveFavoriteRoom(
+                              //     saveRoomFavorite, room.accountId.toString());
                               ArtSweetAlert.show(
                                   context: context,
                                   artDialogArgs: ArtDialogArgs(

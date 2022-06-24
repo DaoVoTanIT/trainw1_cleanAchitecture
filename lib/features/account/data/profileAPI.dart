@@ -6,7 +6,7 @@ class ProfileAPI {
   Future<String> getProfileAPI(String token) async {
     try {
       Response<dynamic> profileDB =
-          await _dio.get("http://192.168.0.100:8000/findroom/getinfo",
+          await _dio.get("https://findroomapi.herokuapp.com/findroom/getinfo",
               options: Options(headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',

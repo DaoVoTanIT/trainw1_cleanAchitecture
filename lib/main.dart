@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 import 'Theme/theme.dart';
 import 'features/Map/data/geolocator_service.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
@@ -21,21 +21,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        FutureProvider(
-          create: (context) => locatorSerVice.getLocation(),
-          initialData: null,
-        ),
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        //  color: CupertinoColors.systemGroupedBackground,
-        localizationsDelegates: [],
-        //set up router
-        initialRoute: RouteName.splashPage,
-        onGenerateRoute: Routers.generateRoute,
-      ),
+    return
+        // MultiProvider(
+        // providers: [
+        //   FutureProvider(
+        //     create: (context) => locatorSerVice.getLocation(),
+        //     initialData: null,
+        //   ),
+        // ],
+        // child:
+        MaterialApp(
+      debugShowCheckedModeBanner: false,
+      //  color: CupertinoColors.systemGroupedBackground,
+      localizationsDelegates: [],
+      //set up router
+      initialRoute: RouteName.splashPage,
+      onGenerateRoute: Routers.generateRoute,
     );
+    //  );
   }
 }

@@ -1,22 +1,30 @@
+import 'package:clean_achitecture/LocalStoreKey.dart';
+import 'package:clean_achitecture/common/Config.dart';
 import 'package:dio/dio.dart';
+import 'package:localstorage/localstorage.dart';
 
 class LoginAPI {
   final Dio _dio = Dio();
   String? token;
   String? name;
+  final LocalStorage storage = new LocalStorage(keyLocalStore);
+
   Future<String> authenticateAPI(String username, String password) async {
     try {
-      Response<dynamic> _result =
-          await _dio.post("http://192.168.0.100:8000/findroom/authenticate",
-              data: {
-                "name": username,
-                "password": password,
-              },
-              options: Options(contentType: Headers.formUrlEncodedContentType));
+      Response<dynamic> _result = await _dio.post(
+          "https://findroomapi.herokuapp.com/findroom/authenticate",
+          data: {
+            "name": username,
+            "password": password,
+          },
+          options: Options(contentType: Headers.formUrlEncodedContentType));
       if (_result.statusCode == 400) return "";
       token = _result.data!["token"].toString();
+      String idUser = _result.data!['user']["_id"].toString();
+      storage.setItem(LocalStoreKey.idUser, idUser);
+      print(storage.getItem(LocalStoreKey.idUser));
       // Response<dynamic> _result =
-      //     await _dio.get("http://192.168.0.100:8000/findroom/getinfo",
+      //     await _dio.get("https://findroomapi.herokuapp.com/findroom/getinfo",
       //         options: Options(headers: {
       //           'Authorization': 'Bearer $token',
       //         }));

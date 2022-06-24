@@ -8,5 +8,6 @@ class RouteName {
   static final String savedRoomPage = 'SavedRoomPage';
   static final String profilePage = 'ProfilePage';
   static const String detailRoomPage = 'DetailRoomPage';
-  // static const String mapRoomPage = 'MapRoomPage';
+  static const String mapRoomPage = 'MapRoomPage';
+  static const String MyRoomPage = 'MyRoomPage';
 }

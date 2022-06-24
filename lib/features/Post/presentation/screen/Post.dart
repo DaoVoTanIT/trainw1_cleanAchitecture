@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:art_sweetalert/art_sweetalert.dart';
+import 'package:clean_achitecture/LocalStoreKey.dart';
 import 'package:clean_achitecture/Theme/color.dart';
+import 'package:clean_achitecture/common/Config.dart';
 import 'package:clean_achitecture/features/Post/data/CreateRoom.dart';
 import 'package:clean_achitecture/features/Post/model/distric.dart';
 import 'package:clean_achitecture/features/Post/model/ward.dart';
@@ -14,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:localstorage/localstorage.dart';
 import 'package:multi_image_picker2/multi_image_picker2.dart';
 
 import '../../../room/model/RoomModel.dart';
@@ -55,7 +58,7 @@ class _PostPageState extends State<PostPage> {
   TextEditingController titleRoomController = new TextEditingController();
 
   List<Asset> images = [];
-
+  final LocalStorage storage = new LocalStorage(keyLocalStore);
   CreateRoomAPI createRoomAPI = CreateRoomAPI();
   Future<String> getDataDistict() async {
     final assetBundle = DefaultAssetBundle.of(context);
@@ -71,6 +74,8 @@ class _PostPageState extends State<PostPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    String userId = storage.getItem(LocalStoreKey.idUser);
+    roomModel.accountId = userId;
     getDataDistict();
   }
 

@@ -1,18 +1,11 @@
-import 'package:clean_achitecture/Theme/color.dart';
-import 'package:clean_achitecture/routes/route_name.dart';
-import 'package:clean_achitecture/style/styleAppBar.dart';
+import 'package:clean_achitecture/features/room/data/RoomAPI.dart';
+import 'package:clean_achitecture/features/room/model/RoomModel.dart';
+import 'package:clean_achitecture/features/room/presentation/page/DetailRoomPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
-import 'package:provider/provider.dart';
-
-import '../../../room/data/RoomAPI.dart';
-import 'package:clean_achitecture/features/room/model/RoomModel.dart';
-
-import '../../../room/presentation/page/DetailRoomPage.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SearchMapPage extends StatefulWidget {
   const SearchMapPage({Key? key}) : super(key: key);
@@ -24,17 +17,19 @@ class SearchMapPage extends StatefulWidget {
 class _SearchMapPageState extends State<SearchMapPage> {
   GoogleMapController? _mapController;
 
-  LatLng _center = const LatLng(10.779785, 106.699020);
+  // LatLng _center = const LatLng(10.779785, 106.699020);
 
   final Location _location = Location();
   List<RoomModel> listRoom = [];
   RoomAPI roomAPI = RoomAPI();
   MapType _currentMapType = MapType.normal;
   final Map<String, Marker> _markers = {};
+  static String? longtitude;
+  static double? latitude;
+  //MapType _currentMapType = MapType.normal;
+  //final Map<String, Marker> _markers = {};
   @override
   void initState() {
-    // TODO: implement initState
-
     setState(() {
       getListRoom();
     });
@@ -128,11 +123,10 @@ class _SearchMapPageState extends State<SearchMapPage> {
                                       color: Colors.grey,
                                     ),
                                     Expanded(
-                                      child: Text(
-                                          listRoom[i].streetName.toString(),
+                                      child: Text('${listRoom[i].streetName}',
                                           style: TextStyle(
                                             fontSize: 15,
-                                            color: Colors.grey,
+                                            color: CupertinoColors.systemRed,
                                           )),
                                     ),
                                   ],
@@ -152,57 +146,63 @@ class _SearchMapPageState extends State<SearchMapPage> {
     });
   }
 
-  // void _onMapCreated(GoogleMapController controller) {
-  //   _mapController = controller;
-  //   _location.onLocationChanged.listen((event) {
-  //     _mapController!.animateCamera(
-  //       CameraUpdate.newCameraPosition(
-  //         CameraPosition(
-  //             target: LatLng(event.latitude!, event.longitude!), zoom: 11),
-  //       ),
-  //     );
-  //   });
-  // }
-
-  // void _onAddMarkerButtonPressed() {
-  //   setState(() {
-  //     _markers.add(Marker(
-  //       markerId: MarkerId(_center.toString()),
-  //       position: _center,
-  //       // infoWindow:
-  //       //     InfoWindow(title: 'Nice Place', snippet: 'Welcome to Poland'),
-  //       icon: BitmapDescriptor.defaultMarker,
-  //     ));
-  //   });
-  // }
-
-  void _onCameraMove(CameraPosition position) {
-    _center = position.target;
-  }
-
   @override
   bool get wantKeepAlive => true;
 
   @override
   Widget build(BuildContext context) {
-    final currentPosition = Provider.of<Position>(context);
     return Scaffold(
-      body: listRoom.length != 0
-          ? Stack(children: [
-              GoogleMap(
-                mapType: MapType.satellite,
-                onMapCreated: _onMapCreated,
-                initialCameraPosition: CameraPosition(
-                  target: LatLng(double.parse(listRoom[0].latitude!),
-                      double.parse(listRoom[0].longitude!)),
-                  // target: LatLng(
-                  //     currentPosition.latitude, currentPosition.longitude),
-                  zoom: 16,
-                ),
-                markers: _markers.values.toSet(),
+      body: listRoom.isEmpty
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : SafeArea(
+              child: Stack(
+                children: [
+                  GoogleMap(
+                    mapType: MapType.normal,
+                    onMapCreated: _onMapCreated,
+                    initialCameraPosition: CameraPosition(
+                      target: LatLng(double.parse(listRoom[0].latitude!),
+                          double.parse(listRoom[0].longitude!)),
+                      zoom: 15,
+                    ),
+                    myLocationEnabled: true,
+                    myLocationButtonEnabled: true,
+                    markers: _markers.values.toSet(),
+                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(14.0),
+                  //   child: Align(
+                  //     alignment: Alignment.topRight,
+                  //     child: FloatingActionButton(
+                  //       onPressed: _onAddMarkerButtonPressed,
+                  //       materialTapTargetSize: MaterialTapTargetSize.padded,
+                  //       backgroundColor: Colors.green,
+                  //       child: const Icon(Icons.map, size: 30.0),
+                  //     ),
+                  //   ),
+                  // ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 60.0, right: 10.0),
+                    child: Align(
+                      alignment: Alignment.topRight,
+                      child: FloatingActionButton(
+                        mini: true,
+                        onPressed: () => {_onMapTypeButtonPressed()},
+                        materialTapTargetSize: MaterialTapTargetSize.padded,
+                        backgroundColor: Colors.white60,
+                        child: Icon(
+                          Icons.map_outlined,
+                          // size: ScreenUtil().setWidth(20),
+                          color: Colors.black87.withOpacity(0.7),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ])
-          : Center(child: CircularProgressIndicator()),
+            ),
     );
   }
 
@@ -214,3 +214,6 @@ class _SearchMapPageState extends State<SearchMapPage> {
     });
   }
 }
+//     );
+//   }
+// }

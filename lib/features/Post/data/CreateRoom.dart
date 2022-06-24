@@ -9,7 +9,7 @@ class CreateRoomAPI {
   Future<RoomModel> createPostRoom(RoomModel model) async {
     try {
       Response roomPost = await _dio.post(
-          "http://192.168.0.100:8000/findroom/room",
+          "https://findroomapi.herokuapp.com/findroom/room",
           data: model.toJson());
 
       print('User Info: ${roomPost}');

@@ -145,13 +145,17 @@ class _ProfilePageState extends State<ProfilePage> {
               title: "Phòng đã đăng",
               leadingIcon: Icons.bookmark_border,
               leadingIconColor: blue,
-              onTap: () {}),
+              onTap: () {
+                Navigator.pushNamed(context, RouteName.MyRoomPage);
+              }),
           SizedBox(height: 10),
           SettingItem(
               title: "Phòng đã lưu",
               leadingIcon: Icons.favorite,
               leadingIconColor: red,
-              onTap: () {}),
+              onTap: () {
+                Navigator.pushNamed(context, RouteName.savedRoomPage);
+              }),
           SizedBox(height: 10),
           // SettingItem(
           //     title: "Privacy",
