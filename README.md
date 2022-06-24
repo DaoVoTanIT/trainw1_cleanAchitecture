@@ -30,6 +30,7 @@
 ![image](https://user-images.githubusercontent.com/67967917/175649424-c17e0ae4-a431-427d-91c0-6e3c8a693426.png)
 
 **Hướng dẫn cài đặt**
+
 **1.Cách 1:** Quét mã scan dưới đây để download ứng dụng.
 ![image](https://user-images.githubusercontent.com/67967917/175647931-4097a85b-7288-4578-9016-8ad21f70e8f7.png)
 
