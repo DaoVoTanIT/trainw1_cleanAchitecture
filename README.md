@@ -25,9 +25,11 @@
 ![image](https://user-images.githubusercontent.com/67967917/173230892-abd88e32-2ba0-40d0-8404-0690ae6a26b6.png)
 ![image](https://user-images.githubusercontent.com/67967917/173230894-78978494-e81d-49b6-8b73-c1e02f3f3578.png)
 ![image](https://user-images.githubusercontent.com/67967917/173230896-044d39eb-f326-4e7b-aee6-bdf48853d6ba.png)
-
+**Hướng dẫn cài đặt**
+**1.Cách 1:** Quét mã scan dưới đây để tải ứng dụng.
+![image](https://user-images.githubusercontent.com/67967917/175647931-4097a85b-7288-4578-9016-8ad21f70e8f7.png)
+**2.Cách 2:** 
+•	**Download file APK:** https://apkfab.com/find-room/com.example.clean_achitecture/apk?h=c9b2f7cbb9ace45cfe94e86ae7e449572c31cd2202843afe87b7eff6223e838d
 **:iphone:LIÊN HỆ**
 - Email: Daovotan3@gmail.com
 - Facebook: https://www.facebook.com/daovotan.92
-
-
