@@ -18,18 +18,20 @@
 ![image](https://user-images.githubusercontent.com/67967917/173230862-491b1643-7340-47a7-8a34-e5d0a317535c.png)
 ![image](https://user-images.githubusercontent.com/67967917/173230867-57ce1e77-cd7e-4fe3-8d91-2c5765e6dfd5.png)
 ![image](https://user-images.githubusercontent.com/67967917/173230871-74364422-8a0e-4ce3-ac0d-ee7872591064.png)
-![image](https://user-images.githubusercontent.com/67967917/173230877-a2ff6969-f77d-4eb4-ab8a-5d2a787f44d7.png)
-![image](https://user-images.githubusercontent.com/67967917/173230878-79ccc779-7856-4ce3-a75b-4316c6991b2f.png)
 ![image](https://user-images.githubusercontent.com/67967917/173230880-14ba11d1-e5bd-4206-90ea-89a840576d81.png)
 ![image](https://user-images.githubusercontent.com/67967917/173230886-842a8f6a-e65c-42af-939e-cdfdd8eb53d9.png)
 ![image](https://user-images.githubusercontent.com/67967917/173230892-abd88e32-2ba0-40d0-8404-0690ae6a26b6.png)
 ![image](https://user-images.githubusercontent.com/67967917/173230894-78978494-e81d-49b6-8b73-c1e02f3f3578.png)
 ![image](https://user-images.githubusercontent.com/67967917/173230896-044d39eb-f326-4e7b-aee6-bdf48853d6ba.png)
+![map](https://user-images.githubusercontent.com/67967917/175648599-223d6a2c-306b-466b-a03f-4f79d4b1162e.jpg)
+![rujn](https://user-images.githubusercontent.com/67967917/175648618-be61cebf-31ed-4b05-a10f-187ad2a4d13b.jpg)
+![post](https://user-images.githubusercontent.com/67967917/175648625-6adb2803-e863-4e3b-8ea0-d1279c568464.jpg)
+
 **Hướng dẫn cài đặt**
-**1.Cách 1:** Quét mã scan dưới đây để tải ứng dụng.
+**1.Cách 1:** Quét mã scan dưới đây để download ứng dụng.
+
 ![image](https://user-images.githubusercontent.com/67967917/175647931-4097a85b-7288-4578-9016-8ad21f70e8f7.png)
-**2.Cách 2:** 
-•	**Download file APK:** https://apkfab.com/find-room/com.example.clean_achitecture/apk?h=c9b2f7cbb9ace45cfe94e86ae7e449572c31cd2202843afe87b7eff6223e838d
+
 **:iphone:LIÊN HỆ**
 - Email: Daovotan3@gmail.com
 - Facebook: https://www.facebook.com/daovotan.92
