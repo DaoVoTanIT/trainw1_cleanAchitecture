@@ -32,7 +32,9 @@
 **Hướng dẫn cài đặt**
 
 **Quét mã scan dưới đây để download ứng dụng.**
+
 ![image](https://user-images.githubusercontent.com/67967917/175647931-4097a85b-7288-4578-9016-8ad21f70e8f7.png)
+
 **:iphone:LIÊN HỆ**
 - Email: Daovotan3@gmail.com
 - Facebook: https://www.facebook.com/daovotan.92
