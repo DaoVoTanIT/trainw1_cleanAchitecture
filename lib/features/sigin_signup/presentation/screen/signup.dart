@@ -2,15 +2,9 @@ import 'package:art_sweetalert/art_sweetalert.dart';
 import 'package:clean_achitecture/Theme/color.dart';
 import 'package:clean_achitecture/Theme/theme.dart';
 import 'package:clean_achitecture/features/sigin_signup/data/signupAPI.dart';
-import 'package:clean_achitecture/features/sigin_signup/presentation/widget/Loading_widget.dart';
-import 'package:clean_achitecture/routes/route_name.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SignUpPage extends StatefulWidget {
-  // final Function toggle;
-  // SignUpPage(this.toggle);
   @override
   _SignUpPageState createState() => _SignUpPageState();
 }

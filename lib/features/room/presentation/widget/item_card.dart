@@ -1,4 +1,5 @@
 import 'package:art_sweetalert/art_sweetalert.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clean_achitecture/Theme/color.dart';
 import 'package:clean_achitecture/common/Config.dart';
 import 'package:clean_achitecture/features/room/data/SaveRoomFavoriteAPI.dart';
@@ -37,26 +38,67 @@ class ItemCard extends StatelessWidget {
         },
         child: Container(
           padding: EdgeInsets.symmetric(
-            vertical: 1,
+            vertical: 5,
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Column(
                 children: [
-                  room.imageMain == null
-                      ? Image.asset(
-                          "assets/images/room2.jpeg",
+                  CachedNetworkImage(
+                    imageUrl: room.imageMain.toString(),
+                    imageBuilder: (context, imageProvider) => Container(
+                      height: 120,
+                      width: 120,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(5)),
+                        image: DecorationImage(
+                          image: imageProvider,
                           fit: BoxFit.cover,
-                          height: 120,
-                          width: 120,
-                        )
-                      : Image.network(
-                          room.imageMain.toString(),
-                          fit: BoxFit.cover,
-                          height: 120,
-                          width: 120,
                         ),
+                      ),
+                    ),
+                    progressIndicatorBuilder:
+                        (context, url, downloadProgress) =>
+                            CircularProgressIndicator(
+                                value: downloadProgress.progress),
+                    errorWidget: (context, url, error) =>
+                        // Container(
+                        //   decoration: BoxDecoration(
+                        //     borderRadius: BorderRadius.all(Radius.circular(5)),
+                        //   ),
+                        //   child: Image.asset(
+                        //     "assets/images/room2.jpeg",
+                        //     fit: BoxFit.cover,
+                        //     height: 120,
+                        //     width: 120,
+                        //   ),
+                        // ),
+                        Container(
+                      height: 120,
+                      width: 120,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/room2.jpeg'),
+                          fit: BoxFit.cover,
+                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(5)),
+                      ),
+                    ),
+                  ),
+                  // room.imageMain == null
+                  //     ? Image.asset(
+                  //         "assets/images/room2.jpeg",
+                  //         fit: BoxFit.cover,
+                  //         height: 120,
+                  //         width: 120,
+                  //       )
+                  //     : Image.network(
+                  //         room.imageMain.toString(),
+                  //         fit: BoxFit.cover,
+                  //         height: 120,
+                  //         width: 120,
+                  //       ),
                 ],
               ),
               SizedBox(width: 10),
@@ -77,7 +119,7 @@ class ItemCard extends StatelessWidget {
                         )),
                     SizedBox(height: 7),
                     Text(
-                        '${NumberFormat.decimalPattern().format(room.price).toString()} triệu/tháng',
+                        '${NumberFormat.decimalPattern().format(room.price).toString()} /tháng',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,

@@ -263,9 +263,9 @@ class _PostPageState extends State<PostPage> {
           onChanged: (text) {
             //nameStreetController.text = value;
             roomModel.streetName = nameStreetController.text +
-                " " +
+                " ," +
                 wardController.text +
-                " " +
+                " ," +
                 _selectionDistrict.toString();
           },
         ),
@@ -461,20 +461,25 @@ class _PostPageState extends State<PostPage> {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                 )),
+            onChanged: (value) {
+              roomModel.subject = value;
+            },
           ),
           SizedBox(height: 20),
           TextFormField(
-            controller: decribleRoomController,
-            minLines: 2,
-            maxLines: 5,
-            keyboardType: TextInputType.multiline,
-            decoration: InputDecoration(
-                hintText: 'Nhập mô tả chi tiết',
-                hintStyle: TextStyle(color: Colors.grey),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                )),
-          ),
+              controller: decribleRoomController,
+              minLines: 2,
+              maxLines: 5,
+              keyboardType: TextInputType.multiline,
+              decoration: InputDecoration(
+                  hintText: 'Nhập mô tả chi tiết',
+                  hintStyle: TextStyle(color: Colors.grey),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  )),
+              onChanged: (value) {
+                roomModel.body = value;
+              }),
           SizedBox(
             height: 20,
           ),

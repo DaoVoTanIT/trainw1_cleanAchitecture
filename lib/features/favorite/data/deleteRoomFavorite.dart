@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:clean_achitecture/features/room/model/RoomModel.dart';
 import 'package:dio/dio.dart';
 
@@ -11,8 +9,6 @@ class DeleteFavoriteRoomAPI {
     try {
       Response deleteRoom = await _dio.delete(
           "https://findroomapi.herokuapp.com/findroom/favoriteRoom/delete/$idRoomFavorire");
-
-      print('delete: ${deleteRoom}');
     } on DioError catch (e) {
       if (e.response != null) {
         print('Dio error!');

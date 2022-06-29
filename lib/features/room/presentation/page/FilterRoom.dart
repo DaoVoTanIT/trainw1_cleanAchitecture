@@ -23,17 +23,19 @@ class _FliterScreenState extends State<FliterScreen> {
   List<RoomModel> listRoomModel = [];
   RoomAPI roomAPI = RoomAPI();
   var newList;
-  getListRoom() async {
-    listRoomModel = await roomAPI.getListRoom();
-    setState(() {});
-  }
+  // getListRoom() async {
+  //   listRoomModel = await roomAPI.getListRoom();
+  //   setState(() {});
+  // }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     Future.delayed(Duration.zero, () {
-      getListRoom();
+      listRoomModel =
+          ModalRoute.of(context)!.settings.arguments as List<RoomModel>;
+      //getListRoom();
       setState(() {});
     });
   }
@@ -43,14 +45,12 @@ class _FliterScreenState extends State<FliterScreen> {
     // ignore: unused_local_variable
     if (selectedPriceValue == 1) {
       newList = techMobile
-          .where((element) =>
-              element.categoryName!.toUpperCase().contains("PHÒNG TRỌ"))
+          .where((element) => element.categoryName == "Phòng trọ")
           .toList();
     }
     if (selectedPriceValue == 2) {
       newList = techMobile
-          .where((element) =>
-              element.categoryName!.toUpperCase().contains("CĂN HỘ"))
+          .where((element) => element.categoryName == "Căn hộ")
           .toList();
     }
     if (selectedPriceValue == 3) {

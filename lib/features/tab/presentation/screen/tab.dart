@@ -54,6 +54,7 @@ class _CurvedNavigationBarWidgetState extends State {
       body: pagesAll[myindex],
     );
   }
+
 //}
   // return CupertinoPageScaffold(
   // navigationBar: CupertinoNavigationBar(

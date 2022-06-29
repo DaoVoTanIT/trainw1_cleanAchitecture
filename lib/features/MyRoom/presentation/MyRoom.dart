@@ -2,6 +2,7 @@ import 'package:art_sweetalert/art_sweetalert.dart';
 import 'package:clean_achitecture/LocalStoreKey.dart';
 import 'package:clean_achitecture/Theme/color.dart';
 import 'package:clean_achitecture/common/Config.dart';
+import 'package:clean_achitecture/features/MyRoom/data/DeteleMyRoomAPI.dart';
 import 'package:clean_achitecture/features/MyRoom/data/GetMyRoomAPI.dart';
 import 'package:clean_achitecture/features/account/presentation/widget/custom_image.dart';
 import 'package:clean_achitecture/features/favorite/presentation/widget/favorite_box.dart';
@@ -24,6 +25,7 @@ class _MyRoomPageState extends State<MyRoomPage> {
   List<RoomModel> myRoomPost = [];
   MyRoomAPI myRoomAPI = MyRoomAPI();
   String idUser = '';
+  DeleteMyRoomAPI deleteMyRoomAPI = DeleteMyRoomAPI();
   @override
   void initState() {
     super.initState();
@@ -177,7 +179,7 @@ class _MyRoomPageState extends State<MyRoomPage> {
                                                     height: 8,
                                                   ),
                                                   Text(
-                                                    '${NumberFormat.decimalPattern().format(e.price).toString()} triệu/tháng',
+                                                    '${NumberFormat.decimalPattern().format(e.price).toString()}/tháng',
                                                     maxLines: 1,
                                                     overflow:
                                                         TextOverflow.ellipsis,
@@ -213,6 +215,15 @@ class _MyRoomPageState extends State<MyRoomPage> {
 
                                                     if (response
                                                         .isTapConfirmButton) {
+                                                      await deleteMyRoomAPI
+                                                          .deleteMyRoom(
+                                                              e.id.toString())
+                                                          .then((value) => {
+                                                                setState(() {
+                                                                  getMyRoomPost(
+                                                                      idUser);
+                                                                })
+                                                              });
                                                       // await deleteFavoriteRoomAPI
                                                       //     .deleteFavoriteRoom(
                                                       //         e.id.toString())
@@ -229,7 +240,7 @@ class _MyRoomPageState extends State<MyRoomPage> {
                                                                   ArtSweetAlertType
                                                                       .success,
                                                               title:
-                                                                  "Lưu thành công"));
+                                                                  "Bạn đã xoá phòng đã đăng"));
                                                       return;
                                                     }
                                                   })
