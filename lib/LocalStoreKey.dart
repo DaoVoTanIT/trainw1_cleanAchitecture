@@ -3,4 +3,5 @@ class LocalStoreKey {
   static final tokenUser = "tokenUser";
   static final domain = "domain";
   static final idUser = "idUser";
+  static final name = "name";
 }

@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clean_achitecture/Theme/color.dart';
+import 'package:clean_achitecture/features/Post/model/distric.dart';
 import 'package:clean_achitecture/features/room/data/RoomAPI.dart';
 import 'package:clean_achitecture/features/room/model/RoomModel.dart';
 import 'package:clean_achitecture/features/room/presentation/page/DetailRoomPage.dart';
@@ -25,6 +28,8 @@ class _RoomPageState extends State<RoomPage>
   TextEditingController searchTextController = new TextEditingController();
   List<RoomModel> listRoomSearch = [];
   String? buldingChoose;
+  List dataD = [];
+
   final items = [
     'Tất cả',
     'Quận 1',
@@ -40,6 +45,15 @@ class _RoomPageState extends State<RoomPage>
     'Quận 11',
     'Quận 12',
   ];
+  Future<String> getDataDistict() async {
+    final assetBundle = DefaultAssetBundle.of(context);
+    final data = await assetBundle.loadString('assets/json/district.json');
+    final body = json.decode(data);
+    setState(() {
+      dataD = body;
+    });
+    return body.map<District>(District.fromJson).toList();
+  }
 
   getListRoom() async {
     listRoom = await roomAPI.getListRoom();
@@ -71,10 +85,10 @@ class _RoomPageState extends State<RoomPage>
     });
   }
 
-  Future<void> getRoomNearMe() async {
-    listRoomNearMe =
-        listRoom.where((element) => element.areaName == "Quận 9").toList();
-  }
+  // Future<void> getRoomNearMe() async {
+  //   listRoomNearMe =
+  //       listRoom.where((element) => element.areaName == "Quận 12").toList();
+  // }
 
   Future _refreshData() async {
     await Future.delayed(Duration(seconds: 3));
@@ -88,6 +102,7 @@ class _RoomPageState extends State<RoomPage>
   void initState() {
     // TODO: implement initState
     getListRoom();
+    getDataDistict();
   }
 
   @override
@@ -339,15 +354,22 @@ class _RoomPageState extends State<RoomPage>
                                       });
                                       filterByArea();
                                     },
-                                    items: items.map<DropdownMenuItem<String>>(
-                                        (valueItem) {
-                                      return DropdownMenuItem(
-                                        value: valueItem,
-                                        child: Row(
-                                          children: [
-                                            Text(valueItem),
-                                          ],
-                                        ),
+                                    // items: items.map<DropdownMenuItem<String>>(
+                                    //     (valueItem) {
+                                    //   return DropdownMenuItem(
+                                    //     value: valueItem,
+                                    //     child: Row(
+                                    //       children: [
+                                    //         Text(valueItem),
+                                    //       ],
+                                    //     ),
+                                    //   );
+                                    // }).toList(),
+                                    items: dataD.map((item) {
+                                      return new DropdownMenuItem(
+                                        child:
+                                            new Text(item['name'].toString()),
+                                        value: item['name'].toString(),
                                       );
                                     }).toList(),
                                   ),
@@ -364,26 +386,19 @@ class _RoomPageState extends State<RoomPage>
                               shape: BoxShape.circle),
                           child: IconButton(
                             onPressed: () {
-                              if (buldingChoose != null) {
-                                listRoomFilter = listRoom
-                                    .where((element) =>
-                                        element.areaName! ==
-                                        buldingChoose.toString())
-                                    .toList();
-                                // filterByArea();
-                                //  listRoomFilter = listRoom
-                                //       .where((element) => element.areaName!
-                                //           .toUpperCase()
-                                //           .contains(
-                                //               buldingChoose!.toUpperCase()))
-                                //       .toList();
-                                setState(() {
-                                  // ignore: unrelated_type_equality_checks
-                                  if (listRoomFilter != 0) {
-                                    listRoom = listRoomFilter;
-                                  }
-                                });
-                              }
+                              // if (buldingChoose != null) {
+                              //   listRoomFilter = listRoom
+                              //       .where((element) =>
+                              //           element.areaName! ==
+                              //           buldingChoose.toString())
+                              //       .toList();
+                              //   setState(() {
+                              //     // ignore: unrelated_type_equality_checks
+                              //     if (listRoomFilter != 0) {
+                              //       listRoom = listRoomFilter;
+                              //     }
+                              //   });
+                              // }
                             },
                             icon: Icon(
                               Icons.search,

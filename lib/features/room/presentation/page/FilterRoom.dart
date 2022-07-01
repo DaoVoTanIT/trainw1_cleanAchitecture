@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
+import 'package:intl/intl.dart';
 
 import '../../data/RoomAPI.dart';
 import '../../model/RoomModel.dart';
@@ -53,6 +54,11 @@ class _FliterScreenState extends State<FliterScreen> {
           .where((element) => element.categoryName == "Căn hộ")
           .toList();
     }
+    if (selectedPriceValue == 5) {
+      newList = techMobile
+          .where((element) => element.categoryName == "Nguyên căn")
+          .toList();
+    }
     if (selectedPriceValue == 3) {
       newList = techMobile
           .where((element) =>
@@ -84,14 +90,18 @@ class _FliterScreenState extends State<FliterScreen> {
         leading: Row(
           children: [
             GestureDetector(
-              child: Row(
-                children: [
-                  Image.asset(
-                    "assets/images/logo.png",
-                    fit: BoxFit.fill,
-                    color: CupertinoColors.activeBlue,
-                  ),
-                ],
+              // child: Row(
+              //   children: [
+              //     Image.asset(
+              //       "assets/images/logo.png",
+              //       fit: BoxFit.fill,
+              //       color: CupertinoColors.activeBlue,
+              //     ),
+              //   ],
+              // ),
+              child: Icon(
+                CupertinoIcons.back,
+                color: CupertinoColors.activeBlue,
               ),
               onTap: () {
                 Navigator.pop(context);
@@ -118,7 +128,7 @@ class _FliterScreenState extends State<FliterScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Danh mục',
+                          'Loại phòng',
                           style: TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
@@ -127,8 +137,7 @@ class _FliterScreenState extends State<FliterScreen> {
                           groupValue: selectedPriceValue,
                           title: Text('Phòng trọ',
                               style: TextStyle(
-                                fontSize: 17,
-                              )),
+                                  fontSize: 17, fontWeight: FontWeight.w400)),
                           onChanged: (val) {
                             setState(() {
                               selectedPriceValue = 1;
@@ -142,11 +151,24 @@ class _FliterScreenState extends State<FliterScreen> {
                           groupValue: selectedPriceValue,
                           title: Text('Căn hộ',
                               style: TextStyle(
-                                fontSize: 17,
-                              )),
+                                  fontSize: 17, fontWeight: FontWeight.w400)),
                           onChanged: (val) {
                             setState(() {
                               selectedPriceValue = 2;
+                            });
+                          },
+                          activeColor: Colors.red,
+                          selected: false,
+                        ),
+                        RadioListTile(
+                          value: 5,
+                          groupValue: selectedPriceValue,
+                          title: Text('Nguyên căn',
+                              style: TextStyle(
+                                  fontSize: 17, fontWeight: FontWeight.w400)),
+                          onChanged: (val) {
+                            setState(() {
+                              selectedPriceValue = 5;
                             });
                           },
                           activeColor: Colors.red,

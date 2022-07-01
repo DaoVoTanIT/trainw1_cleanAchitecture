@@ -7,19 +7,24 @@ import 'package:clean_achitecture/common/Config.dart';
 import 'package:clean_achitecture/features/Post/data/CreateRoom.dart';
 import 'package:clean_achitecture/features/Post/model/distric.dart';
 import 'package:clean_achitecture/features/Post/model/ward.dart';
-import 'package:clean_achitecture/features/Post/presentation/screen/addInformationRoom.dart';
-import 'package:clean_achitecture/features/room/presentation/page/Room.dart';
 import 'package:clean_achitecture/features/tab/presentation/screen/tab.dart';
-import 'package:clean_achitecture/style/styleAppBar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:multi_image_picker2/multi_image_picker2.dart';
+import 'package:otp_text_field/otp_field.dart';
+import 'package:otp_text_field/otp_field_style.dart';
+import 'package:otp_text_field/style.dart';
 
 import '../../../room/model/RoomModel.dart';
+
+enum MobileVerificationState {
+  SHOW_MOBILE_FORM_STATE,
+  SHOW_OTP_FORM_STATE,
+}
 
 class PostPage extends StatefulWidget {
   @override
@@ -28,7 +33,7 @@ class PostPage extends StatefulWidget {
 
 class _PostPageState extends State<PostPage> {
   final _formKey = GlobalKey<FormState>();
-
+  String smsCode = "";
   int activeStepIndex = 0;
   bool isSelectedWifi = false;
   bool isSelectedWC = false;
@@ -51,12 +56,22 @@ class _PostPageState extends State<PostPage> {
   TextEditingController wardController = new TextEditingController();
   TextEditingController nameStreetController = new TextEditingController();
   TextEditingController phoneController = new TextEditingController();
+  FirebaseAuth _auth = FirebaseAuth.instance;
 
   TextEditingController priceController = new TextEditingController();
   TextEditingController sizeRoomController = new TextEditingController();
   TextEditingController decribleRoomController = new TextEditingController();
   TextEditingController titleRoomController = new TextEditingController();
+  TextEditingController phoneController2 = TextEditingController();
+  TextEditingController otpController = TextEditingController();
+  final TextEditingController _otpcontroller = TextEditingController();
 
+  FirebaseAuth auth = FirebaseAuth.instance;
+
+  MobileVerificationState currentState =
+      MobileVerificationState.SHOW_MOBILE_FORM_STATE;
+  bool showLoading = false;
+  String? verificationId;
   List<Asset> images = [];
   final LocalStorage storage = new LocalStorage(keyLocalStore);
   CreateRoomAPI createRoomAPI = CreateRoomAPI();
@@ -166,15 +181,22 @@ class _PostPageState extends State<PostPage> {
                   title: Text('Thông tin'),
                   content: postInformationRoom()),
               Step(
-                  state: StepState.editing,
+                  state: activeStepIndex <= 2
+                      ? StepState.editing
+                      : StepState.complete,
                   isActive: activeStepIndex >= 2,
-                  title: Text('Xác nhận'),
-                  content: decribleRoom())
+                  title: Text('Mô tả'),
+                  content: decribleRoom()),
+              Step(
+                  state: StepState.complete,
+                  isActive: activeStepIndex >= 3,
+                  title: Text('OTP'),
+                  content: authenticateOTP())
             ],
             onStepContinue: () {
-              if (activeStepIndex <= 3) {
+              if (activeStepIndex <= 4) {
                 activeStepIndex += 1;
-              } else if (activeStepIndex > 3) {}
+              } else if (activeStepIndex > 4) {}
               setState(() {});
             },
             onStepCancel: () {
@@ -269,22 +291,6 @@ class _PostPageState extends State<PostPage> {
                 _selectionDistrict.toString();
           },
         ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text('Số điện thoại', style: TextStyle(fontSize: 16)),
-        ),
-        TextFormField(
-          textAlign: TextAlign.start,
-          controller: phoneController,
-          decoration: InputDecoration(
-              hintText: "Nhập SDT",
-              border:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
-          onChanged: (value) {
-            //wardController.text = value;
-            roomModel.phoneNumber = phoneController.text;
-          },
-        ),
       ],
     );
   }
@@ -294,6 +300,9 @@ class _PostPageState extends State<PostPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          Text('Loại phòng',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+          SizedBox(height: 10),
           FlutterToggleTab(
             width: 85,
             borderRadius: 30,
@@ -321,12 +330,16 @@ class _PostPageState extends State<PostPage> {
             selectedIndex: counter,
           ),
           Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.only(top: 10, bottom: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Giá phòng(VND)', style: TextStyle(fontSize: 16)),
-                Text('Diện tích(m2)', style: TextStyle(fontSize: 16)),
+                Text('Giá phòng(VND)',
+                    style:
+                        TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+                Text('Diện tích(m2)',
+                    style:
+                        TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
               ],
             ),
           ),
@@ -366,7 +379,8 @@ class _PostPageState extends State<PostPage> {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('Tiện ích phòng', style: TextStyle(fontSize: 16)),
+            child: Text('Hình ảnh',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
           ),
           //UtilitiesRoom(),
           //PostImage()
@@ -483,6 +497,136 @@ class _PostPageState extends State<PostPage> {
           SizedBox(
             height: 20,
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget otpField() {
+    return OTPTextField(
+      length: 6,
+      width: MediaQuery.of(context).size.width,
+      fieldWidth: 40,
+      otpFieldStyle: OtpFieldStyle(
+        backgroundColor: CupertinoColors.systemGrey4,
+        borderColor: CupertinoColors.black,
+      ),
+      style: TextStyle(fontSize: 17, color: Colors.white),
+      textFieldAlignment: MainAxisAlignment.spaceAround,
+      fieldStyle: FieldStyle.box,
+      onCompleted: (pin) {
+        print("Completed: " + pin);
+        setState(() {
+          smsCode = pin;
+        });
+      },
+    );
+  }
+
+  Widget authenticateOTP() {
+    getMobileFormWidget(context) {
+      Size size = MediaQuery.of(context).size;
+      return Column(
+        children: [
+          SizedBox(
+            height: 20,
+          ),
+          Text(
+            "Nhập số điện thoại để xác thực",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+          ),
+          SizedBox(
+            height: 16,
+          ),
+          Container(
+            width: size.width,
+            height: 50,
+            child: TextFormField(
+              cursorColor: Color(0xffE67805),
+              controller: phoneController,
+              keyboardType: TextInputType.number,
+              onChanged: (value) {
+                roomModel.phoneNumber = phoneController.text;
+              },
+              decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide:
+                        BorderSide(color: Color(0xffE67805), width: 1.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(color: Colors.grey, width: 1.0),
+                  ),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red, width: 1.0),
+                  ),
+                  hintStyle: TextStyle(color: CupertinoColors.systemGrey),
+                  disabledBorder: InputBorder.none,
+                  hintText: 'Nhập số điện thoại',
+                  contentPadding: EdgeInsets.all(5),
+                  prefixIcon: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        // Image.asset(
+                        //   'assets/icons/vietnam.png',
+                        //   width: 15,
+                        //   height: 15,
+                        //   fit: BoxFit.cover,
+                        // ),
+                        Text(' +84   '),
+                        Container(
+                          height: 20,
+                          color: CupertinoColors.systemGrey,
+                          width: 1,
+                        )
+                      ],
+                    ),
+                  )),
+            ),
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          FlatButton(
+            onPressed: () async {
+              setState(() {
+                showLoading = true;
+              });
+
+              await _auth.verifyPhoneNumber(
+                phoneNumber: "+84${phoneController.text}",
+                verificationCompleted: (phoneAuthCredential) async {
+                  setState(() {
+                    showLoading = false;
+                  });
+                  //signInWithPhoneAuthCredential(phoneAuthCredential);
+                },
+                verificationFailed: (verificationFailed) async {
+                  setState(() {
+                    showLoading = false;
+                  });
+                },
+                codeSent: (verificationId, resendingToken) async {
+                  setState(() {
+                    showLoading = false;
+                    currentState = MobileVerificationState.SHOW_OTP_FORM_STATE;
+                    this.verificationId = verificationId;
+                  });
+                },
+                codeAutoRetrievalTimeout: (verificationId) async {},
+              );
+            },
+            child: Text("Gửi mã OTP"),
+            color: Colors.orange[900],
+            textColor: Colors.white,
+          ),
+          //  Spacer(),
+          SizedBox(
+            height: 30,
+          ),
           Align(
             alignment: Alignment.bottomCenter,
             child: FlatButton(
@@ -491,14 +635,15 @@ class _PostPageState extends State<PostPage> {
                   var date = DateTime.now();
                   roomModel.date = date.toString();
                   roomModel.statusRoom = 0;
+                  roomModel.longitude = "106.794670";
+                  roomModel.latitude = "10.845470";
                   await createRoomAPI.createPostRoom(roomModel).then((value) {
                     ArtSweetAlert.show(
                         context: context,
                         artDialogArgs: ArtDialogArgs(
                             sizeSuccessIcon: 70,
                             type: ArtSweetAlertType.success,
-                            title:
-                                "Đăng kí tài thành công. Bạn có thể đăng nhập!"));
+                            title: "Phòng bạn vừa được đăng"));
                     return;
                   });
                   Navigator.push(
@@ -527,6 +672,105 @@ class _PostPageState extends State<PostPage> {
               textColor: Colors.white,
             ),
           )
+        ],
+      );
+    }
+
+    return Center(
+      child: Column(
+        children: [
+          showLoading
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : currentState == MobileVerificationState.SHOW_MOBILE_FORM_STATE
+                  ? getMobileFormWidget(context)
+                  : Column(
+                      children: [
+                        otpField(),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width - 30,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  height: 1,
+                                  color: Colors.grey,
+                                  margin: EdgeInsets.symmetric(horizontal: 12),
+                                ),
+                              ),
+                              Text(
+                                "Nhập OTP gồm 6 số",
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.black),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  height: 1,
+                                  color: Colors.grey,
+                                  margin: EdgeInsets.symmetric(horizontal: 12),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: FlatButton(
+                            onPressed: () async {
+                              if (_formKey.currentState!.validate()) {
+                                var date = DateTime.now();
+                                roomModel.date = date.toString();
+                                roomModel.statusRoom = 0;
+                                roomModel.longitude = "106.794670";
+                                roomModel.latitude = "10.845470";
+                                await createRoomAPI
+                                    .createPostRoom(roomModel)
+                                    .then((value) {
+                                  ArtSweetAlert.show(
+                                      context: context,
+                                      artDialogArgs: ArtDialogArgs(
+                                          sizeSuccessIcon: 70,
+                                          type: ArtSweetAlertType.success,
+                                          title: "Phòng bạn vừa được đăng"));
+                                  return;
+                                });
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          CurvedNavigationBarWidget(),
+                                      settings: RouteSettings(
+                                        arguments: roomModel,
+                                      ),
+                                    ));
+                              }
+                            },
+                            child: Container(
+                                alignment: Alignment.center,
+                                width: MediaQuery.of(context).size.width,
+                                height:
+                                    MediaQuery.of(context).size.width * 0.15,
+                                child: Text('Đăng bài',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontSize: 25)),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(200),
+                                    gradient: LinearGradient(colors: <Color>[
+                                      CupertinoColors.activeBlue,
+                                      CupertinoColors.activeGreen,
+                                    ]))),
+                            textColor: Colors.white,
+                          ),
+                        )
+                      ],
+                    ),
         ],
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:clean_achitecture/features/Map/presentation/page/SearchMap.dart';
 import 'package:clean_achitecture/features/MyRoom/presentation/MyRoom.dart';
+import 'package:clean_achitecture/features/Post/presentation/screen/OTP.dart';
 import 'package:clean_achitecture/features/account/presentation/page/account.dart';
 import 'package:clean_achitecture/features/favorite/presentation/page/favorite.dart';
 import 'package:clean_achitecture/features/room/presentation/page/Room.dart';

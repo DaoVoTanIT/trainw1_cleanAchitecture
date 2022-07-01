@@ -10,4 +10,5 @@ class RouteName {
   static const String detailRoomPage = 'DetailRoomPage';
   static const String mapRoomPage = 'MapRoomPage';
   static const String MyRoomPage = 'MyRoomPage';
+  static const String OTPWithPhone = 'OTPWithPhone';
 }

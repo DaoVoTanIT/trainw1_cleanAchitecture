@@ -39,6 +39,7 @@ class _SavedRoomPageState extends State<FavoritePage> {
     // ignore: deprecated_member_use
 
     listRoomFavorite = await favoriteRoomAPI.getListFavoriteRoom(idUser);
+
     setState(() {});
   }
 
@@ -63,172 +64,177 @@ class _SavedRoomPageState extends State<FavoritePage> {
             body: listRoomFavorite.isEmpty
                 ? Container()
                 : SafeArea(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          ...listRoomFavorite.map((e) => Column(
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const DetailRoomPage(),
-                                          settings: RouteSettings(
-                                            arguments: e,
+                    child: ListView(
+                      reverse: true,
+                      children: [
+                        Column(
+                          children: [
+                            ...listRoomFavorite.map((e) => Column(
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const DetailRoomPage(),
+                                            settings: RouteSettings(
+                                              arguments: e,
+                                            ),
                                           ),
-                                        ),
-                                      );
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Container(
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        height: 300,
-                                        padding: EdgeInsets.all(10),
-                                        margin:
-                                            EdgeInsets.only(bottom: 5, top: 5),
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color:
-                                                  shadowColor.withOpacity(0.1),
-                                              spreadRadius: 1,
-                                              blurRadius: 1,
-                                              offset: Offset(1,
-                                                  1), // changes position of shadow
-                                            ),
-                                          ],
-                                        ),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            CustomImage(
-                                              e.imageMain.toString(),
-                                              width: double.infinity,
-                                              height: 190,
-                                              radius: 15,
-                                            ),
-                                            Container(
-                                              width: 250,
-                                              padding: EdgeInsets.fromLTRB(
-                                                  5, 10, 5, 0),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    e.streetName.toString(),
-                                                    maxLines: 1,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    style: TextStyle(
-                                                        fontSize: 18,
-                                                        color: textColor,
-                                                        fontWeight:
-                                                            FontWeight.w600),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 5,
-                                                  ),
-                                                ],
+                                        );
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Container(
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          height: 300,
+                                          padding: EdgeInsets.all(10),
+                                          margin: EdgeInsets.only(
+                                              bottom: 5, top: 5),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: shadowColor
+                                                    .withOpacity(0.1),
+                                                spreadRadius: 1,
+                                                blurRadius: 1,
+                                                offset: Offset(1,
+                                                    1), // changes position of shadow
                                               ),
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
-                                              children: [
-                                                Column(
+                                            ],
+                                          ),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              CustomImage(
+                                                e.imageMain.toString(),
+                                                width: double.infinity,
+                                                height: 190,
+                                                radius: 15,
+                                              ),
+                                              Container(
+                                                width: 250,
+                                                padding: EdgeInsets.fromLTRB(
+                                                    5, 10, 5, 0),
+                                                child: Column(
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      e.categoryName.toString(),
+                                                      e.streetName.toString(),
                                                       maxLines: 1,
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                       style: TextStyle(
-                                                          color: labelColor,
-                                                          fontSize: 15),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 8,
-                                                    ),
-                                                    Text(
-                                                      '${NumberFormat.decimalPattern().format(e.price).toString()} triệu/tháng',
-                                                      maxLines: 1,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      style: TextStyle(
-                                                          color: primary,
-                                                          fontSize: 15,
+                                                          fontSize: 18,
+                                                          color: textColor,
                                                           fontWeight:
                                                               FontWeight.w600),
                                                     ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
                                                   ],
                                                 ),
-                                                Spacer(),
-                                                FavoriteBox(
-                                                    size: 16,
-                                                    onTap: () async {
-                                                      ArtDialogResponse
-                                                          response =
-                                                          await ArtSweetAlert.show(
-                                                              barrierDismissible:
-                                                                  false,
-                                                              context: context,
-                                                              artDialogArgs: ArtDialogArgs(
-                                                                  denyButtonText:
-                                                                      "Huỷ",
-                                                                  title:
-                                                                      "Bạn xoá không?",
-                                                                  confirmButtonText:
-                                                                      "Xoá",
-                                                                  type: ArtSweetAlertType
-                                                                      .warning));
-                                                      if (response == null) {
-                                                        return;
-                                                      }
-
-                                                      if (response
-                                                          .isTapConfirmButton) {
-                                                        await deleteFavoriteRoomAPI
-                                                            .deleteFavoriteRoom(
-                                                                e.id.toString())
-                                                            .then((value) =>
-                                                                getFavoriteRoom(
-                                                                    idUser));
-                                                        //await saveFavoriteRoomAPI.saveFavoriteRoom(saveRoomFavorite, idUser);
-                                                        ArtSweetAlert.show(
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceEvenly,
+                                                children: [
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        e.categoryName
+                                                            .toString(),
+                                                        maxLines: 1,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        style: TextStyle(
+                                                            color: labelColor,
+                                                            fontSize: 15),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 8,
+                                                      ),
+                                                      Text(
+                                                        '${NumberFormat.decimalPattern().format(e.price).toString()} triệu/tháng',
+                                                        maxLines: 1,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        style: TextStyle(
+                                                            color: primary,
+                                                            fontSize: 15,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Spacer(),
+                                                  FavoriteBox(
+                                                      size: 16,
+                                                      onTap: () async {
+                                                        ArtDialogResponse response = await ArtSweetAlert.show(
+                                                            barrierDismissible:
+                                                                false,
                                                             context: context,
                                                             artDialogArgs: ArtDialogArgs(
-                                                                sizeSuccessIcon:
-                                                                    70,
-                                                                type:
-                                                                    ArtSweetAlertType
-                                                                        .success,
+                                                                denyButtonText:
+                                                                    "Huỷ",
                                                                 title:
-                                                                    "Lưu thành công"));
-                                                        return;
-                                                      }
-                                                    })
-                                              ],
-                                            ),
-                                          ],
+                                                                    "Bạn xoá không?",
+                                                                confirmButtonText:
+                                                                    "Xoá",
+                                                                type: ArtSweetAlertType
+                                                                    .warning));
+                                                        if (response == null) {
+                                                          return;
+                                                        }
+
+                                                        if (response
+                                                            .isTapConfirmButton) {
+                                                          await deleteFavoriteRoomAPI
+                                                              .deleteFavoriteRoom(e
+                                                                  .id
+                                                                  .toString())
+                                                              .then((value) =>
+                                                                  getFavoriteRoom(
+                                                                      idUser));
+                                                          //await saveFavoriteRoomAPI.saveFavoriteRoom(saveRoomFavorite, idUser);
+                                                          ArtSweetAlert.show(
+                                                              context: context,
+                                                              artDialogArgs: ArtDialogArgs(
+                                                                  sizeSuccessIcon:
+                                                                      70,
+                                                                  type: ArtSweetAlertType
+                                                                      .success,
+                                                                  title:
+                                                                      "Xoá thành công"));
+                                                          return;
+                                                        }
+                                                      })
+                                                ],
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  )
-                                ],
-                              ))
-                        ],
-                      ),
+                                    )
+                                  ],
+                                ))
+                          ],
+                        ),
+                      ],
                     ),
                   )));
   }

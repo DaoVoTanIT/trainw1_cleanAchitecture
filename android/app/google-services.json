@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "1054874261896",
-    "project_id": "signincleanarchitecture",
-    "storage_bucket": "signincleanarchitecture.appspot.com"
+    "project_number": "507142536342",
+    "project_id": "findroom-773d2",
+    "storage_bucket": "findroom-773d2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1054874261896:android:5faeb911970e8b735f023d",
+        "mobilesdk_app_id": "1:507142536342:android:a767e41df50d9d86afd6b7",
         "android_client_info": {
           "package_name": "com.example.clean_achitecture"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1054874261896-3slrrojronaslo4tgosgb8sa0pa8ufcq.apps.googleusercontent.com",
+          "client_id": "507142536342-ihl4dupg58ckf8n02c9or8mvki8be6b7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.clean_achitecture",
+            "certificate_hash": "bee91728065bb40b91b94dcbfecc24054ef09d03"
+          }
+        },
+        {
+          "client_id": "507142536342-iphtr143p82jas79ea996ds5cvtcehns.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBJuXKD-Uq5TbSRyZp0fm9DzpZYWVmMkd8"
+          "current_key": "AIzaSyCGEZHax1vt8YyncoJ7YqI03lA2pPfC7Vc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1054874261896-3slrrojronaslo4tgosgb8sa0pa8ufcq.apps.googleusercontent.com",
+              "client_id": "507142536342-iphtr143p82jas79ea996ds5cvtcehns.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

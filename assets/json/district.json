@@ -1,15 +1,5 @@
 [
     {
-        "id_District": "Q1",
-        "name": "Quận 1",
-        "type": "Quận"
-    },
-    {
-        "id_District": "Q12",
-        "name": "Quận 12",
-        "type": "Quận"
-    },
-    {
         "id_District": "QGV",
         "name": "Quận Gò Vấp",
         "type": "Quận"
@@ -40,18 +30,18 @@
         "type": "Thành phố"
     },
     {
+        "id_District": "Q1",
+        "name": "Quận 1",
+        "type": "Quận"
+    },
+    {
+        "id_District": "Q2",
+        "name": "Quận 2",
+        "type": "Quận"
+    },
+    {
         "id_District": "Q3",
         "name": "Quận 3",
-        "type": "Quận"
-    },
-    {
-        "id_District": "Q10",
-        "name": "Quận 3",
-        "type": "Quận"
-    },
-    {
-        "id_District": "Q11",
-        "name": "Quận 11",
         "type": "Quận"
     },
     {
@@ -70,18 +60,38 @@
         "type": "Quận"
     },
     {
+        "id_District": "Q7",
+        "name": "Quận 7",
+        "type": "Quận"
+    },
+    {
         "id_District": "Q8",
         "name": "Quận 8",
         "type": "Quận"
     },
     {
-        "id_District": "QBTAN",
-        "name": "Quận Bình Tân",
+        "id_District": "Q9",
+        "name": "Quận 9",
         "type": "Quận"
     },
     {
-        "id_District": "Q7",
-        "name": "Quận 7",
+        "id_District": "Q10",
+        "name": "Quận 10",
+        "type": "Quận"
+    },
+    {
+        "id_District": "Q11",
+        "name": "Quận 11",
+        "type": "Quận"
+    },
+    {
+        "id_District": "Q12",
+        "name": "Quận 12",
+        "type": "Quận"
+    },
+    {
+        "id_District": "QBTAN",
+        "name": "Quận Bình Tân",
         "type": "Quận"
     },
     {

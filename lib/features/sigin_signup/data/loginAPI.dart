@@ -21,7 +21,11 @@ class LoginAPI {
       if (_result.statusCode == 400) return "";
       token = _result.data!["token"].toString();
       String idUser = _result.data!['user']["_id"].toString();
+      String nameUser = _result.data!['user']["name"].toString();
+
       storage.setItem(LocalStoreKey.idUser, idUser);
+      storage.setItem(LocalStoreKey.name, nameUser);
+
       print(storage.getItem(LocalStoreKey.idUser));
       // Response<dynamic> _result =
       //     await _dio.get("https://findroomapi.herokuapp.com/findroom/getinfo",
