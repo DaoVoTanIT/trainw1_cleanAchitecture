@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:clean_achitecture/features/Post/model/distric.dart';
 
 class DistrictModel extends District {

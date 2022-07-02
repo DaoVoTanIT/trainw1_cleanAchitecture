@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:clean_achitecture/LocalStoreKey.dart';
 import 'package:clean_achitecture/Theme/color.dart';
+import 'package:clean_achitecture/common/config.dart';
 import 'package:clean_achitecture/features/Post/model/distric.dart';
 import 'package:clean_achitecture/features/room/data/RoomAPI.dart';
 import 'package:clean_achitecture/features/room/model/RoomModel.dart';
@@ -11,6 +13,7 @@ import 'package:clean_achitecture/features/room/presentation/page/FilterRoom.dar
 import 'package:clean_achitecture/features/room/presentation/widget/item_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:localstorage/localstorage.dart';
 
 class RoomPage extends StatefulWidget {
   @override
@@ -29,7 +32,8 @@ class _RoomPageState extends State<RoomPage>
   List<RoomModel> listRoomSearch = [];
   String? buldingChoose;
   List dataD = [];
-
+  final LocalStorage storage = new LocalStorage(keyLocalStore);
+  String districtRecomment = "";
   final items = [
     'Tất cả',
     'Quận 1',
@@ -58,8 +62,9 @@ class _RoomPageState extends State<RoomPage>
   getListRoom() async {
     listRoom = await roomAPI.getListRoom();
     setState(() {
-      listRoomNearMe =
-          listRoom.where((element) => element.areaName == "Quận 9").toList();
+      listRoomNearMe = listRoom
+          .where((element) => element.areaName == districtRecomment)
+          .toList();
     });
   }
 
@@ -101,6 +106,7 @@ class _RoomPageState extends State<RoomPage>
   @override
   void initState() {
     // TODO: implement initState
+    districtRecomment = storage.getItem(LocalStoreKey.district);
     getListRoom();
     getDataDistict();
   }
@@ -110,62 +116,6 @@ class _RoomPageState extends State<RoomPage>
   bool get wantKeepAlive => throw UnimplementedError();
   @override
   Widget build(BuildContext context) {
-    // return CupertinoPageScaffold(
-    //     backgroundColor: appBgColor,
-    //     navigationBar: CupertinoNavigationBar(
-    //       leading: Row(
-    //         children: [
-    //           GestureDetector(
-    //             child: Row(
-    //               children: [
-    //                 Image.asset(
-    //                   "assets/images/logo.png",
-    //                   fit: BoxFit.fill,
-    //                   color: CupertinoColors.activeBlue,
-    //                 )
-    //               ],
-    //             ),
-    //             onTap: () {
-    //               Navigator.pop(context);
-    //             },
-    //           ),
-    //         ],
-    //       ),
-    //       middle: Text(
-    //         "Trang chủ",
-    //         style: TextStyle(
-    //           fontSize: 16,
-    //         ),
-    //       ),
-    //       trailing: GestureDetector(
-    //           onTap: () {
-    //             Navigator.push(
-    //               context,
-    //               MaterialPageRoute(
-    //                 builder: (context) => FliterScreen(),
-    //                 settings: RouteSettings(
-    //                   arguments: listRoom,
-    //                 ),
-    //               ),
-    //             ).then((value) => {
-    //                   if (value != null)
-    //                     {
-    //                       setState(() {
-    //                         listRoom = value;
-    //                       })
-    //                     }
-    //                   else
-    //                     {getListRoom()}
-    //                 });
-    //           },
-    //           child: Icon(
-    //             Icons.filter_alt_outlined,
-    //             size: 26,
-    //             color: CupertinoColors.activeBlue,
-    //           )),
-    //     ),
-    //     );
-
     return CupertinoPageScaffold(
       child: CustomScrollView(
         physics: NeverScrollableScrollPhysics(),
@@ -345,26 +295,11 @@ class _RoomPageState extends State<RoomPage>
                                     isExpanded: true,
                                     isDense: true,
                                     onChanged: (newValue) {
-                                      // Future.delayed(Duration.zero, () {
-                                      //   getListRoom();
-                                      // });
-
                                       setState(() {
                                         buldingChoose = newValue;
                                       });
                                       filterByArea();
                                     },
-                                    // items: items.map<DropdownMenuItem<String>>(
-                                    //     (valueItem) {
-                                    //   return DropdownMenuItem(
-                                    //     value: valueItem,
-                                    //     child: Row(
-                                    //       children: [
-                                    //         Text(valueItem),
-                                    //       ],
-                                    //     ),
-                                    //   );
-                                    // }).toList(),
                                     items: dataD.map((item) {
                                       return new DropdownMenuItem(
                                         child:
@@ -385,21 +320,7 @@ class _RoomPageState extends State<RoomPage>
                               color: CupertinoColors.activeBlue,
                               shape: BoxShape.circle),
                           child: IconButton(
-                            onPressed: () {
-                              // if (buldingChoose != null) {
-                              //   listRoomFilter = listRoom
-                              //       .where((element) =>
-                              //           element.areaName! ==
-                              //           buldingChoose.toString())
-                              //       .toList();
-                              //   setState(() {
-                              //     // ignore: unrelated_type_equality_checks
-                              //     if (listRoomFilter != 0) {
-                              //       listRoom = listRoomFilter;
-                              //     }
-                              //   });
-                              // }
-                            },
+                            onPressed: () {},
                             icon: Icon(
                               Icons.search,
                               color: Colors.white,
@@ -417,7 +338,7 @@ class _RoomPageState extends State<RoomPage>
                   Padding(
                     padding: EdgeInsets.fromLTRB(20, 0, 15, 0),
                     child: Text(
-                      'Xung quanh bạn',
+                      'Dành cho bạn',
                       style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -453,15 +374,6 @@ class _RoomPageState extends State<RoomPage>
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                // ClipRRect(
-                                //   borderRadius: BorderRadius.circular(10.0),
-                                //   child: Image.network(
-                                //     listRoomNearMe[i].imageMain.toString(),
-                                //     height: 70,
-                                //     width: 70,
-                                //     fit: BoxFit.cover,
-                                //   ),
-                                // ),
                                 CachedNetworkImage(
                                   imageUrl:
                                       listRoomNearMe[i].imageMain.toString(),
@@ -483,7 +395,19 @@ class _RoomPageState extends State<RoomPage>
                                           CircularProgressIndicator(
                                               value: downloadProgress.progress),
                                   errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
+                                      Container(
+                                    height: 70,
+                                    width: 70,
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(10)),
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                            "assets/images/pt1.jpeg"),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(left: 10),
@@ -527,7 +451,7 @@ class _RoomPageState extends State<RoomPage>
                     Padding(
                       padding: EdgeInsets.fromLTRB(20, 0, 15, 0),
                       child: Text(
-                        'Dành cho bạn',
+                        'Phòng trọ đã đăng',
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,

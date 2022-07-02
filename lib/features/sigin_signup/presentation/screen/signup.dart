@@ -1,8 +1,14 @@
+import 'dart:convert';
+
 import 'package:art_sweetalert/art_sweetalert.dart';
 import 'package:clean_achitecture/Theme/color.dart';
 import 'package:clean_achitecture/Theme/theme.dart';
+import 'package:clean_achitecture/features/Post/model/distric.dart';
 import 'package:clean_achitecture/features/sigin_signup/data/signupAPI.dart';
+import 'package:clean_achitecture/features/sigin_signup/model/user.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -17,15 +23,38 @@ class _SignUpPageState extends State<SignUpPage> {
 
   TextEditingController usernameEditingController = new TextEditingController();
   TextEditingController passwordEditingController = new TextEditingController();
+  TextEditingController addressController = new TextEditingController();
+  TextEditingController districtController = new TextEditingController();
   TextEditingController passwordConfirmEditingController =
       new TextEditingController();
-
+  TextEditingController birthdayController = new TextEditingController();
   TextEditingController nameEditingController = new TextEditingController();
   TextEditingController phoneNumberEditingController =
       new TextEditingController();
+
+  List dataD = [];
+  String? _selectionDistrict;
   bool _isObscure = true;
   bool isLoading = false;
   SignUpAPI signUpAPI = SignUpAPI();
+  User userModel = User();
+  Future<String> getDataDistict() async {
+    final assetBundle = DefaultAssetBundle.of(context);
+    final data = await assetBundle.loadString('assets/json/district.json');
+    final body = json.decode(data);
+    setState(() {
+      dataD = body;
+    });
+    return body.map<District>(District.fromJson).toList();
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getDataDistict();
+  }
+
   @override
   void dispose() {
     super.dispose();
@@ -117,7 +146,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           TextFormField(
                             controller: nameEditingController,
                             onChanged: (value) {
-                              username = value;
+                              userModel.name = value;
                             },
                             decoration: InputDecoration(
                                 prefixIcon: Icon(Icons.people),
@@ -128,18 +157,89 @@ class _SignUpPageState extends State<SignUpPage> {
                           SizedBox(
                             height: 10,
                           ),
-                          // TextFormField(
-                          //   keyboardType: TextInputType.number,
-                          //   controller: phoneNumberEditingController,
-                          //   decoration: InputDecoration(
-                          //       prefixIcon: Icon(Icons.phone),
-                          //       hintText: "Số điện thoại",
-                          //       border: OutlineInputBorder(
-                          //           borderRadius: BorderRadius.circular(10))),
-                          // ),
-                          // SizedBox(
-                          //   height: 10,
-                          // ),
+                          TextFormField(
+                            // focusNode: _focusNode,
+                            keyboardType: TextInputType.phone,
+                            autocorrect: false,
+                            controller: birthdayController,
+                            onChanged: (value) {},
+                            decoration: InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.cake,
+                                ),
+                                hintText: "Ngày sinh",
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10))),
+                            onTap: () {
+                              _selectDate();
+                              FocusScope.of(context)
+                                  .requestFocus(new FocusNode());
+                            },
+                            maxLines: 1,
+                            //initialValue: 'Aseem Wangoo',
+                            validator: (value) {
+                              if (value!.isEmpty || value!.length < 1) {
+                                return 'Choose Date';
+                              }
+                            },
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          TextFormField(
+                            // focusNode: _focusNode,
+                            keyboardType: TextInputType.phone,
+                            autocorrect: false,
+                            controller: phoneNumberEditingController,
+                            onChanged: (value) {
+                              userModel.phone = value;
+                            },
+                            decoration: InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.phone,
+                                ),
+                                hintText: "Số điện thoại",
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10))),
+                            onTap: () {},
+                            maxLines: 1,
+                            //initialValue: 'Aseem Wangoo',
+                            validator: (value) {
+                              if (value!.isEmpty || value!.length < 1) {
+                                return 'Nhập SDT';
+                              }
+                            },
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          DropdownButtonFormField(
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.blue, width: 2),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              filled: true,
+                            ),
+                            hint: Text('Chọn quận/huyện'),
+                            value: _selectionDistrict,
+                            onChanged: (newVal) {
+                              setState(() {
+                                _selectionDistrict = newVal as String?;
+                                userModel.address = _selectionDistrict;
+                              });
+                            },
+                            items: dataD.map((item) {
+                              return new DropdownMenuItem(
+                                child: new Text(item['name'].toString()),
+                                value: item['name'].toString(),
+                              );
+                            }).toList(),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
                           TextFormField(
                             obscureText: _isObscure,
                             validator: (val) {
@@ -181,6 +281,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             },
                             onChanged: (value) {
                               inputConfirmPassword = value;
+                              userModel.password = value;
                             },
                             controller: passwordConfirmEditingController,
                             decoration: InputDecoration(
@@ -205,14 +306,14 @@ class _SignUpPageState extends State<SignUpPage> {
                             height: 50,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(50),
-                                color: Colors.lightBlueAccent),
+                                color: CupertinoColors.activeBlue),
                             child: Center(
                                 child: FlatButton(
                               onPressed: () async {
                                 if (_formKey.currentState!.validate() &&
                                     inputPassword == inputConfirmPassword) {
                                   await signUpAPI
-                                      .createAccountAPI(username, inputPassword)
+                                      .createAccountAPI(userModel)
                                       .then((value) {
                                     if (value == true) {
                                       ArtSweetAlert.show(
@@ -256,5 +357,18 @@ class _SignUpPageState extends State<SignUpPage> {
             )),
       ),
     );
+  }
+
+  Future _selectDate() async {
+    DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: new DateTime.now(),
+        firstDate: new DateTime(1970),
+        lastDate: new DateTime(2023));
+    if (picked != null)
+      setState(() => {
+            userModel.birthday = DateFormat('dd-MM-yyyy').format(picked),
+            birthdayController.text = DateFormat('dd-MM-yyyy').format(picked),
+          });
   }
 }

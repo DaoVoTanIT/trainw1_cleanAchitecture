@@ -2,8 +2,6 @@ import 'package:clean_achitecture/Theme/color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
-import 'package:intl/intl.dart';
 
 import '../../data/RoomAPI.dart';
 import '../../model/RoomModel.dart';
@@ -31,7 +29,6 @@ class _FliterScreenState extends State<FliterScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     Future.delayed(Duration.zero, () {
       listRoomModel =

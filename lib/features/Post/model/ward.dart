@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class Ward {
   Ward({
     required this.idWard,

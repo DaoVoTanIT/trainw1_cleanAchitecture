@@ -14,7 +14,6 @@ class _MapRoomPageState extends State<MapRoomPage> {
   static double? latitude;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     Future.delayed(Duration.zero, () {
       var arg = ModalRoute.of(context)!.settings.arguments as Map;

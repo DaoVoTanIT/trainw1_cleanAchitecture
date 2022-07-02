@@ -22,10 +22,10 @@ class LoginAPI {
       token = _result.data!["token"].toString();
       String idUser = _result.data!['user']["_id"].toString();
       String nameUser = _result.data!['user']["name"].toString();
-
+      String district = _result.data!['user']["adress"].toString();
       storage.setItem(LocalStoreKey.idUser, idUser);
       storage.setItem(LocalStoreKey.name, nameUser);
-
+      storage.setItem(LocalStoreKey.district, district);
       print(storage.getItem(LocalStoreKey.idUser));
       // Response<dynamic> _result =
       //     await _dio.get("https://findroomapi.herokuapp.com/findroom/getinfo",

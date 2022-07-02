@@ -2,7 +2,7 @@ import 'package:clean_achitecture/LocalStoreKey.dart';
 import 'package:clean_achitecture/Theme/color.dart';
 import 'package:clean_achitecture/common/config.dart';
 import 'package:clean_achitecture/features/account/data/profileAPI.dart';
-import 'package:clean_achitecture/features/account/presentation/widget/custom_image.dart';
+import 'package:clean_achitecture/features/sigin_signup/model/user.dart';
 import 'package:clean_achitecture/routes/route_name.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,15 +19,14 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   ProfileAPI profileAPI = ProfileAPI();
-  String name = '';
   final LocalStorage storage = new LocalStorage(keyLocalStore);
-
+  User userModel = User();
   @override
   void initState() {
     // TODO: implement initState
     Future.delayed(Duration.zero, () async {
       String token = storage.getItem(LocalStoreKey.tokenUser);
-      name = await profileAPI.getProfileAPI(token);
+      userModel = await profileAPI.getProfileAPI(token);
       setState(() {});
     });
   }
@@ -113,14 +112,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 SizedBox(
                   height: 12,
                 ),
-                Text(
-                  name,
-                  style: TextStyle(
-                    color: textColor,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
+                _infoSection(),
                 SizedBox(
                   height: 5,
                 ),
@@ -208,5 +200,62 @@ class _ProfilePageState extends State<ProfilePage> {
       Navigator.pushNamedAndRemoveUntil(
           context, RouteName.loginPage, (Route<dynamic> route) => false);
     });
+  }
+
+  Column _infoCell({required String title, required String value}) {
+    return Column(
+      children: <Widget>[
+        Text(
+          title,
+          style: TextStyle(
+            fontFamily: 'OpenSans',
+            fontWeight: FontWeight.w300,
+            fontSize: 17,
+          ),
+        ),
+        SizedBox(
+          height: 8,
+        ),
+        Text(
+          value,
+          style: TextStyle(
+            fontFamily: 'OpenSans',
+            fontWeight: FontWeight.w700,
+            fontSize: 16,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Row _infoSection() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        _infoCell(
+          title: 'Năm sinh',
+          value:
+              userModel.birthday == null ? '' : userModel.birthday.toString(),
+        ),
+        Container(
+          width: 1,
+          height: 40,
+          color: Colors.grey,
+        ),
+        _infoCell(
+          title: 'Tên',
+          value: userModel.name == null ? '' : userModel.name.toString(),
+        ),
+        Container(
+          width: 1,
+          height: 40,
+          color: Colors.grey,
+        ),
+        _infoCell(
+          title: 'Địa chỉ',
+          value: userModel.address == null ? '' : userModel.address.toString(),
+        ),
+      ],
+    );
   }
 }

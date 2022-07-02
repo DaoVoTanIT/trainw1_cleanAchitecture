@@ -1,17 +1,16 @@
+import 'package:clean_achitecture/features/sigin_signup/model/user.dart';
 import 'package:dio/dio.dart';
 
 class SignUpAPI {
   final Dio _dio = Dio();
   bool? authenDB;
-  Future<bool> createAccountAPI(String username, String password) async {
+  Future<bool> createAccountAPI(User user) async {
     try {
-      Response<dynamic> authenticateDB =
-          await _dio.post("https://findroomapi.herokuapp.com/findroom/adduser",
-              data: {
-                "name": username,
-                "password": password,
-              },
-              options: Options(contentType: Headers.formUrlEncodedContentType));
+      Response<dynamic> authenticateDB = await _dio.post(
+        "https://findroomapi.herokuapp.com/findroom/adduser",
+        data: user.toJson(),
+      );
+      print(authenticateDB);
     } on DioError catch (e) {
       if (e.response != null) {
         print('Dio error!');

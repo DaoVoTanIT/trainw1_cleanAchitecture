@@ -1,9 +1,11 @@
+import 'package:clean_achitecture/features/sigin_signup/model/user.dart';
 import 'package:dio/dio.dart';
 
 class ProfileAPI {
   final Dio _dio = Dio();
   String? name;
-  Future<String> getProfileAPI(String token) async {
+  User? user;
+  Future<User> getProfileAPI(String token) async {
     try {
       Response<dynamic> profileDB =
           await _dio.get("https://findroomapi.herokuapp.com/findroom/getinfo",
@@ -13,7 +15,8 @@ class ProfileAPI {
                 'Authorization': 'Bearer $token',
               }));
       print(profileDB);
-      name = profileDB.data["msg"].toString();
+      var getUsersData = profileDB.data;
+      user = User.fromJson(getUsersData);
     } on DioError catch (e) {
       if (e.response != null) {
         print('Dio error!');
@@ -25,6 +28,6 @@ class ProfileAPI {
         print(e.message);
       }
     }
-    return name!;
+    return user!;
   }
 }

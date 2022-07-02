@@ -65,7 +65,6 @@ class _SavedRoomPageState extends State<FavoritePage> {
                 ? Container()
                 : SafeArea(
                     child: ListView(
-                      reverse: true,
                       children: [
                         Column(
                           children: [

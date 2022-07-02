@@ -7,12 +7,13 @@ class SaveFavoriteRoomAPI {
   final Dio _dio = Dio();
   var listRoom;
   Future<void> saveFavoriteRoom(RoomModel model, String idUser) async {
+    var test = json.encode(model);
     try {
       Response roomPost = await _dio.post(
           "https://findroomapi.herokuapp.com/findroom/favoriteRoom/$idUser",
           data: model.toJson());
 
-      print('Save rom: ${roomPost}');
+      print('Save room: ${roomPost}');
       var roomData = roomPost.data;
       listRoom = RoomModel.fromJson(roomData);
       print('post');
